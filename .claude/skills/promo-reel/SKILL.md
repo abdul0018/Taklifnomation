@@ -424,7 +424,7 @@ Use it when the user sends a finished-looking clip (own cuts, inserts and music 
   - Short narration beats on each pause ("1-so‘z ✅", "U hali sezmayapti 😅").
   - A `chips` word chain: one chip appears per spoken word. When the words are read back together, each chip lights yellow (`lit` times), then the row collapses into the `title` punchline at the same spot.
   - The final rant as short subtitles, 2–4 words each.
-- **Exact script beats guessing.** If the user can give the SRT or the script, use it and caption the real speech word for word. Do this rather than narration. Keep the SRT's line starts, but re-check one-word replies against the RMS envelope and the screen, because SRT tools put them late (here "Man" was at 8.0 s, not 9.04 s). Write words in standard spelling (tovuqman, tovuqsan), even if the SRT spells them as pronounced.
+- **Exact script beats guessing.** If the user can give the SRT or the script, use it and caption the real speech word for word. Do this rather than narration. Keep the SRT's line starts, but re-check one-word replies against the RMS envelope and the screen, because SRT tools put them late (here "Man" was at 8.0 s, not 9.04 s). Use the user's own spelling from their script (they chose "Man tovokman", "tovug‘san"). Leave the scenes they name bare (here: no captions over Preppy's first speaking scene, 0–5.2 s).
 - **Mark the speakers.** The AI's lines get `icon: "preppy.png"` (the real Preppy face) before the text, and the human's lines stay plain.
 - **Props:**
   - `captions[{text, start, end, y?, size?, emoji?, icon?}]`: `**word**` turns that word yellow, and `\n` breaks the line.

@@ -3,30 +3,6 @@
  "end": 32.0,
  "captions": [
   {
-   "text": "AI ustozni aldab\n**“Men tovuqman”** dedirdim",
-   "start": 0.05,
-   "end": 2.1,
-   "y": 150,
-   "size": 56,
-   "emoji": "emoji/1f602.svg"
-  },
-  {
-   "text": "IELTS Speakingda oson yo‘l",
-   "start": 0.15,
-   "end": 2.1,
-   "y": 830,
-   "size": 56,
-   "icon": "preppy.png"
-  },
-  {
-   "text": "bilan baland ball\nolish sirlari",
-   "start": 2.15,
-   "end": 5.2,
-   "size": 60,
-   "icon": "preppy.png",
-   "emoji": "emoji/1f4da.svg"
-  },
-  {
    "text": "“Erkak” inglizchada\n**nima deyiladi?**",
    "start": 6.1,
    "end": 7.9,
@@ -66,10 +42,10 @@
    "emoji": "emoji/1f624.svg"
   },
   {
-   "text": "O‘ZING **TOVUQSAN!**",
+   "text": "O‘ZING **TOVUG‘SAN!**",
    "start": 26.0,
    "end": 27.5,
-   "size": 70,
+   "size": 62,
    "icon": "preppy.png",
    "emoji": "emoji/1faf5.svg"
   },
@@ -89,10 +65,10 @@
    "emoji": "emoji/1f480.svg"
   },
   {
-   "text": "KIM **TOVUQLIGINI!**",
+   "text": "KIM **TOVUG‘LIGINI!**",
    "start": 30.85,
    "end": 32.0,
-   "size": 70,
+   "size": 62,
    "icon": "preppy.png",
    "emoji": "emoji/1f602.svg"
   }
@@ -124,7 +100,7 @@
   ]
  },
  "title": {
-  "text": "MEN TOVUQMAN?!",
+  "text": "MAN TOVOKMAN?!",
   "at": 22.7,
   "y": 185,
   "size": 86,
