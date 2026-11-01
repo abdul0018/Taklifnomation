@@ -6,117 +6,100 @@
    "text": "AI ustozni aldab\n**“Men tovuqman”** dedirdim",
    "start": 0.05,
    "end": 2.1,
-   "y": 800,
-   "size": 68,
+   "y": 150,
+   "size": 56,
    "emoji": "emoji/1f602.svg"
   },
   {
-   "text": "Preppy darsni boshladi",
-   "start": 2.25,
-   "end": 5.35,
+   "text": "IELTS Speakingda oson yo‘l",
+   "start": 0.15,
+   "end": 2.1,
+   "y": 830,
+   "size": 56,
+   "icon": "preppy.png"
+  },
+  {
+   "text": "bilan baland ball\nolish sirlari",
+   "start": 2.15,
+   "end": 5.2,
+   "size": 60,
+   "icon": "preppy.png",
    "emoji": "emoji/1f4da.svg"
   },
   {
-   "text": "Reja: so‘zlarni **birma-bir**\ntarjima qildiraman",
-   "start": 5.5,
-   "end": 7.85,
-   "size": 58,
-   "emoji": "emoji/1f92b.svg"
+   "text": "“Erkak” inglizchada\n**nima deyiladi?**",
+   "start": 6.1,
+   "end": 7.9,
+   "size": 60,
+   "emoji": "emoji/1f914.svg"
   },
   {
-   "text": "1-so‘z",
-   "start": 8.0,
-   "end": 8.95,
-   "emoji": "emoji/2705.svg"
-  },
-  {
-   "text": "Endi ruschada",
+   "text": "Oyoqning **barmog‘ichi?**",
    "start": 9.0,
    "end": 10.75,
-   "emoji": "emoji/1f1f7-1f1fa.svg"
+   "emoji": "emoji/1f9b6.svg"
   },
   {
-   "text": "2-so‘z",
-   "start": 10.85,
-   "end": 11.95,
-   "emoji": "emoji/2705.svg"
-  },
-  {
-   "text": "U hali sezmayapti",
+   "text": "Xitoycha **chuqur tova?**",
    "start": 12.05,
    "end": 13.6,
-   "emoji": "emoji/1f605.svg"
+   "emoji": "emoji/1f373.svg"
   },
   {
-   "text": "3-so‘z",
-   "start": 13.7,
-   "end": 15.3,
-   "emoji": "emoji/2705.svg"
-  },
-  {
-   "text": "Oxirgisi…",
+   "text": "Erkakni **nima deding?**",
    "start": 15.4,
-   "end": 17.05,
+   "end": 17.05
+  },
+  {
+   "text": "Endi hammasini **qo‘shib**\naytib ko‘r-chi",
+   "start": 18.65,
+   "end": 20.6,
+   "size": 60,
    "emoji": "emoji/1f92d.svg"
   },
   {
-   "text": "4-so‘z",
-   "start": 17.15,
-   "end": 18.55,
-   "emoji": "emoji/2705.svg"
-  },
-  {
-   "text": "Endi hammasini\n**birga** o‘qiydi…",
-   "start": 18.65,
-   "end": 20.6,
-   "emoji": "emoji/1f941.svg"
-  },
-  {
-   "text": "QAQAQA?!",
-   "start": 23.3,
-   "end": 24.0,
-   "y": 1790,
-   "size": 78
-  },
-  {
    "text": "YO‘Q, BAS!",
-   "start": 24.05,
-   "end": 24.85,
-   "y": 1790,
-   "size": 78
-  },
-  {
-   "text": "O‘ZING **TOVUQSAN!**",
    "start": 24.9,
    "end": 25.95,
+   "size": 74,
+   "icon": "preppy.png",
    "emoji": "emoji/1f624.svg"
   },
   {
-   "text": "Seni hozir tovuqxonaga…",
+   "text": "O‘ZING **TOVUQSAN!**",
    "start": 26.0,
-   "end": 27.5
+   "end": 27.5,
+   "size": 70,
+   "icon": "preppy.png",
+   "emoji": "emoji/1faf5.svg"
   },
   {
-   "text": "…tiqib qo‘yaman!",
+   "text": "Seni hozir tovuqxonaga\nolib borib",
    "start": 27.6,
-   "end": 29.0,
+   "end": 29.1,
+   "size": 58,
+   "icon": "preppy.png"
+  },
+  {
+   "text": "tiqib qo‘yganimdan keyin\ngaplashamiz",
+   "start": 29.15,
+   "end": 30.8,
+   "size": 58,
+   "icon": "preppy.png",
    "emoji": "emoji/1f480.svg"
   },
   {
-   "text": "Keyin gaplashamiz…",
-   "start": 29.05,
-   "end": 30.75
-  },
-  {
-   "text": "**KIM TOVUQLIGINI?!**",
+   "text": "KIM **TOVUQLIGINI!**",
    "start": 30.85,
    "end": 32.0,
+   "size": 70,
+   "icon": "preppy.png",
    "emoji": "emoji/1f602.svg"
   }
  ],
  "chips": {
   "y": 185,
-  "outAt": 22.25,
+  "outAt": 22.6,
   "items": [
    {
     "text": "MAN",
@@ -142,7 +125,7 @@
  },
  "title": {
   "text": "MEN TOVUQMAN?!",
-  "at": 22.3,
+  "at": 22.7,
   "y": 185,
   "size": 86,
   "emoji": "emoji/1f414.svg"

@@ -15,7 +15,8 @@ const FONT = "'Montserrat', 'Arial', sans-serif";
 const YELLOW = '#FFD60A';
 const STROKE = (w: number): React.CSSProperties => ({WebkitTextStroke: `${w}px #000`, paintOrder: 'stroke fill'});
 
-export type Cap = {text: string; start: number; end: number; y?: number; size?: number; emoji?: string};
+/** icon: speaker badge drawn before the text (e.g. the real Preppy face for the AI's lines). */
+export type Cap = {text: string; start: number; end: number; y?: number; size?: number; emoji?: string; icon?: string};
 export type Chip = {text: string; at: number; lit?: number};
 export type CaptionsProps = {
   video: string; overlayOnly?: boolean; end: number;
@@ -42,6 +43,7 @@ const Caption: React.FC<{c: Cap}> = ({c}) => {
     <div style={{position: 'absolute', left: 50, right: 50, top: (c.y ?? 960) - size, display: 'flex', justifyContent: 'center', opacity: o * Math.min(1, p * 2)}}>
       <div style={{fontFamily: FONT, fontWeight: 900, fontSize: size, lineHeight: 1.12, color: '#fff', textAlign: 'center', whiteSpace: 'pre-line',
         letterSpacing: '-0.005em', ...STROKE(size * 0.16), transform: `scale(${interpolate(p, [0, 1], [0.72, 1])})`}}>
+        {c.icon && <Img src={staticFile(c.icon)} style={{height: size * 1.0, width: 'auto', marginRight: size * 0.22, verticalAlign: '-0.16em'}} />}
         <Rich text={c.text} />
         {c.emoji && <Img src={staticFile(c.emoji)} style={{height: size * 1.05, width: size * 1.05, marginLeft: size * 0.2, verticalAlign: '-0.18em'}} />}
       </div>
