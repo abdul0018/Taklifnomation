@@ -433,7 +433,14 @@ Use it when the user sends a finished-looking clip (own cuts, inserts and music 
   - Emoji are Twemoji SVGs.
 - **Look:** white Montserrat 900 with a crisp black stroke (16% of the font size, `paintOrder: stroke fill`), and no shadows at all.
 - **Placement:** narration at chest height (y≈960). Hook between the chin and the laptop. Chips and title at y≈185. While an existing insert (e.g. the chicken photo) covers the chest, move the subtitles below it (y≈1790).
-- Example: `examples/preppy-tovuq-captions.props.json`.
+- **It's a series.** The user films the same prank with different words (Man + Toe + Wok + Man = "Men tovuqman"; Man + Core + Coke + Man = "Man qo‘rqoqman"). Reuse the same props shape. Then:
+  - Chips: the four English words, each timed to Preppy's one-word reply.
+  - `lit`: the four bumps when Preppy reads them back.
+  - `title`: the punchline, timed to Preppy's angry repeat, with a fitting emoji (🐔 or 😨).
+  - Leave the opening Preppy scene bare.
+  - Set the caption `y` just above the laptop's top edge in that take (960 there, 885 in the hoodie take).
+  - In the user's script, a mid-sentence "To'xta" can belong to the next line. Check the RMS gaps.
+- Examples: `examples/preppy-tovuq-captions.props.json` and `examples/preppy-qorqoq-captions.props.json`.
 
 ## 16. Footage quality rules (this user notices any loss; apply to every edit over their video)
 

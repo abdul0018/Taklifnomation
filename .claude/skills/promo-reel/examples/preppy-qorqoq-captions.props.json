@@ -1,0 +1,103 @@
+{
+ "video": "video.mp4",
+ "end": 30.83,
+ "captions": [
+  {
+   "text": "To‘xta, erkak ingliz tilida\n**nima deyiladi?**",
+   "start": 6.3,
+   "end": 7.65,
+   "size": 60,
+   "emoji": "emoji/1f914.svg",
+   "y": 885
+  },
+  {
+   "text": "**Markazchi?**",
+   "start": 8.95,
+   "end": 9.95,
+   "size": 70,
+   "emoji": "emoji/1f3af.svg",
+   "y": 885
+  },
+  {
+   "text": "**Coca-Cola?**",
+   "start": 11.1,
+   "end": 12.3,
+   "size": 70,
+   "emoji": "emoji/1f964.svg",
+   "y": 885
+  },
+  {
+   "text": "Erkakni **nima deding?**",
+   "start": 15.6,
+   "end": 16.95,
+   "y": 885
+  },
+  {
+   "text": "Endi hammasini\n**qo‘shib** ko‘r",
+   "start": 18.55,
+   "end": 20.25,
+   "size": 62,
+   "emoji": "emoji/1f92d.svg",
+   "y": 885
+  },
+  {
+   "text": "CHUVALCHANG,\nO‘ZING **QO‘RQOQSAN!**",
+   "start": 23.1,
+   "end": 24.8,
+   "size": 62,
+   "icon": "preppy.png",
+   "emoji": "emoji/1fab1.svg",
+   "y": 885
+  },
+  {
+   "text": "Hozir yoningda bo‘lganimda",
+   "start": 24.95,
+   "end": 26.2,
+   "size": 58,
+   "icon": "preppy.png",
+   "y": 885
+  },
+  {
+   "text": "ko‘rsatardim\n**qo‘rqoq kimligini!**",
+   "start": 26.25,
+   "end": 27.9,
+   "size": 62,
+   "icon": "preppy.png",
+   "emoji": "emoji/1f624.svg",
+   "y": 885
+  }
+ ],
+ "chips": {
+  "y": 185,
+  "outAt": 21.75,
+  "items": [
+   {
+    "text": "MAN",
+    "at": 7.75,
+    "lit": 20.35
+   },
+   {
+    "text": "CORE",
+    "at": 10.1,
+    "lit": 20.6
+   },
+   {
+    "text": "COKE",
+    "at": 12.4,
+    "lit": 20.95
+   },
+   {
+    "text": "MAN",
+    "at": 17.1,
+    "lit": 21.2
+   }
+  ]
+ },
+ "title": {
+  "text": "MAN QO‘RQOQMAN?!",
+  "at": 21.85,
+  "y": 185,
+  "size": 80,
+  "emoji": "emoji/1f628.svg"
+ }
+}
