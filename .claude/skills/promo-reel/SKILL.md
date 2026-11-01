@@ -412,7 +412,25 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
 2. Render the audio separately (`--codec=wav`).
 3. Composite in ffmpeg: `[1:v]format=yuva444p,scale=out_color_matrix=bt709:out_range=tv[ov];[0:v][ov]overlay=format=yuv444,format=yuv420p`, with x264 CRF 12 and BT.709 tags. The source pixels pass through untouched; verify the mean RGB is within about 0.5.
 
-Example: `examples/ai-tools-tiers.props.json`.
+**Clean look and the 4-topic IELTS version:**
+- `clean: true` removes every shadow. Cards get a 2 px hairline and a 5 px tier-colour ring when lit. Labels get an 8 px black stroke. The pill gets a hairline.
+- The reveal blur stays, because it's the style's signature and it blurs only the card graphic, never the footage.
+- Logos used:
+  - Official Play Store icons for Duolingo, TikTok and HelloTalk.
+  - Simple Icons masks for Anki (gradient), Instagram (gradient) and ChatGPT (the OpenAI mark, black).
+  - The full-colour YouTube SVG.
+  - The GoPrep favicon, and the padded 512 px Preppy and IELTS Runner art.
+  - Twemoji 📱 (Telefon) and 📖 (Kitob).
+- Gesture rhythm in this take:
+  - The topic close-up comes first.
+  - The finger points to screen-left (YOMON) ~1.3 s after the topic starts.
+  - The finger points up (YAXSHI) ~0.85 s later.
+  - The thumb points right (AJOYIB) ~0.9 s after that.
+- Take each `reveal` from the 10 fps strip: the first frame where the finger is fully extended.
+- Topic titles say "IELTS Listening" and "IELTS Speaking" (the user asked for that earlier).
+- Keep only the user's audio: stream-copy it, with no music or SFX.
+
+Examples: `examples/ai-tools-tiers.props.json` and `examples/ielts-tiers-4topics.props.json` (clean, real logos).
 
 ## 15. Style K: captions on an already-cut clip (`CaptionsReel`)
 

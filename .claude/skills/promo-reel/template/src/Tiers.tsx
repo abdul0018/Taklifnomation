@@ -25,7 +25,10 @@ const CARD = 236;
 export type Logo = {name: string; kind: 'mask' | 'img'; file: string; color?: string; gradient?: string; scale?: number; radius?: number};
 export type Topic = {title: string; emoji?: string; start: number; logos: [Logo, Logo, Logo]; reveal: [number, number, number]};
 /** overlayOnly: render just the graphics on transparent (composite onto the untouched source with ffmpeg). */
-export type TiersProps = {overlayOnly?: boolean; video: string; voice?: string; voiceVolume?: number; topics: Topic[]; cues?: {file: string; at: number; vol?: number}[]; end: number};
+/** clean: no shadows anywhere (cards get a crisp hairline, labels a crisp stroke). The reveal blur stays: it is on the card graphic, never the footage. */
+export type TiersProps = {clean?: boolean; overlayOnly?: boolean; video: string; voice?: string; voiceVolume?: number; topics: Topic[]; cues?: {file: string; at: number; vol?: number}[]; end: number};
+
+let CLEAN = false;
 
 const useT = () => { const f = useCurrentFrame(); const {fps} = useVideoConfig(); return {f, fps, s: (x: number) => Math.round(x * fps)}; };
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -61,12 +64,12 @@ const TierCard: React.FC<{i: number; logo: Logo; topicAt: number; revealAt: numb
       opacity: Math.min(1, inP * 1.5) * (1 - o), transform: `translateY(${(1 - inP) * -40}px) scale(${(0.85 + 0.15 * inP) * (1 - 0.25 * o)})`}}>
       <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 46, letterSpacing: '0.02em', marginBottom: 14,
         color: lit > 0.5 ? T.color : '#FFFFFF', transform: `scale(${1 + 0.18 * Math.sin(Math.min(1, rev) * Math.PI)})`,
-        WebkitTextStroke: '2px rgba(0,0,0,.55)', paintOrder: 'stroke fill', textShadow: '0 3px 8px rgba(0,0,0,.45)'}}>{T.label}</div>
+        ...(CLEAN ? {WebkitTextStroke: '8px #000', paintOrder: 'stroke fill'} : {WebkitTextStroke: '2px rgba(0,0,0,.55)', paintOrder: 'stroke fill', textShadow: '0 3px 8px rgba(0,0,0,.45)'})}}>{T.label}</div>
       <div style={{position: 'relative', width: CARD, height: CARD, transform: `scale(${punch}) rotate(${(1 - sharp) * (i === 0 ? -3 : i === 2 ? 3 : 0)}deg)`}}>
         {/* glow ring burst on reveal */}
         {ring > 0 && ring < 1 && <div style={{position: 'absolute', inset: -10 - 40 * ring, borderRadius: 36 + 30 * ring, border: `${6 * (1 - ring)}px solid ${T.color}`, opacity: 1 - ring}} />}
         <div style={{width: CARD, height: CARD, borderRadius: 26, background: '#FFFFFF', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14,
-          boxShadow: `0 16px 34px rgba(0,0,0,.35), 0 3px 8px rgba(0,0,0,.2)${lit > 0.5 ? `, 0 0 0 4px ${T.color}` : ''}`,
+          boxShadow: CLEAN ? `inset 0 0 0 2px rgba(0,0,0,.12)${lit > 0.5 ? `, 0 0 0 5px ${T.color}` : ''}` : `0 16px 34px rgba(0,0,0,.35), 0 3px 8px rgba(0,0,0,.2)${lit > 0.5 ? `, 0 0 0 4px ${T.color}` : ''}`,
           filter: blur > 0.3 ? `blur(${blur}px)` : undefined}}>
           <div style={{fontFamily: FONT, fontWeight: 900, fontSize: logo.name.length > 12 ? 19 : 24, color: '#111', letterSpacing: '0.04em', textAlign: 'center', lineHeight: 1.05, padding: '0 10px'}}>{logo.name.toUpperCase()}</div>
           <LogoArt logo={logo} size={124} />
@@ -85,7 +88,7 @@ const TopicPill: React.FC<{t: Topic; out: number}> = ({t, out}) => {
   const o = interpolate(f, [out - 5, out], [0, 1], clamp);
   return (
     <div style={{position: 'absolute', top: 1270, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: (1 - o) * Math.min(1, p * 1.6)}}>
-      <div style={{display: 'flex', alignItems: 'center', gap: 14, background: '#FFFFFF', borderRadius: 30, padding: '16px 34px', boxShadow: '0 14px 30px rgba(0,0,0,.3)',
+      <div style={{display: 'flex', alignItems: 'center', gap: 14, background: '#FFFFFF', borderRadius: 30, padding: '16px 34px', boxShadow: CLEAN ? 'inset 0 0 0 2px rgba(0,0,0,.12)' : '0 14px 30px rgba(0,0,0,.3)',
         transform: `scale(${interpolate(p, [0, 1], [0.6, 1]) * (1 - 0.2 * o)}) scaleY(${1 + 0.08 * Math.sin(p * Math.PI)})`}}>
         <span style={{fontFamily: FONT, fontWeight: 900, fontSize: 74, color: '#0E0E0E', letterSpacing: '-0.01em'}}>{t.title}</span>
         {t.emoji && <Img src={staticFile(t.emoji)} style={{width: 78, height: 78, transform: `rotate(${Math.sin((f - a) / 6) * 8 * Math.exp(-(f - a) / 25)}deg)`}} />}
@@ -96,6 +99,7 @@ const TopicPill: React.FC<{t: Topic; out: number}> = ({t, out}) => {
 
 export const TiersReel: React.FC<TiersProps> = (p) => {
   const {s} = useT();
+  CLEAN = !!p.clean;
   return (
     <AbsoluteFill style={{background: p.overlayOnly ? 'transparent' : '#000'}}>
       {!p.overlayOnly && <OffthreadVideo src={src(p.video)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} toneMapped={false} />}

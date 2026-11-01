@@ -1,0 +1,127 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "end": 16.37,
+ "topics": [
+  {
+   "title": "So‘z yodlash",
+   "emoji": "emoji/1f4da.svg",
+   "start": 0.0,
+   "reveal": [
+    1.5,
+    2.3,
+    3.2
+   ],
+   "logos": [
+    {
+     "name": "Duolingo",
+     "kind": "img",
+     "file": "logos/duolingo.png"
+    },
+    {
+     "name": "Anki",
+     "kind": "mask",
+     "file": "logos/anki.svg",
+     "gradient": "linear-gradient(135deg,#4FA3F7,#1F6FD1)"
+    },
+    {
+     "name": "IELTS Runner",
+     "kind": "img",
+     "file": "logos/runner.png",
+     "radius": 0,
+     "scale": 1.45
+    }
+   ]
+  },
+  {
+   "title": "IELTS Listening",
+   "emoji": "emoji/1f3a7.svg",
+   "start": 3.86,
+   "reveal": [
+    5.2,
+    6.0,
+    6.9
+   ],
+   "logos": [
+    {
+     "name": "Instagram",
+     "kind": "mask",
+     "file": "logos/instagram.svg",
+     "gradient": "linear-gradient(45deg,#FEDA75,#FA7E1E 30%,#D62976 60%,#962FBF 80%,#4F5BD5)"
+    },
+    {
+     "name": "YouTube",
+     "kind": "img",
+     "file": "logos/youtube.svg",
+     "radius": 0,
+     "scale": 1.0
+    },
+    {
+     "name": "Goprep.gg",
+     "kind": "img",
+     "file": "logos/goprep.svg"
+    }
+   ]
+  },
+  {
+   "title": "IELTS Speaking",
+   "emoji": "emoji/1f5e3.svg",
+   "start": 7.7,
+   "reveal": [
+    8.9,
+    9.8,
+    10.75
+   ],
+   "logos": [
+    {
+     "name": "ChatGPT",
+     "kind": "mask",
+     "file": "logos/openai.svg",
+     "color": "#000000",
+     "scale": 0.9
+    },
+    {
+     "name": "HelloTalk",
+     "kind": "img",
+     "file": "logos/hellotalk.png"
+    },
+    {
+     "name": "Preppy AI",
+     "kind": "img",
+     "file": "logos/preppy.png",
+     "radius": 0,
+     "scale": 1.2
+    }
+   ]
+  },
+  {
+   "title": "Fikrlash",
+   "emoji": "emoji/1f9e0.svg",
+   "start": 11.76,
+   "reveal": [
+    12.9,
+    14.0,
+    15.1
+   ],
+   "logos": [
+    {
+     "name": "TikTok",
+     "kind": "img",
+     "file": "logos/tiktok.png"
+    },
+    {
+     "name": "Telefon",
+     "kind": "img",
+     "file": "emoji/1f4f1.svg",
+     "radius": 0
+    },
+    {
+     "name": "Kitob",
+     "kind": "img",
+     "file": "emoji/1f4d6.svg",
+     "radius": 0
+    }
+   ]
+  }
+ ]
+}
