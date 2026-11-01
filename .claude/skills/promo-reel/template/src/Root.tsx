@@ -10,6 +10,7 @@ import {ResourcesReel, ResourcesProps, resourcesDuration} from './Resources';
 import {ScoreTableReel, ScoreTableProps, scoreTableDuration} from './ScoreTable';
 import {LadderReel, LadderProps, ladderDuration} from './Ladder';
 import {TiersReel, TiersProps, tiersDuration} from './Tiers';
+import {CaptionsReel, CaptionsProps, captionsDuration} from './Captions';
 
 const FPS = 30;
 
@@ -126,6 +127,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={530}
       defaultProps={{video: '', topics: [], end: 10} as TiersProps}
       calculateMetadata={({props}: {props: TiersProps}) => ({durationInFrames: tiersDuration(props, FPS)})}
+    />
+    {/* Style K: captions-only edit of an already-cut clip: popping stroke captions, word-chain chips, punchline title. */}
+    <Composition
+      id="CaptionsReel"
+      component={CaptionsReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={300}
+      defaultProps={{video: '', captions: [], end: 10} as CaptionsProps}
+      calculateMetadata={({props}: {props: CaptionsProps}) => ({durationInFrames: captionsDuration(props, FPS)})}
     />
   </>
 );
