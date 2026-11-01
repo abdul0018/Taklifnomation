@@ -352,7 +352,7 @@ Reference: the Speaking / Listening / Reading / Writing "8+" table reel.
   - The official YouTube icon: the Simple Icons path in #FF0000 with a white play triangle drawn behind it.
   - The real Preppy face from goprep.gg, cropped to its alpha bbox.
   - GoPrep's `favicon.svg` above "Goprep.gg" (`imgH: 50`, `textSize: 31`).
-- `clean: true`: no drop shadows, no blurred glow, no pill shadow; each cell gets a crisp 2 px hairline outline. Pair it with `overlayOnly: true` and the §15 ffmpeg composite.
+- `clean: true`: no drop shadows, no blurred glow, no pill shadow; each cell gets a crisp 2 px hairline outline. Pair it with `overlayOnly: true` and the §16 ffmpeg composite.
 - That reference doesn't highlight the active row. Rows slide in from the left with a small tilt in the first ~10 frames, then only the resources pop on their words. Use `highlight: false, enter: 'left', scale: 0.91, top: 1050` (an 800 px wide table).
 - Keep the rows in the order the speaker says them, not the reference's skill order.
 
