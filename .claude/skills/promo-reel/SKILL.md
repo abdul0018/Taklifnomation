@@ -475,6 +475,11 @@ Reference: the invitestudio.uz wedding-site promo. A white phone floats over a b
   - Applies a rounded alpha mask (r 77). Without it, the screen's square corners poke out past the frame's rounded outline.
   - Overlays it between the two layers, then encodes two-pass at 12 Mbps and stream-copies the recording's audio.
 - **Entrance:** the phone glides up over 20 frames (ease-out cubic, drop 1700). The ffmpeg overlay `y` must use `t*30`, not `n`: `n` ran one frame ahead of the Remotion layer, so the screen jumped out of the frame.
+- **"Opened from the website" intro (`intro{url, handoff, time?, tabs?, placeholder?}`):**
+  - The screen first shows the phone's own Chrome look: the dark bar `#19100C` and the address pill `#3C312C`, both measured from the recording, in Roboto.
+  - The sequence is an empty tab, a tap ripple on the address bar, then the URL typed (1.6 frames per character) with a globe suggestion row. Then a tap on the suggestion and a blue load bar on a dark page, fading at `handoff` into the recording. Its first frame shows the same bar, so the cut is seamless.
+  - Pass `handoff` as the script's 4th argument: it delays the recording (`tpad` clone) and its audio (`adelay`, re-encoded AAC 320k).
+  - `header: "site.uz"` adds a globe + URL line above the phone for the whole video (white, crisp 5 px stroke).
 - **Outro:** a white pill with a globe icon and the site URL (`outro{at, text, icon?}`). It replaces the reference's dimmed Instagram end card, because this user doesn't want darkening. Use the brand's real handle only if the user gives it; never invent one.
 - Example: `examples/taklifnoma-phone-mock.props.json`.
 
