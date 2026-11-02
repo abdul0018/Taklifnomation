@@ -11,6 +11,7 @@ import {ScoreTableReel, ScoreTableProps, scoreTableDuration} from './ScoreTable'
 import {LadderReel, LadderProps, ladderDuration} from './Ladder';
 import {TiersReel, TiersProps, tiersDuration} from './Tiers';
 import {CaptionsReel, CaptionsProps, captionsDuration} from './Captions';
+import {PhoneMockReel, PhoneMockProps, phoneMockDuration} from './PhoneMock';
 
 const FPS = 30;
 
@@ -138,6 +139,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={300}
       defaultProps={{video: '', captions: [], end: 10} as CaptionsProps}
       calculateMetadata={({props}: {props: CaptionsProps}) => ({durationInFrames: captionsDuration(props, FPS)})}
+    />
+    {/* Style L: phone mockup for a screen recording (two layers; ffmpeg places the recording between them). */}
+    <Composition
+      id="PhoneMockReel"
+      component={PhoneMockReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={300}
+      defaultProps={{layer: 'fg', bg: '', end: 10} as PhoneMockProps}
+      calculateMetadata={({props}: {props: PhoneMockProps}) => ({durationInFrames: phoneMockDuration(props, FPS)})}
     />
   </>
 );
