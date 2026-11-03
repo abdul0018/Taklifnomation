@@ -12,6 +12,7 @@ import {LadderReel, LadderProps, ladderDuration} from './Ladder';
 import {TiersReel, TiersProps, tiersDuration} from './Tiers';
 import {CaptionsReel, CaptionsProps, captionsDuration} from './Captions';
 import {PhoneMockReel, PhoneMockProps, phoneMockDuration} from './PhoneMock';
+import {InvitationReel, InvitationProps, invitationDuration} from './Invitation';
 
 const FPS = 30;
 
@@ -150,6 +151,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={300}
       defaultProps={{layer: 'fg', bg: '', end: 10} as PhoneMockProps}
       calculateMetadata={({props}: {props: PhoneMockProps}) => ({durationInFrames: phoneMockDuration(props, FPS)})}
+    />
+    {/* Style M: animated e-invitation (video taklifnoma): arched photo + script names, then monogram wreath + details. */}
+    <Composition
+      id="InvitationReel"
+      component={InvitationReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={600}
+      defaultProps={{photo: '', end: 20, sceneB: 7} as unknown as InvitationProps}
+      calculateMetadata={({props}: {props: InvitationProps}) => ({durationInFrames: invitationDuration(props, FPS)})}
     />
   </>
 );

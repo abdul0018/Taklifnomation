@@ -1,6 +1,6 @@
 ---
 name: promo-reel
-description: Make vertical (9:16) promo reels in Remotion. Style A (`PromoReel`) is a 30-second reel in the style of the "Izohda LINK deb yozib qoldiring" reference reel. Style B (`ChecklistReel`) is a 10-second "handwritten checklist" reel: a paper sheet with a serif title and a list of 3D pill icons, where a red pen writes each answer and then the brand. Use Style B for "best time to… / daily plan / list"-type reels. Style C (`HabitsReel`) edits the user's own talking-head video into an "N habits" reel: a glowing pill hook, a pin board of numbered cards the camera flies between, product clips, and a CTA pill that types the comment keyword. Use Style C when the user sends their own recording plus a reference edit to copy. Style D (`StoryReel`) is a narrated story drawn as white line-art stick figures on charcoal with orange accents. It draws on stroke by stroke in time with a TTS or recorded voiceover, and ends on a title card plus a speech bubble. Use Style D when the user gives a story script. Style E (`IllustratedReel`) tells a story with flat vector illustrations (teal palette, warm light) drawn in code. It adds parallax and a slow push-in, soft dissolves, a logo on top, and karaoke subtitles in a dark lower third. Use Style E when the reference is an illustrated narrated explainer. Style F (`FurnitureReel`) edits real product footage (furniture, interiors, retail) with 3D kinetic typography, whip and zoom-blur cuts on the beat, tracked callouts, colour swatches, a warm grade, an original music bed and a location-pin CTA. Style G (`ResourcesReel`) is a talking-head "resources by level" reel: the speaker points left or right and a resource icon pops on that side, with a section word per skill. The footage stays ungraded. Style H (`ScoreTableReel`) is an "8+ resource table" over a talking head: a row glows when the speaker names its skill, and the resource pops into the third column. Style I (`LadderReel`) is a "level ladder" talking head: the left hand brings up a score card, the right hand the resource for that level, and the reel ends on a hero resource reveal. Style J (`TiersReel`) is a YOMON / YAXSHI / AJOYIB tier reel: blurred app cards snap sharp as each tier is named. Style K (`CaptionsReel`) adds captions only to an already-cut clip: a punchline hook, popping stroke captions, a word-chain of chips that collapses into a punchline title. The footage and audio stay untouched. Style L (`PhoneMockReel`) puts a screen recording in a white phone mockup over a blurred still, with a glide-in and a URL end card. ffmpeg composites the recording pixel-exact between two Remotion layers. The style uses an orange hero shot with year-tag pills, kinetic word-by-word text, full-bleed photo beats with a "KOMPUTER"-style punch word, an off-white grid board with a browser mockup, a screen-recording demo, and a comment-bait "LINK" ending. Use when the user asks for "this type of video", "the LINK video", a promo or Instagram/TikTok reel, or a Remotion video for a product or site.
+description: Make vertical (9:16) promo reels in Remotion. Style A (`PromoReel`) is a 30-second reel in the style of the "Izohda LINK deb yozib qoldiring" reference reel. Style B (`ChecklistReel`) is a 10-second "handwritten checklist" reel: a paper sheet with a serif title and a list of 3D pill icons, where a red pen writes each answer and then the brand. Use Style B for "best time to… / daily plan / list"-type reels. Style C (`HabitsReel`) edits the user's own talking-head video into an "N habits" reel: a glowing pill hook, a pin board of numbered cards the camera flies between, product clips, and a CTA pill that types the comment keyword. Use Style C when the user sends their own recording plus a reference edit to copy. Style D (`StoryReel`) is a narrated story drawn as white line-art stick figures on charcoal with orange accents. It draws on stroke by stroke in time with a TTS or recorded voiceover, and ends on a title card plus a speech bubble. Use Style D when the user gives a story script. Style E (`IllustratedReel`) tells a story with flat vector illustrations (teal palette, warm light) drawn in code. It adds parallax and a slow push-in, soft dissolves, a logo on top, and karaoke subtitles in a dark lower third. Use Style E when the reference is an illustrated narrated explainer. Style F (`FurnitureReel`) edits real product footage (furniture, interiors, retail) with 3D kinetic typography, whip and zoom-blur cuts on the beat, tracked callouts, colour swatches, a warm grade, an original music bed and a location-pin CTA. Style G (`ResourcesReel`) is a talking-head "resources by level" reel: the speaker points left or right and a resource icon pops on that side, with a section word per skill. The footage stays ungraded. Style H (`ScoreTableReel`) is an "8+ resource table" over a talking head: a row glows when the speaker names its skill, and the resource pops into the third column. Style I (`LadderReel`) is a "level ladder" talking head: the left hand brings up a score card, the right hand the resource for that level, and the reel ends on a hero resource reveal. Style J (`TiersReel`) is a YOMON / YAXSHI / AJOYIB tier reel: blurred app cards snap sharp as each tier is named. Style K (`CaptionsReel`) adds captions only to an already-cut clip: a punchline hook, popping stroke captions, a word-chain of chips that collapses into a punchline title. The footage and audio stay untouched. Style L (`PhoneMockReel`) puts a screen recording in a white phone mockup over a blurred still, with a glide-in and a URL end card. ffmpeg composites the recording pixel-exact between two Remotion layers. Style M (`InvitationReel`) is an animated wedding e-invitation (video taklifnoma): an arched photo with script names, then a monogram wreath with the date, venue and family, with line-art florals drawing on and a beige-and-gold paper look. The style uses an orange hero shot with year-tag pills, kinetic word-by-word text, full-bleed photo beats with a "KOMPUTER"-style punch word, an off-white grid board with a browser mockup, a screen-recording demo, and a comment-bait "LINK" ending. Use when the user asks for "this type of video", "the LINK video", a promo or Instagram/TikTok reel, or a Remotion video for a product or site.
 ---
 
 # Promo reel (orange hero / grid board / "LINK" CTA)
@@ -352,7 +352,7 @@ Reference: the Speaking / Listening / Reading / Writing "8+" table reel.
   - The official YouTube icon: the Simple Icons path in #FF0000 with a white play triangle drawn behind it.
   - The real Preppy face from goprep.gg, cropped to its alpha bbox.
   - GoPrep's `favicon.svg` above "Goprep.gg" (`imgH: 50`, `textSize: 31`).
-- `clean: true`: no drop shadows, no blurred glow, no pill shadow; each cell gets a crisp 2 px hairline outline. Pair it with `overlayOnly: true` and the §17 ffmpeg composite.
+- `clean: true`: no drop shadows, no blurred glow, no pill shadow; each cell gets a crisp 2 px hairline outline. Pair it with `overlayOnly: true` and the §18 ffmpeg composite.
 - That reference doesn't highlight the active row. Rows slide in from the left with a small tilt in the first ~10 frames, then only the resources pop on their words. Use `highlight: false, enter: 'left', scale: 0.91, top: 1050` (an 800 px wide table).
 - Keep the rows in the order the speaker says them, not the reference's skill order.
 
@@ -371,7 +371,7 @@ Reference: the "Agar bu kerak bo'lsa → bundan foydalaning" reel.
 - `captions[{text, start, end, y?, below?}]`
 - `finale{score, scoreAt, icon, iconAt, hit?}`
 - `icon` is a `LADDER_ICONS` key (original drawings: owl, liz, engnovate, goprep) **or a real logo tile** `{img, bg?, pad?, topText?, topColor?, radius?}`. Prefer real logos, because real icons build trust. Use the official Duolingo Play Store icon (`=w512`), the ieltsliz.com icon on white with `topText: "IELTS"`, Engnovate's favicon rebuilt to 512 px and GoPrep's `favicon.svg`.
-- `clean: true`: no card shadow, no icon drop shadow, and captions get a crisp 6 px dark `WebkitTextStroke` instead of `textShadow`. `overlayOnly: true` renders the graphics on transparent for the ffmpeg 4:2:0 composite (see §17). Use both whenever the user cares about quality.
+- `clean: true`: no card shadow, no icon drop shadow, and captions get a crisp 6 px dark `WebkitTextStroke` instead of `textShadow`. `overlayOnly: true` renders the graphics on transparent for the ffmpeg 4:2:0 composite (see §18). Use both whenever the user cares about quality.
 - With a continuous single take, keep the reference's level order if the gestures already match it (5 → 7 → 6 → 8 here), so the left and right finger points line up. Time `scoreAt` to the left-finger frame and `iconAt` to the right-finger frame, from a 10 fps strip.
 - Keep the voice by stream-copying the source audio (`-map 0:a -c:a copy`), so there is no re-encode and no processing.
 
@@ -435,7 +435,7 @@ Examples: `examples/ai-tools-tiers.props.json` and `examples/ielts-tiers-4topics
 ## 15. Style K: captions on an already-cut clip (`CaptionsReel`)
 
 Use it when the user sends a finished-looking clip (own cuts, inserts and music already in) and asks for a "pro edit with interesting captions" but nothing that touches quality. First case: the "Men tovuqman" Preppy prank.
-- **Don't re-edit the picture.** No zooms (a zoom upscales), no grade, no shadows. Add only graphics, composited with the §17 pipeline. Stream-copy the audio (`-map 0:a -c:a copy`).
+- **Don't re-edit the picture.** No zooms (a zoom upscales), no grade, no shadows. Add only graphics, composited with the §18 pipeline. Stream-copy the audio (`-map 0:a -c:a copy`).
 - **Find the script when whisper fails.** Music under mixed languages gave garbage even on the demucs vocal stem. If a screen is in shot, read it instead: crop the on-screen transcript once per second at full resolution and tile the crops. Then time each line from the vocal-stem RMS envelope (50 ms windows): who speaks, then silence, then the reply.
 - **Write captions around the payoff.**
   - A hook that teases the punchline (`AI ustozni aldab “Men tovuqman” dedirdim 😂`).
@@ -483,7 +483,34 @@ Reference: the invitestudio.uz wedding-site promo. A white phone floats over a b
 - **Outro:** a white pill with a globe icon and the site URL (`outro{at, text, icon?}`). It replaces the reference's dimmed Instagram end card, because this user doesn't want darkening. Use the brand's real handle only if the user gives it; never invent one.
 - Example: `examples/taklifnoma-phone-mock.props.json`.
 
-## 17. Footage quality rules (this user notices any loss; apply to every edit over their video)
+## 17. Style M: animated e-invitation (`InvitationReel`)
+
+References: the "Davron & Munisa" video taklifnoma (two scenes, line-art florals, blur reveals) and a beige "a beautiful beginning of forever" poster (double gold frame, serif caps, script, hearts and dot dividers, watercolour leaves, boxed tagline banner). It's a fully designed reel with no footage. The user sells e-invitations (taklifnomation.uz).
+- **Scene A, 0 to `sceneB`:**
+  - An arched photo (r = half its width) with a gold outline one step outside, and a slow 1.10→1.00 push-in.
+  - Line-art florals that draw on by stroke (`pathLength=1` dash). One sits on the arch's top-right; one is small at the bottom-left, kept clear of the names.
+  - Watercolour leaves at the bottom-left.
+  - The verse in serif caps, with its source in small gold caps aligned right.
+  - The groom and bride in Great Vibes at 150 px, separated by line–"va"–line, then a letter-spaced tagline.
+  - Exit: every element blur-fades in a top-to-bottom stagger.
+- **Scene B:**
+  - A heart divider.
+  - An oval wreath (rx 250, ry 320) that draws on, with two small florals on its edge (top-left, and bottom-right rotated 180°) that never sit over the letters.
+  - A two-letter script monogram split by a diagonal stroke.
+  - The invitation lines, then a larger "TAKLIF ETAMIZ", a dot divider, the date (70 px), the venue in bold caps with "to‘yxonasi" and an italic gold address.
+  - "Hurmat bilan," plus the family name in script.
+  - A boxed banner tagline, like the poster's "two hearts. one promise."
+- **Look:**
+  - Paper `#F7F1E8` with a soft radial lightening.
+  - Ink `#5E4535`, gold `#A8876A`.
+  - Fonts: Cormorant Garamond (500/600/700 and italic) and Great Vibes.
+  - Every text block reveals blur→sharp with a small rise (graphics only). There are no shadows.
+- **Content:** with no couple data from the user, use the demo couple on their own site (Azizbek & Nilufar, 18-Sentabr 17:00, «Oqsaroy» to‘yxonasi, Samarqand; Karimovlar va Ergashevlar oilasi). The photo is the hands-with-rings frame from their screen recording, cropped from the site hero with BT.601→709 conversion. Never reuse the reference's couple or photo.
+- **Music:** `tools/wedding_music.py <out.wav> <sec> [bpm=84]`, an original soft 3/4 waltz: felt piano arpeggios, a melody from bar 3, a string pad, room reverb, around −16 LUFS. The reference's own audio is never reused.
+- **Export:** render ProRes HQ with audio, then x264 two-pass at 12 Mbps with `-tune animation`. Flat graphics settle around 8 Mbps.
+- Example: `examples/taklifnoma-video-invite.props.json`.
+
+## 18. Footage quality rules (this user notices any loss; apply to every edit over their video)
 
 - **No grading and no darkening layers** over the footage. That includes "a bit of shadow" gradients: the top gradient in ResourcesReel darkened the top of the frame by about 40%. Use `clean: true`: there are no gradients and no blurred text or icon shadows; legibility comes from crisp outlines (WebkitTextStroke) and hard offset drops only.
 - **Composite in the source's native 4:2:0:** `[1:v]scale=out_color_matrix=bt709:out_range=tv,format=yuva420p[ov];[0:v][ov]overlay=format=yuv420`. A yuv444 overlay followed by format=yuv420 resamples the source chroma and softens it.

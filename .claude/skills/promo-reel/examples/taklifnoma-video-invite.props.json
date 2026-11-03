@@ -1,0 +1,34 @@
+{
+ "photo": "photo.png",
+ "end": 20.0,
+ "sceneB": 7.0,
+ "verse": [
+  "Alloh ularning qalblarini",
+  "sevgi ila birlashtirdi..."
+ ],
+ "verseRef": "Anfol surasi, 63-oyat",
+ "groom": "Azizbek",
+ "bride": "Nilufar",
+ "and": "va",
+ "tagline": "Ikki uzuk — bir ahd",
+ "mono": [
+  "A",
+  "N"
+ ],
+ "invite": [
+  "Sizni hayotimizning eng go‘zal va baxtli",
+  "onlarida biz bilan bo‘lishingiz istagida",
+  "nikoh shodiyonamizga"
+ ],
+ "inviteEnd": "taklif etamiz",
+ "date": "18-SENTABR | 17:00",
+ "venue": "«Oqsaroy»",
+ "venueSub": "to‘yxonasi",
+ "address": "Samarqand sh., Universitet xiyoboni, 9-uy",
+ "signoff": [
+  "Hurmat bilan,",
+  "Karimovlar va Ergashevlar oilasi"
+ ],
+ "banner": "Ikki qalb. Bir ahd. Cheksiz baxt.",
+ "music": "music.wav"
+}
