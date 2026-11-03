@@ -500,13 +500,18 @@ References: the "Davron & Munisa" video taklifnoma (two scenes, line-art florals
   - The invitation lines, then a larger "TAKLIF ETAMIZ", a dot divider, the date (70 px), the venue in bold caps with "to‘yxonasi" and an italic gold address.
   - "Hurmat bilan," plus the family name in script.
   - A boxed banner tagline, like the poster's "two hearts. one promise."
-- **Look:**
+- **Look (v2: the user asked for "not simple fonts"):**
   - Paper `#F7F1E8` with a soft radial lightening.
-  - Ink `#5E4535`, gold `#A8876A`.
-  - Fonts: Cormorant Garamond (500/600/700 and italic) and Great Vibes.
-  - Every text block reveals blur→sharp with a small rise (graphics only). There are no shadows.
+  - Ink `#5A4232`, gold `#A8865F`.
+  - Names, monogram and family name are in **Pinyon Script** (copperplate) with a **gold-foil gradient** (`background-clip:text`) whose sheen keeps sliding. They are written on left→right through a soft-edged mask.
+  - Headings are **Cinzel** caps (500/600/700) that settle from wide tracking (+0.28 em) while sharpening. "Taklif etamiz" and the venue are in foil.
+  - Details are Cormorant Garamond italic.
+  - Camera: scene A drifts in (1.05→1.0) and pushes through (+0.08) into scene B, which arrives from 0.93 and keeps creeping. The florals sit on a nearer parallax layer.
+  - Floating gold dust: sharp motes, plus five large soft ones in front for depth.
+  - No shadows. Keep the script sign-off at 62 px or less, or it hits the frame.
+- **Photo:** offer the user an image-generation prompt for the arch photo (4:5 portrait, warm ivory/champagne palette, the subject centred low, soft top area, no text). Swap it in when it arrives.
 - **Content:** with no couple data from the user, use the demo couple on their own site (Azizbek & Nilufar, 18-Sentabr 17:00, «Oqsaroy» to‘yxonasi, Samarqand; Karimovlar va Ergashevlar oilasi). The photo is the hands-with-rings frame from their screen recording, cropped from the site hero with BT.601→709 conversion. Never reuse the reference's couple or photo.
-- **Music:** `tools/wedding_music.py <out.wav> <sec> [bpm=84]`, an original soft 3/4 waltz: felt piano arpeggios, a melody from bar 3, a string pad, room reverb, around −16 LUFS. The reference's own audio is never reused.
+- **Music:** if the user asks for the reference's own track, extract it (`-vn -c:a pcm_s16le`), set `end` to its length and put `sceneB` where the reference cuts (~5 s). Otherwise use `tools/wedding_music.py <out.wav> <sec> [bpm=84]`, an original soft 3/4 waltz: felt piano arpeggios, a melody from bar 3, a string pad, room reverb, around −16 LUFS. The reference's own audio is never reused.
 - **Export:** render ProRes HQ with audio, then x264 two-pass at 12 Mbps with `-tune animation`. Flat graphics settle around 8 Mbps.
 - Example: `examples/taklifnoma-video-invite.props.json`.
 

@@ -22,7 +22,9 @@
     "svg-path-bbox": "2.1.0",
     "@fontsource/roboto": "5.2.6",
     "@fontsource/cormorant-garamond": "5.2.5",
-    "@fontsource/great-vibes": "5.2.5"
+    "@fontsource/great-vibes": "5.2.5",
+    "@fontsource/pinyon-script": "5.2.5",
+    "@fontsource/cinzel": "5.2.5"
   },
   "devDependencies": {
     "@types/react": "18.3.12",
