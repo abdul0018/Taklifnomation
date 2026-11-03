@@ -13,6 +13,7 @@ import {TiersReel, TiersProps, tiersDuration} from './Tiers';
 import {CaptionsReel, CaptionsProps, captionsDuration} from './Captions';
 import {PhoneMockReel, PhoneMockProps, phoneMockDuration} from './PhoneMock';
 import {InvitationReel, InvitationProps, invitationDuration} from './Invitation';
+import {MarbleInviteReel, MarbleInviteProps, marbleInviteDuration} from './MarbleInvite';
 
 const FPS = 30;
 
@@ -162,6 +163,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={600}
       defaultProps={{photo: '', end: 20, sceneB: 7} as unknown as InvitationProps}
       calculateMetadata={({props}: {props: InvitationProps}) => ({durationInFrames: invitationDuration(props, FPS)})}
+    />
+    {/* Style N: marble e-invitation: black-gold rose wreath monogram, pan to an arched gold card. */}
+    <Composition
+      id="MarbleInviteReel"
+      component={MarbleInviteReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={400}
+      defaultProps={{marble: '', end: 13, turn: 3.6} as unknown as MarbleInviteProps}
+      calculateMetadata={({props}: {props: MarbleInviteProps}) => ({durationInFrames: marbleInviteDuration(props, FPS)})}
     />
   </>
 );
