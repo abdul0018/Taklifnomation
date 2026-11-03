@@ -503,7 +503,8 @@ References: the "Davron & Munisa" video taklifnoma (two scenes, line-art florals
 - **Look (v2: the user asked for "not simple fonts"):**
   - Paper `#F7F1E8` with a soft radial lightening.
   - Ink `#5A4232`, gold `#A8865F`.
-  - Names, monogram and family name are in **Pinyon Script** (copperplate) with a **gold-foil gradient** (`background-clip:text`) whose sheen keeps sliding. They are written on left→right through a soft-edged mask.
+  - **v3 fix (the user said the capitals looked wrong):** Pinyon Script's A, z and N read as other letters. Use **Allura** for the names and family name, a **Cormorant Garamond italic 600** foil monogram, and **sentence-case** Cormorant for the verse and invitation lines. All-caps paragraphs looked wrong, so Cinzel caps are only for short labels (Taklif etamiz, date, venue, tagline, banner). Before picking a script font, render a comparison sheet of the real names.
+  - (v2, superseded) Names, monogram and family name were in **Pinyon Script** (copperplate) with a **gold-foil gradient** (`background-clip:text`) whose sheen keeps sliding. They are written on left→right through a soft-edged mask.
   - Headings are **Cinzel** caps (500/600/700) that settle from wide tracking (+0.28 em) while sharpening. "Taklif etamiz" and the venue are in foil.
   - Details are Cormorant Garamond italic.
   - Camera: scene A drifts in (1.05→1.0) and pushes through (+0.08) into scene B, which arrives from 0.93 and keeps creeping. The florals sit on a nearer parallax layer.

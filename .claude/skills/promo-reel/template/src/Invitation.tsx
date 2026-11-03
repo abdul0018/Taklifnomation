@@ -3,9 +3,11 @@ import {AbsoluteFill, Audio, Easing, Img, continueRender, delayRender, interpola
 import '@fontsource/cinzel/500.css';
 import '@fontsource/cinzel/600.css';
 import '@fontsource/cinzel/700.css';
+import '@fontsource/cormorant-garamond/500.css';
+import '@fontsource/cormorant-garamond/600.css';
 import '@fontsource/cormorant-garamond/500-italic.css';
 import '@fontsource/cormorant-garamond/600-italic.css';
-import '@fontsource/pinyon-script/400.css';
+import '@fontsource/allura/400.css';
 import {clamp} from './kit';
 
 /**
@@ -13,19 +15,20 @@ import {clamp} from './kit';
  * "beautiful beginning of forever" poster. Two scenes on cream paper inside a thin double gold frame:
  *  A) arched couple photo, line-art florals drawing on, verse, script names written on in gold foil, tagline;
  *  B) gold-foil monogram in an oval wreath, invitation text, date, venue, family sign-off, boxed tagline banner.
- * Typography: Pinyon Script (names, monogram, family) in gold foil with a moving sheen; Cinzel caps that settle from wide
- * tracking; Cormorant italic for details. Camera: slow drift + parallax per layer, push-through between scenes, gold dust.
+ * Typography: Allura script (names, family) in gold foil with a moving sheen; a Cormorant italic foil monogram; long text in
+ * sentence-case Cormorant (all-caps paragraphs read as shouting); Cinzel caps only for short labels, settling from wide tracking. Camera: slow drift + parallax per layer, push-through between scenes, gold dust.
  */
 
 const CAPS = "'Cinzel', 'Trajan Pro', serif";
 const ITAL = "'Cormorant Garamond', 'Georgia', serif";
-const SCRIPT = "'Pinyon Script', cursive";
+/** Allura: flowing script with readable capitals (Pinyon's A/N/z read as other letters). */
+const SCRIPT = "'Allura', cursive";
 const INK = '#5A4232'; const GOLD = '#A8865F'; const LINE = '#C2A584'; const PAPER = '#F7F1E8';
 const FOIL = 'linear-gradient(100deg, #7A5631 0%, #B08955 18%, #E9D3A2 34%, #FFF3D6 40%, #D2AE72 48%, #9C7646 64%, #C9A46B 82%, #8A6640 100%)';
 
 if (typeof document !== 'undefined') {
   const h = delayRender('fonts');
-  Promise.all(['500 40px Cinzel', '600 40px Cinzel', '700 40px Cinzel', 'italic 500 40px "Cormorant Garamond"', 'italic 600 40px "Cormorant Garamond"', '400 80px "Pinyon Script"']
+  Promise.all(['500 40px Cinzel', '600 40px Cinzel', '700 40px Cinzel', 'italic 500 40px "Cormorant Garamond"', 'italic 600 40px "Cormorant Garamond"', '400 80px Allura', '500 40px "Cormorant Garamond"', '600 40px "Cormorant Garamond"']
     .map((f) => document.fonts.load(f, 'AaŊ‘'))).then(() => continueRender(h)).catch(() => continueRender(h));
 }
 
@@ -69,8 +72,13 @@ const foilStyle = (f: number): React.CSSProperties => ({
   WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent',
 });
 
+/** Sentence-case serif body line (blur→sharp). */
+const Body: React.FC<{at: number; out?: number; size: number; italic?: boolean; color?: string; children: React.ReactNode}> = ({at, out, size, italic, color = INK, children}) => (
+  <Reveal at={at} out={out}><div style={{fontFamily: ITAL, fontStyle: italic ? 'italic' : 'normal', fontWeight: 500, fontSize: size, color, textAlign: 'center', lineHeight: 1.3}}>{children}</div></Reveal>
+);
+
 /** Script written on left→right through a soft-edged mask, in gold foil. */
-const Script: React.FC<{at: number; out?: number; dur?: number; size: number; children: React.ReactNode; foil?: boolean}> = ({at, out, dur = 1.2, size, children, foil = true}) => {
+const Script: React.FC<{at: number; out?: number; dur?: number; size: number; children: React.ReactNode; foil?: boolean; font?: React.CSSProperties}> = ({at, out, dur = 1.2, size, children, foil = true, font}) => {
   const {f, s} = useF();
   const p = prog(f, s(at), s(at + dur), Easing.inOut(Easing.sin));
   const q = out != null ? prog(f, s(out), s(out + 0.55), Easing.in(Easing.quad)) : 0;
@@ -78,7 +86,7 @@ const Script: React.FC<{at: number; out?: number; dur?: number; size: number; ch
   const x = -15 + 130 * p; const m = `linear-gradient(90deg, #000 ${x - 15}%, transparent ${x}%)`;
   return (
     <div style={{opacity: 1 - q, filter: q > 0.01 ? `blur(${10 * q}px)` : undefined, WebkitMaskImage: m, maskImage: m, padding: `0 ${size * 0.25}px`}}>
-      <div style={{fontFamily: SCRIPT, fontSize: size, lineHeight: 1.15, color: INK, whiteSpace: 'nowrap', ...(foil ? foilStyle(f) : {})}}>{children}</div>
+      <div style={{fontFamily: SCRIPT, fontSize: size, lineHeight: 1.15, color: INK, whiteSpace: 'nowrap', ...font, ...(foil ? foilStyle(f) : {})}}>{children}</div>
     </div>
   );
 };
@@ -219,7 +227,7 @@ export const InvitationReel: React.FC<InvitationProps> = (p) => {
             </svg>
           </div>
           <Center top={1170}>
-            <Caps at={a(0.9)} out={outA} size={30} track={0.1}>{p.verse[0]}<br />{p.verse[1]}</Caps>
+            <Body at={a(0.9)} out={outA} size={42} italic>{p.verse[0]}<br />{p.verse[1]}</Body>
             <div style={{alignSelf: 'flex-end', marginRight: 200, marginTop: 4}}><Reveal at={a(1.3)} out={outA}><div style={{fontFamily: ITAL, fontStyle: 'italic', fontWeight: 600, fontSize: 26, color: GOLD}}>{p.verseRef}</div></Reveal></div>
           </Center>
           <Center top={1292}>
@@ -246,10 +254,10 @@ export const InvitationReel: React.FC<InvitationProps> = (p) => {
               <Draw at={B + 1.3} dur={0.8}>{(q) => <path d="M650,320 L430,720" {...sp(q, 1.6)} />}</Draw>
             </svg>
           </div>
-          <div style={{position: 'absolute', left: 300, top: 300}}><Script at={B + 1.0} dur={1.0} size={230}>{p.mono[0]}</Script></div>
-          <div style={{position: 'absolute', left: 520, top: 480}}><Script at={B + 1.5} dur={1.0} size={230}>{p.mono[1]}</Script></div>
+          <div style={{position: 'absolute', left: 330, top: 300}}><Script at={B + 1.0} dur={1.0} size={240} font={{fontFamily: ITAL, fontStyle: 'italic', fontWeight: 600}}>{p.mono[0]}</Script></div>
+          <div style={{position: 'absolute', left: 540, top: 470}}><Script at={B + 1.5} dur={1.0} size={240} font={{fontFamily: ITAL, fontStyle: 'italic', fontWeight: 600}}>{p.mono[1]}</Script></div>
           <Center top={928}>
-            {p.invite.map((l, i) => <Caps key={i} at={B + 2.2 + i * 0.3} size={27} track={0.08}>{l}</Caps>)}
+            {p.invite.map((l, i) => <Body key={i} at={B + 2.2 + i * 0.3} size={38}>{l}</Body>)}
             <div style={{marginTop: 12}}><Caps at={B + 2.2 + p.invite.length * 0.3 + 0.2} size={36} track={0.2} weight={600} foil>{p.inviteEnd}</Caps></div>
           </Center>
           <Center top={1168}><Reveal at={B + 3.6}><Divider w={380} /></Reveal></Center>
@@ -261,7 +269,7 @@ export const InvitationReel: React.FC<InvitationProps> = (p) => {
           </Center>
           <Center top={1540}>
             <Reveal at={B + 6.4}><div style={{fontFamily: ITAL, fontStyle: 'italic', fontWeight: 600, fontSize: 34, color: INK}}>{p.signoff[0]}</div></Reveal>
-            <Script at={B + 6.8} dur={1.6} size={62}>{p.signoff[1]}</Script>
+            <Script at={B + 6.8} dur={1.6} size={72}>{p.signoff[1]}</Script>
           </Center>
           <div style={{position: 'absolute', left: 140, right: 140, top: 1738}}>
             <Reveal at={B + 8.2}>
