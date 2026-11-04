@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, Audio, Easing, Img, continueRender, delayRender, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Audio, Easing, Img, continueRender, delayRender, interpolate, random, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import '@fontsource/allura/400.css';
 import '@fontsource/playfair-display/600.css';
 import '@fontsource/playfair-display/700.css';
@@ -12,6 +12,8 @@ import {clamp} from './kit';
  * White marble slab, black roses with gold rims, thin gold frames. Page 1: script "Wedding invitation", a rose wreath around a
  * gold circle with a script monogram. A horizontal pan across the slab to page 2: an arched double gold frame with verse, script
  * names, invitation, date/time, venue and two gold rings. Roses, leaves and rings are all drawn in code (SVG gradients).
+ * Motion: parallax pan (marble slower, rose clusters overshoot), camera breathe/sway, falling gold-rimmed petals, twinkling gold
+ * stars, a light sweep across every gold line, slowly turning wreath, letter-by-letter caps.
  */
 
 const SCRIPT = "'Allura', cursive";
@@ -30,7 +32,8 @@ if (typeof document !== 'undefined') {
 export type MarbleInviteProps = {
   marble: string; music?: string; musicVolume?: number; end: number; turn: number;
   heading: string; mono: [string, string];
-  verse: [string, string]; verseRef: string; groom: string; bride: string;
+  /** page-2 opening line (e.g. 'Qadrli mehmonlar!') */
+  greeting: string; groom: string; bride: string;
   invite: [string, string]; date: string; time: string; place: string; venue: string; venueSub: string;
 };
 
@@ -39,11 +42,11 @@ const ease = Easing.bezier(0.22, 1, 0.36, 1);
 const prog = (f: number, a: number, b: number, e = ease) => interpolate(f, [a, b], [0, 1], {...clamp, easing: e});
 
 /* ---------------------------------------------------------------- shared gradients (one hidden svg) */
-const Defs: React.FC = () => (
+const Defs: React.FC<{f: number}> = ({f}) => (
   <svg width={0} height={0} style={{position: 'absolute'}}>
     <defs>
-      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">{GOLD_STOPS.map(([o, c]) => <stop key={o} offset={o} stopColor={c} />)}</linearGradient>
-      <linearGradient id="goldH" x1="0" y1="0" x2="1" y2="0">{GOLD_STOPS.map(([o, c]) => <stop key={o} offset={o} stopColor={c} />)}</linearGradient>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1" spreadMethod="reflect" gradientTransform={`translate(${(f % 90) / 45 - 1},0)`}>{GOLD_STOPS.map(([o, c]) => <stop key={o} offset={o} stopColor={c} />)}</linearGradient>
+      <linearGradient id="goldH" x1="0" y1="0" x2="0.5" y2="0" spreadMethod="reflect" gradientTransform={`translate(${((f * 1.3) % 120) / 60 - 1},0)`}>{GOLD_STOPS.map(([o, c]) => <stop key={o} offset={o} stopColor={c} />)}</linearGradient>
       <radialGradient id="petalO" cx="50%" cy="95%" r="95%"><stop offset="0" stopColor="#1C1C1E" /><stop offset=".55" stopColor="#3A3A3D" /><stop offset="1" stopColor="#8E8E92" /></radialGradient>
       <radialGradient id="petalI" cx="50%" cy="90%" r="90%"><stop offset="0" stopColor="#141416" /><stop offset=".6" stopColor="#2E2E31" /><stop offset="1" stopColor="#6E6E72" /></radialGradient>
       <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#2A2A2C" /><stop offset=".6" stopColor="#4A4A4D" /><stop offset="1" stopColor="#77777B" /></linearGradient>
@@ -126,6 +129,58 @@ const Script: React.FC<{at: number; dur?: number; size: number; color?: string; 
   const x = -15 + 130 * p; const m = `linear-gradient(90deg, #000 ${x - 15}%, transparent ${x}%)`;
   return <div style={{WebkitMaskImage: m, maskImage: m, padding: `0 ${size * 0.3}px`}}><div style={{fontFamily: SCRIPT, fontSize: size, lineHeight: 1.1, color, whiteSpace: 'nowrap'}}>{children}</div></div>;
 };
+/** Letter-by-letter caps: each glyph rises from blur with a small stagger. */
+const Letters: React.FC<{at: number; lines: string[]; style: React.CSSProperties; step?: number}> = ({at, lines, style, step = 0.022}) => {
+  const {f, s} = useF();
+  let k = 0;
+  return (
+    <div style={{...style, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      {lines.map((ln, li) => (
+        <div key={li} style={{whiteSpace: 'pre'}}>
+          {Array.from(ln).map((ch, ci) => {
+            const p = prog(f, s(at + (k++) * step), s(at + k * step + 0.5));
+            return <span key={ci} style={{display: 'inline-block', opacity: p, transform: `translateY(${(1 - p) * 22}px) scale(${0.85 + 0.15 * p})`, filter: p < 0.98 ? `blur(${6 * (1 - p)}px)` : undefined}}>{ch === ' ' ? '\u00A0' : ch}</span>;
+          })}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+/** Falling rose petals (screen space): gold-rimmed dark petals that tumble (scaleX flip) and sway. */
+const Petals: React.FC<{start: number; pan: number}> = ({start, pan}) => {
+  const {f, s} = useF();
+  if (f < s(start)) return null;
+  const t = f - s(start);
+  return (
+    <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
+      {Array.from({length: 7}).map((_, i) => {
+        const sp = 2.0 + random(`pv${i}`) * 2.2; const r = 34 + random(`pr${i}`) * 30; const near = r > 50;
+        const y = -80 + ((t * sp + random(`py${i}`) * 2100) % 2100);
+        const x = ((random(`px${i}`) * 1240 + Math.sin((t + i * 40) / 34) * 60 - pan * (near ? 520 : 260)) % 1240 + 1240) % 1240 - 80;
+        const rot = random(`pa${i}`) * 360 + t * (1.2 + random(`pw${i}`) * 2) * (i % 2 ? 1 : -1);
+        const flip = Math.cos((t + i * 13) / 18);
+        const o = Math.min(1, t / 20) * (near ? 0.95 : 0.7);
+        return <g key={i} transform={`translate(${x},${y}) rotate(${rot}) scale(${0.25 + 0.75 * Math.abs(flip)},1)`} opacity={o}><path d={petal(r, 0.7)} fill="url(#petalO)" {...RIM} strokeWidth={2} /><path d={`M0,${-r * 0.15} Q${r * 0.08},${-r * 0.5} 0,${-r * 0.85}`} fill="none" stroke="url(#gold)" strokeWidth={1.2} /></g>;
+      })}
+    </svg>
+  );
+};
+
+/** Twinkling 4-point gold stars at given points. */
+const Stars: React.FC<{pts: [number, number, number][]; from: number}> = ({pts, from}) => {
+  const {f, s} = useF();
+  if (f < s(from)) return null;
+  return (
+    <>
+      {pts.map(([x, y, sz], i) => {
+        const tw = Math.max(0, Math.sin((f - s(from)) / 9 + i * 1.7)); const k = sz * (0.3 + 0.7 * tw);
+        return <path key={i} transform={`translate(${x},${y}) rotate(${(f + i * 20) * 0.8}) scale(${k / 10})`} d="M0,-10 C1.5,-2 2,-1.5 10,0 C2,1.5 1.5,2 0,10 C-1.5,2 -2,1.5 -10,0 C-2,-1.5 -1.5,-2 0,-10 Z" fill="#F4DDA0" opacity={0.25 + 0.75 * tw} />;
+      })}
+    </>
+  );
+};
+
 const Center: React.FC<{top: number; children: React.ReactNode}> = ({top, children}) => (
   <div style={{position: 'absolute', left: 0, right: 0, top, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>{children}</div>
 );
@@ -186,30 +241,34 @@ const Rings: React.FC<{p: number; f: number}> = ({p, f}) => {
 export const MarbleInviteReel: React.FC<MarbleInviteProps> = (p) => {
   const {f, s} = useF();
   const T = p.turn; // page turn start (s)
-  const pan = prog(f, s(T), s(T + 0.9), Easing.inOut(Easing.cubic));
+  const pan = prog(f, s(T), s(T + 1.0), Easing.inOut(Easing.cubic));
   const marbleO = prog(f, s(0.1), s(0.9));
-  const drift = 1 + 0.03 * interpolate(f, [0, s(p.end)], [0, 1]);
+  // camera: push-in on each page, pull-back bump mid-turn, gentle sway
+  const push = pan < 0.5 ? interpolate(f, [0, s(T)], [1.0, 1.05], clamp) : interpolate(f, [s(T + 1.0), s(p.end)], [1.0, 1.05], clamp);
+  const drift = push * (1 - 0.07 * Math.sin(pan * Math.PI));
+  const sway = 0.5 * Math.sin(f / 55);
+  const over = -240 * Math.sin(pan * Math.PI); // foreground clusters lead the pan (parallax)
   const frameA = prog(f, s(0.05), s(0.9), Easing.inOut(Easing.quad));
   const circle = prog(f, s(0.75), s(1.4), Easing.inOut(Easing.quad));
   const arch = prog(f, s(T + 0.6), s(T + 1.5), Easing.inOut(Easing.quad));
   const B = T + 0.9;
   return (
-    <AbsoluteFill style={{background: '#FAFAF9', overflow: 'hidden'}}>
-      <Defs />
-      <div style={{position: 'absolute', left: 0, top: 0, width: 2160, height: 1920, transform: `translateX(${-1080 * pan}px) scale(${drift})`, transformOrigin: `${540 + 1080 * pan}px 960px`}}>
-        <Img src={staticFile(p.marble)} style={{position: 'absolute', inset: 0, width: 2160, height: 1920, opacity: 0.72 * marbleO}} />
+    <AbsoluteFill style={{background: '#F4F4F3', overflow: 'hidden'}}>
+      <Defs f={f} />
+      <div style={{position: 'absolute', left: 0, top: 0, width: 2160, height: 1920, transform: `translateX(${-1080 * pan}px) scale(${drift}) rotate(${sway}deg)`, transformOrigin: `${540 + 1080 * pan}px 960px`}}>
+        <Img src={staticFile(p.marble)} style={{position: 'absolute', left: -260, top: -260, width: 2780, height: 2440, opacity: 0.72 * marbleO, transform: `translateX(${300 * pan}px)`}} />
         {/* ---------------- page A */}
         <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, overflow: 'visible'}}>
           <GoldStroke d="M93,150 H983 V1763 H93 Z" p={frameA} w={4} />
           <circle cx={540} cy={945} r={292} fill="rgba(250,250,249,.94)" opacity={circle} />
           <GoldStroke d="M540,653 A292,292 0 1 1 539.9,653" p={circle} w={5} />
-          <Cluster items={WREATH} at={0.95} step={0.04} />
-          <Cluster items={TOP_A} at={0.3} />
-          <Cluster items={BOT_A} at={0.5} />
-          <Cluster items={BOT_A_R} at={0.7} />
+          <g transform={`rotate(${interpolate(f, [s(0.9), s(T + 1)], [-14, 4], clamp)} 540 945)`}><Cluster items={WREATH} at={0.95} step={0.04} /></g>
+          <g transform={`translate(${over},${-over * 0.25})`}><Cluster items={TOP_A} at={0.3} /></g>
+          <g transform={`translate(${over * 1.2},${over * 0.2})`}><Cluster items={BOT_A} at={0.5} /><Cluster items={BOT_A_R} at={0.7} /></g>
+          <Stars from={1.5} pts={[[250, 640, 22], [840, 700, 18], [300, 1260, 16], [820, 1230, 24], [540, 600, 14], [200, 380, 14], [880, 420, 18]]} />
         </svg>
         <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1920}}>
-          <Center top={300}><Script at={0.55} size={84}>{p.heading}</Script></Center>
+          <Center top={290}><Script at={0.55} size={96}>{p.heading}</Script></Center>
           <div style={{position: 'absolute', left: 300, top: 735}}><Script at={1.25} dur={0.9} size={200}>{p.mono[0]}</Script></div>
           <div style={{position: 'absolute', left: 505, top: 900}}><Reveal at={1.6}><div style={{fontFamily: SCRIPT, fontSize: 100, color: GREY}}>&amp;</div></Reveal></div>
           <div style={{position: 'absolute', left: 545, top: 950}}><Script at={1.75} dur={0.9} size={200}>{p.mono[1]}</Script></div>
@@ -221,31 +280,31 @@ export const MarbleInviteReel: React.FC<MarbleInviteProps> = (p) => {
             <GoldStroke d="M127,1681 V660 A398,398 0 0 1 923,660 V1681 Z" p={prog(f, s(T + 0.8), s(T + 1.7), Easing.inOut(Easing.quad))} w={2.5} />
             <g transform="translate(55,640) rotate(-12)"><GoldSprig p={prog(f, s(B + 0.5), s(B + 1.6))} /></g>
             <g transform="translate(960,1600) rotate(14)"><GoldSprig p={prog(f, s(B + 0.8), s(B + 1.9))} /></g>
-            <Cluster items={TOP_B} at={B + 0.2} />
-            <Cluster items={BOT_B} at={B + 0.45} />
+            <g transform={`translate(${-over},${over * 0.25})`}><Cluster items={TOP_B} at={B - 0.4} /></g>
+            <g transform={`translate(${-over * 1.2},${-over * 0.2})`}><Cluster items={BOT_B} at={B - 0.2} /></g>
+            <GoldStroke d="M380,520 H700" p={prog(f, s(B + 1.0), s(B + 1.6))} w={2} />
+            <Stars from={B + 0.8} pts={[[160, 600, 20], [920, 700, 18], [150, 1300, 16], [930, 1250, 22], [540, 300, 14], [300, 1560, 14], [780, 1560, 16]]} />
           </svg>
-          <Center top={392}>
-            <Reveal at={B + 0.6}><div style={capsStyle(34)}>{p.verse[0]}<br />{p.verse[1]}</div></Reveal>
-            <div style={{alignSelf: 'flex-end', marginRight: 205}}><Reveal at={B + 0.9}><div style={{fontFamily: ITAL, fontStyle: 'italic', fontWeight: 500, fontSize: 30, color: GREY}}>{p.verseRef}</div></Reveal></div>
-          </Center>
-          <Center top={540}>
-            <Script at={B + 1.2} size={136}>{p.groom}</Script>
+          <Center top={430}><Letters at={B + 0.5} lines={[p.greeting]} style={{...capsStyle(46), letterSpacing: '0.08em'}} step={0.035} /></Center>
+          <Center top={560}>
+            <Script at={B + 1.2} size={140}>{p.groom}</Script>
             <Reveal at={B + 1.9}><div style={{fontFamily: SCRIPT, fontSize: 78, color: GREY, lineHeight: 0.9}}>&amp;</div></Reveal>
-            <Script at={B + 2.1} size={136}>{p.bride}</Script>
+            <Script at={B + 2.1} size={140}>{p.bride}</Script>
           </Center>
-          <Center top={1028}><Reveal at={B + 2.9}><div style={capsStyle(32, 600)}>{p.invite[0]}<br />{p.invite[1]}</div></Reveal></Center>
+          <Center top={1040}><Letters at={B + 2.8} lines={[p.invite[0], p.invite[1]]} style={capsStyle(32, 600)} step={0.012} /></Center>
           <Center top={1150}>
             <Reveal at={B + 3.4}><div style={{fontFamily: SANS, fontWeight: 300, fontSize: 72, color: INK, letterSpacing: '0.02em', lineHeight: 1.05}}>{p.date}</div></Reveal>
             <Reveal at={B + 3.7}><div style={{fontFamily: SANS, fontWeight: 300, fontSize: 92, color: INK, lineHeight: 1.05}}>{p.time}</div></Reveal>
           </Center>
           <Center top={1380}>
             <Reveal at={B + 4.1}><div style={{fontFamily: SERIF, fontWeight: 600, fontSize: 26, color: GREY, letterSpacing: '0.08em', textTransform: 'uppercase'}}>{p.place}</div></Reveal>
-            <Reveal at={B + 4.4}><div style={{...capsStyle(60), lineHeight: 1.1, marginTop: 10}}>{p.venue}</div></Reveal>
+            <div style={{marginTop: 10}}><Letters at={B + 4.4} lines={[p.venue]} style={{...capsStyle(62), lineHeight: 1.1}} step={0.05} /></div>
             <Reveal at={B + 4.7}><div style={{fontFamily: SERIF, fontWeight: 600, fontSize: 42, color: INK, letterSpacing: '0.04em', textTransform: 'uppercase'}}>{p.venueSub}</div></Reveal>
           </Center>
           <Center top={1585}><Rings p={prog(f, s(B + 5.1), s(B + 5.9), Easing.out(Easing.back(1.6)))} f={f} /></Center>
         </div>
       </div>
+      <Petals start={1.0} pan={pan} />
       {p.music && <Audio src={staticFile(p.music)} volume={(fr) => (p.musicVolume ?? 1) * interpolate(fr, [0, 4, s(p.end) - 20, s(p.end)], [0, 1, 1, 0], clamp)} />}
     </AbsoluteFill>
   );

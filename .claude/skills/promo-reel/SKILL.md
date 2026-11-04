@@ -538,6 +538,17 @@ Reference: the "Shaxzod & Hilola" black-and-gold rose invite (taklifnoma, 13.5 s
   - The names written on in Allura (readable capitals), with "&".
   - Two lines of invitation in caps, the date and time in Montserrat 300, "Manzil", then the venue in Playfair caps.
   - Two gold rings (SVG gradient ellipses) that drop in with a moving glint.
+- **v2 (user: "make it Uzbek, no Islamic lines, animate more"):**
+  - The heading is "To'yga taklifnoma". Allura has no U+2018, so use an ASCII apostrophe in script. Page 2 opens with "Qadrli mehmonlar!". **No verse or religious lines unless the user asks.**
+  - Motion layers:
+    - Marble pans slower than the page (+300 px parallax). It's oversized (2780×2440 at −260) so the mid-turn camera pull-back (×0.93) and the ±0.5° sway never show an edge.
+    - Rose clusters overshoot the pan by 240·sin(πp).
+    - A push-in of 1→1.05 on each page.
+    - The wreath turns −14°→4°.
+    - Twinkling 4-point gold stars.
+    - A light sweep runs along every gold line (animated `gradientTransform` with `spreadMethod="reflect"`).
+    - Caps reveal letter by letter (`Letters`).
+    - 7 large tumbling petals (r 34–64, gold rim + midrib) in screen space. Small dark petals read as dirt.
 - **Music:** the reference's own track if the user asks; `end` = track length, `turn` ≈ 3.55 s.
 - Example: `examples/taklifnoma-marble-invite.props.json`.
 
