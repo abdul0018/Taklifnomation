@@ -16,14 +16,17 @@ const YELLOW = '#FFD60A';
 const STROKE = (w: number): React.CSSProperties => ({WebkitTextStroke: `${w}px #000`, paintOrder: 'stroke fill'});
 
 /** icon: speaker badge drawn before the text (e.g. the real Preppy face for the AI's lines). */
-export type Cap = {text: string; start: number; end: number; y?: number; size?: number; emoji?: string; icon?: string};
+export type Cap = {text: string; start: number; end: number; y?: number; size?: number; emoji?: string; icon?: string; color?: string};
 export type Chip = {text: string; at: number; lit?: number};
 export type CaptionsProps = {
   video: string; overlayOnly?: boolean; end: number;
   captions: Cap[];
   chips?: {y: number; items: Chip[]; outAt: number};
   title?: {text: string; at: number; y: number; size?: number; emoji?: string; color?: string};
+  /** one-word fast captions: hard cut between words (no fade), snappier pop with a tiny tilt, uppercase */
+  fast?: boolean;
 };
+let FAST = false;
 
 const useT = () => { const f = useCurrentFrame(); const {fps} = useVideoConfig(); return {f, fps, s: (x: number) => Math.round(x * fps)}; };
 
@@ -36,13 +39,14 @@ const Caption: React.FC<{c: Cap}> = ({c}) => {
   const {f, fps, s} = useT();
   const a = s(c.start); const b = s(c.end);
   if (f < a || f >= b) return null;
-  const p = spring({frame: f - a, fps, config: {damping: 12, stiffness: 240, mass: 0.6}});
-  const o = interpolate(f, [b - 4, b], [1, 0], clamp);
+  const p = FAST ? spring({frame: f - a, fps, config: {damping: 9, stiffness: 420, mass: 0.45}}) : spring({frame: f - a, fps, config: {damping: 12, stiffness: 240, mass: 0.6}});
+  const o = FAST ? 1 : interpolate(f, [b - 4, b], [1, 0], clamp);
   const size = c.size ?? 66;
   return (
     <div style={{position: 'absolute', left: 50, right: 50, top: (c.y ?? 960) - size, display: 'flex', justifyContent: 'center', opacity: o * Math.min(1, p * 2)}}>
-      <div style={{fontFamily: FONT, fontWeight: 900, fontSize: size, lineHeight: 1.12, color: '#fff', textAlign: 'center', whiteSpace: 'pre-line',
-        letterSpacing: '-0.005em', ...STROKE(size * 0.16), transform: `scale(${interpolate(p, [0, 1], [0.72, 1])})`}}>
+      <div style={{fontFamily: FONT, fontWeight: 900, fontSize: size, lineHeight: 1.12, color: c.color ?? '#fff', textAlign: 'center', whiteSpace: 'pre-line',
+        letterSpacing: '-0.005em', ...STROKE(size * 0.16), textTransform: FAST ? 'uppercase' : undefined, ...(FAST ? {whiteSpace: 'nowrap'} : {}),
+        transform: FAST ? `scale(${interpolate(p, [0, 1], [0.55, 1])}) rotate(${(1 - Math.min(1, p)) * -6}deg)` : `scale(${interpolate(p, [0, 1], [0.72, 1])})`}}>
         {c.icon && <Img src={staticFile(c.icon)} style={{height: size * 1.0, width: 'auto', marginRight: size * 0.22, verticalAlign: '-0.16em'}} />}
         <Rich text={c.text} />
         {c.emoji && <Img src={staticFile(c.emoji)} style={{height: size * 1.05, width: size * 1.05, marginLeft: size * 0.2, verticalAlign: '-0.18em'}} />}
@@ -97,13 +101,13 @@ const Title: React.FC<NonNullable<CaptionsProps['title']>> = (t) => {
   );
 };
 
-export const CaptionsReel: React.FC<CaptionsProps> = (p) => (
+export const CaptionsReel: React.FC<CaptionsProps> = (p) => { FAST = !!p.fast; return (
   <AbsoluteFill style={{background: p.overlayOnly ? 'transparent' : '#000'}}>
     {!p.overlayOnly && <OffthreadVideo src={src(p.video)} style={{width: '100%', height: '100%', objectFit: 'cover'}} toneMapped={false} />}
     {p.chips && <Chips {...p.chips} />}
     {p.title && <Title {...p.title} />}
     {p.captions.map((c, i) => <Caption key={i} c={c} />)}
   </AbsoluteFill>
-);
+); };
 
 export const captionsDuration = (p: CaptionsProps, fps: number) => Math.round(p.end * fps);

@@ -1,0 +1,409 @@
+{
+ "video": "video.mp4",
+ "end": 35.55,
+ "fast": true,
+ "captions": [
+  {
+   "text": "Bugun",
+   "start": 0.55,
+   "end": 0.88,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "darsni",
+   "start": 0.88,
+   "end": 1.48,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "bekor",
+   "start": 1.48,
+   "end": 2.02,
+   "y": 930,
+   "size": 104,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "qilaylik",
+   "start": 2.02,
+   "end": 2.6,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Ustoz,",
+   "start": 2.86,
+   "end": 3.56,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "juda",
+   "start": 3.56,
+   "end": 3.9,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "charchaganman",
+   "start": 3.9,
+   "end": 4.45,
+   "y": 930,
+   "size": 80,
+   "color": "#FFD60A",
+   "emoji": "emoji/1f634.svg"
+  },
+  {
+   "text": "Mayli",
+   "start": 5.1,
+   "end": 5.52,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "mi?",
+   "start": 5.52,
+   "end": 5.75,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Yo'q,",
+   "start": 6.3,
+   "end": 6.64,
+   "y": 930,
+   "size": 104,
+   "color": "#FF4D4D"
+  },
+  {
+   "text": "iloji",
+   "start": 6.64,
+   "end": 7.0,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "yo'q",
+   "start": 7.0,
+   "end": 7.3,
+   "y": 930,
+   "size": 104,
+   "color": "#FF4D4D",
+   "emoji": "emoji/274c.svg"
+  },
+  {
+   "text": "Iltimos",
+   "start": 8.32,
+   "end": 9.6,
+   "y": 930,
+   "size": 104,
+   "color": "#FFD60A",
+   "emoji": "emoji/1f64f.svg"
+  },
+  {
+   "text": "besh",
+   "start": 9.84,
+   "end": 10.15,
+   "y": 930,
+   "size": 104,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "daqiqa",
+   "start": 10.15,
+   "end": 10.8,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Keyin",
+   "start": 11.1,
+   "end": 11.46,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "boshlaymiz?",
+   "start": 11.46,
+   "end": 12.1,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Yo'q,",
+   "start": 12.22,
+   "end": 12.55,
+   "y": 930,
+   "size": 104,
+   "color": "#FF4D4D"
+  },
+  {
+   "text": "umuman",
+   "start": 12.55,
+   "end": 12.95,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "yo'q!",
+   "start": 12.95,
+   "end": 13.45,
+   "y": 930,
+   "size": 104,
+   "color": "#FF4D4D"
+  },
+  {
+   "text": "Sen",
+   "start": 14.1,
+   "end": 14.45,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "menga",
+   "start": 14.45,
+   "end": 14.8,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "o'xshab",
+   "start": 14.8,
+   "end": 15.24,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "qolding",
+   "start": 15.24,
+   "end": 15.75,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Mayli,",
+   "start": 16.06,
+   "end": 16.92,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "mayli",
+   "start": 16.92,
+   "end": 17.5,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Qaysi",
+   "start": 18.2,
+   "end": 18.56,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "mavzu?",
+   "start": 18.56,
+   "end": 19.0,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Present",
+   "start": 19.56,
+   "end": 19.88,
+   "y": 930,
+   "size": 104,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "perfect",
+   "start": 19.88,
+   "end": 20.5,
+   "y": 930,
+   "size": 104,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "Present",
+   "start": 20.6,
+   "end": 21.0,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "perfect?",
+   "start": 21.0,
+   "end": 21.65,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Men",
+   "start": 22.1,
+   "end": 22.36,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "uni",
+   "start": 22.36,
+   "end": 22.58,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "uch",
+   "start": 22.58,
+   "end": 22.82,
+   "y": 930,
+   "size": 104,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "oydan",
+   "start": 22.82,
+   "end": 23.2,
+   "y": 930,
+   "size": 104,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "beri",
+   "start": 23.2,
+   "end": 23.44,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "tushuntiraman",
+   "start": 23.44,
+   "end": 24.3,
+   "y": 930,
+   "size": 80,
+   "emoji": "emoji/1f92f.svg"
+  },
+  {
+   "text": "I",
+   "start": 24.8,
+   "end": 25.0,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "have",
+   "start": 25.0,
+   "end": 25.3,
+   "y": 930,
+   "size": 104,
+   "color": "#FF4D4D"
+  },
+  {
+   "text": "tired",
+   "start": 25.3,
+   "end": 26.05,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Yo'q,",
+   "start": 26.44,
+   "end": 27.32,
+   "y": 930,
+   "size": 104,
+   "color": "#FF4D4D"
+  },
+  {
+   "text": "I",
+   "start": 27.32,
+   "end": 27.52,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "am",
+   "start": 27.52,
+   "end": 27.74,
+   "y": 930,
+   "size": 104,
+   "color": "#3DDC84"
+  },
+  {
+   "text": "tired",
+   "start": 27.74,
+   "end": 28.3,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Ko'rdingmi?",
+   "start": 28.5,
+   "end": 29.7,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "Hatto",
+   "start": 29.7,
+   "end": 30.08,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "men",
+   "start": 30.08,
+   "end": 30.36,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "ham",
+   "start": 30.36,
+   "end": 30.56,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "charchab",
+   "start": 30.56,
+   "end": 31.08,
+   "y": 930,
+   "size": 104,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "ketdim",
+   "start": 31.08,
+   "end": 31.6,
+   "y": 930,
+   "size": 104,
+   "emoji": "emoji/1f602.svg"
+  },
+  {
+   "text": "Bo'ldi,",
+   "start": 32.08,
+   "end": 32.76,
+   "y": 930,
+   "size": 104,
+   "color": "#FF4D4D"
+  },
+  {
+   "text": "men",
+   "start": 32.76,
+   "end": 32.88,
+   "y": 930,
+   "size": 104
+  },
+  {
+   "text": "ketdim",
+   "start": 32.88,
+   "end": 33.6,
+   "y": 930,
+   "size": 104,
+   "color": "#FFD60A",
+   "emoji": "emoji/1f3c3.svg"
+  }
+ ]
+}

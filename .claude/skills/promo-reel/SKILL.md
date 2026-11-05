@@ -459,6 +459,13 @@ Use it when the user sends a finished-looking clip (own cuts, inserts and music 
   - Set the caption `y` just above the laptop's top edge in that take (960 there, 885 in the hoodie take).
   - In the user's script, a mid-sentence "To'xta" can belong to the next line. Check the RMS gaps.
 - Examples: `examples/preppy-tovuq-captions.props.json` and `examples/preppy-qorqoq-captions.props.json`.
+- **One-word fast captions (`fast: true`):** use these when the user asks for "one word caption style":
+  - One caption per word, each ending exactly when the next word starts, with a hard cut (no fade).
+  - A snappy pop (spring 420/9) from 0.55 with a −6° tilt, uppercase, nowrap, 104 px. Words longer than 11 letters drop to 80 px.
+  - Per-word `color`: yellow for keywords, red for "yo'q" and wrong answers, green for the correction ("am"). Add a Twemoji on the punchline words.
+  - Word times come from faster-whisper word timestamps on the demucs vocal stem. Run uz, tr and en, plus uz with an Uzbek `initial_prompt`; Turkish often spells Uzbek best. Then fix the words by hand, and line ends come from RMS segments.
+  - Place the words over the chest or laptop edge (y≈930 in the desk take).
+  - Example: `examples/one-word-fast-captions.props.json`.
 
 ## 16. Style L: phone mockup for a screen recording (`PhoneMockReel`)
 
