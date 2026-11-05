@@ -1,0 +1,279 @@
+{
+ "video": "video.mp4",
+ "end": 25.06,
+ "fast": true,
+ "captions": [
+  {
+   "text": "Hammaga",
+   "start": 0.2,
+   "end": 0.55,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "assalomu",
+   "start": 0.55,
+   "end": 1.04,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "alaykum",
+   "start": 1.04,
+   "end": 1.8,
+   "y": 1330,
+   "size": 100,
+   "emoji": "emoji/1f44b.svg"
+  },
+  {
+   "text": "Tracker",
+   "start": 2.12,
+   "end": 2.45,
+   "y": 1330,
+   "size": 100,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "bir",
+   "start": 2.45,
+   "end": 2.61,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "mashinani",
+   "start": 2.61,
+   "end": 2.95,
+   "y": 1330,
+   "size": 100,
+   "emoji": "emoji/1f697.svg"
+  },
+  {
+   "text": "olib",
+   "start": 2.95,
+   "end": 3.22,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "qoganmiz",
+   "start": 3.22,
+   "end": 3.75,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "Haliroq",
+   "start": 5.5,
+   "end": 5.83,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "qilishga",
+   "start": 5.83,
+   "end": 6.6,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "Bu",
+   "start": 7.08,
+   "end": 7.22,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "mashinada",
+   "start": 7.22,
+   "end": 7.56,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "qiladigan",
+   "start": 7.56,
+   "end": 7.91,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "ishimiz:",
+   "start": 7.91,
+   "end": 8.5,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "rulovoy",
+   "start": 9.16,
+   "end": 9.42,
+   "y": 1330,
+   "size": 100,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "filtrni",
+   "start": 9.42,
+   "end": 9.81,
+   "y": 1330,
+   "size": 100,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "almashtirib",
+   "start": 9.81,
+   "end": 10.3,
+   "y": 1330,
+   "size": 84,
+   "emoji": "emoji/1f527.svg"
+  },
+  {
+   "text": "beramiz",
+   "start": 10.3,
+   "end": 10.95,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "Amortizator",
+   "start": 11.18,
+   "end": 11.9,
+   "y": 1330,
+   "size": 84,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "stoyki",
+   "start": 11.9,
+   "end": 12.2,
+   "y": 1330,
+   "size": 100,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "stabilizator",
+   "start": 12.2,
+   "end": 13.4,
+   "y": 1330,
+   "size": 84,
+   "color": "#FFD60A",
+   "emoji": "emoji/1f6e0.svg"
+  },
+  {
+   "text": "Mana",
+   "start": 16.0,
+   "end": 16.36,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "shunaqa",
+   "start": 16.36,
+   "end": 16.64,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "bo'ladi",
+   "start": 16.64,
+   "end": 17.2,
+   "y": 1330,
+   "size": 100,
+   "emoji": "emoji/1f4af.svg"
+  },
+  {
+   "text": "Mana",
+   "start": 19.2,
+   "end": 19.71,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "shu",
+   "start": 19.71,
+   "end": 19.9,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "qismini",
+   "start": 19.9,
+   "end": 20.4,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "qilib",
+   "start": 20.4,
+   "end": 20.8,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "beramiz",
+   "start": 21.72,
+   "end": 22.15,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "Buning",
+   "start": 22.24,
+   "end": 22.58,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "qismlarimiz",
+   "start": 22.58,
+   "end": 22.92,
+   "y": 1330,
+   "size": 84
+  },
+  {
+   "text": "kelib",
+   "start": 22.92,
+   "end": 23.32,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "bo'lsa",
+   "start": 23.32,
+   "end": 23.6,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "bemalol",
+   "start": 23.6,
+   "end": 23.92,
+   "y": 1330,
+   "size": 100,
+   "color": "#FFD60A"
+  },
+  {
+   "text": "o'rnatib",
+   "start": 23.92,
+   "end": 24.15,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "chiqib",
+   "start": 24.15,
+   "end": 24.31,
+   "y": 1330,
+   "size": 100
+  },
+  {
+   "text": "olsa",
+   "start": 24.31,
+   "end": 24.9,
+   "y": 1330,
+   "size": 100,
+   "emoji": "emoji/2705.svg"
+  }
+ ]
+}

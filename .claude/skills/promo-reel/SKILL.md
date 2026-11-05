@@ -482,6 +482,8 @@ Use it when the user sends a finished-looking clip (own cuts, inserts and music 
   - Word times come from faster-whisper word timestamps on the demucs vocal stem. Run uz, tr and en, plus uz with an Uzbek `initial_prompt`; Turkish often spells Uzbek best. Then fix the words by hand, and line ends come from RMS segments.
   - Place the words over the chest or laptop edge (y≈930 in the desk take).
   - Example: `examples/one-word-fast-captions.props.json`.
+  - **With a user SRT:** use its words and spelling. For word times, run faster-whisper medium per SRT window with that line as `initial_prompt` (uz plus tr). A window's first word gets clamped to the window start, so take that one from the RMS onset.
+  - In b-roll or service footage, set y≈1330 (lower-middle, clear of the part being shown). Colour the product and part names yellow (Tracker, filtr, amortizator, stoyki, stabilizator). Example: `examples/car-service-one-word-captions.props.json`.
 
 ## 16. Style L: phone mockup for a screen recording (`PhoneMockReel`)
 
