@@ -430,7 +430,11 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
 - Topic titles say "IELTS Listening" and "IELTS Speaking" (the user asked for that earlier).
 - Keep only the user's audio: stream-copy it, with no music or SFX.
 
-Examples: `examples/ai-tools-tiers.props.json` and `examples/ielts-tiers-4topics.props.json` (clean, real logos).
+- **Pen-in-hand takes (Writing version):** the speaker may not point left, centre and right at all. Here a pen sat at chest height (YOMON), was raised beside the head (YAXSHI), then raised high (AJOYIB). Read the rising pose from a full-frame 10 fps strip; a chest crop misses it. Use the later of the pose and the tier word.
+- For this user's topics, "IELTS Writing ✍️" uses ChatGPT, then Engnovate (the 512 px rebuild of its official favicon), then Goprep.gg.
+- When measuring PSNR, crop a region with no graphics. The topic pill covers y≈1270–1400, so use y≥1500.
+
+Examples: `examples/ai-tools-tiers.props.json`, `examples/ielts-tiers-4topics.props.json` (clean, real logos) and `examples/ielts-tiers-writing.props.json`.
 
 ## 15. Style K: captions on an already-cut clip (`CaptionsReel`)
 
