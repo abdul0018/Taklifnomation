@@ -430,6 +430,10 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
 - Topic titles say "IELTS Listening" and "IELTS Speaking" (the user asked for that earlier).
 - Keep only the user's audio: stream-copy it, with no music or SFX.
 
+- **SFX on request:** use `tools/ui_sfx.py` sounds, mixed in numpy straight onto the source voice (overlay renders are muted):
+  - a click at each topic start (−14 dB);
+  - a ding on YOMON (−17 dB) and YAXSHI (−15 dB), and ding_big on AJOYIB (−12 dB), each 20 ms before the reveal.
+  - If the sum clips, scale the whole mix to −0.2 dBFS. Mux it with `-c:v copy` and AAC at 320k.
 - **`mirror: true`** puts YOMON on the right and AJOYIB on the left. The user asked for it on the pen take, where the final "zo'r" pose ends on screen-left. Rule: AJOYIB goes on the side where the last, highest gesture ends.
 - **Pen-in-hand takes (Writing version):** the speaker may not point left, centre and right at all. Here a pen sat at chest height (YOMON), was raised beside the head (YAXSHI), then raised high (AJOYIB). Read the rising pose from a full-frame 10 fps strip; a chest crop misses it. Use the later of the pose and the tier word.
 - For this user's topics, "IELTS Writing ✍️" uses ChatGPT, then Engnovate (the 512 px rebuild of its official favicon), then Goprep.gg.
