@@ -26,9 +26,10 @@ export type Logo = {name: string; kind: 'mask' | 'img'; file: string; color?: st
 export type Topic = {title: string; emoji?: string; start: number; logos: [Logo, Logo, Logo]; reveal: [number, number, number]};
 /** overlayOnly: render just the graphics on transparent (composite onto the untouched source with ffmpeg). */
 /** clean: no shadows anywhere (cards get a crisp hairline, labels a crisp stroke). The reveal blur stays: it is on the card graphic, never the footage. */
-export type TiersProps = {clean?: boolean; overlayOnly?: boolean; video: string; voice?: string; voiceVolume?: number; topics: Topic[]; cues?: {file: string; at: number; vol?: number}[]; end: number};
+/** mirror: YOMON on the right, AJOYIB on the left (for takes where the speaker's gestures run right→left on screen). */
+export type TiersProps = {mirror?: boolean; clean?: boolean; overlayOnly?: boolean; video: string; voice?: string; voiceVolume?: number; topics: Topic[]; cues?: {file: string; at: number; vol?: number}[]; end: number};
 
-let CLEAN = false;
+let CLEAN = false; let MIRROR = false;
 
 const useT = () => { const f = useCurrentFrame(); const {fps} = useVideoConfig(); return {f, fps, s: (x: number) => Math.round(x * fps)}; };
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -46,7 +47,7 @@ const LogoArt: React.FC<{logo: Logo; size: number}> = ({logo, size}) => {
 /** One tier card: label above, white card with app name + logo; blurred until revealed. */
 const TierCard: React.FC<{i: number; logo: Logo; topicAt: number; revealAt: number; out: number}> = ({i, logo, topicAt, revealAt, out}) => {
   const {f, fps, s} = useT();
-  const T = TIER[i];
+  const T = MIRROR ? {...TIER[i], x: 1080 - TIER[i].x} : TIER[i];
   const a = s(topicAt);
   if (f < a || f >= out) return null;
   const inP = spring({frame: f - a - i * 3, fps, config: {damping: 15, stiffness: 160}});
@@ -65,7 +66,7 @@ const TierCard: React.FC<{i: number; logo: Logo; topicAt: number; revealAt: numb
       <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 46, letterSpacing: '0.02em', marginBottom: 14,
         color: lit > 0.5 ? T.color : '#FFFFFF', transform: `scale(${1 + 0.18 * Math.sin(Math.min(1, rev) * Math.PI)})`,
         ...(CLEAN ? {WebkitTextStroke: '8px #000', paintOrder: 'stroke fill'} : {WebkitTextStroke: '2px rgba(0,0,0,.55)', paintOrder: 'stroke fill', textShadow: '0 3px 8px rgba(0,0,0,.45)'})}}>{T.label}</div>
-      <div style={{position: 'relative', width: CARD, height: CARD, transform: `scale(${punch}) rotate(${(1 - sharp) * (i === 0 ? -3 : i === 2 ? 3 : 0)}deg)`}}>
+      <div style={{position: 'relative', width: CARD, height: CARD, transform: `scale(${punch}) rotate(${(1 - sharp) * (i === 0 ? -3 : i === 2 ? 3 : 0) * (MIRROR ? -1 : 1)}deg)`}}>
         {/* glow ring burst on reveal */}
         {ring > 0 && ring < 1 && <div style={{position: 'absolute', inset: -10 - 40 * ring, borderRadius: 36 + 30 * ring, border: `${6 * (1 - ring)}px solid ${T.color}`, opacity: 1 - ring}} />}
         <div style={{width: CARD, height: CARD, borderRadius: 26, background: '#FFFFFF', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14,
@@ -99,7 +100,7 @@ const TopicPill: React.FC<{t: Topic; out: number}> = ({t, out}) => {
 
 export const TiersReel: React.FC<TiersProps> = (p) => {
   const {s} = useT();
-  CLEAN = !!p.clean;
+  CLEAN = !!p.clean; MIRROR = !!p.mirror;
   return (
     <AbsoluteFill style={{background: p.overlayOnly ? 'transparent' : '#000'}}>
       {!p.overlayOnly && <OffthreadVideo src={src(p.video)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} toneMapped={false} />}
