@@ -430,6 +430,13 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
 - Topic titles say "IELTS Listening" and "IELTS Speaking" (the user asked for that earlier).
 - Keep only the user's audio: stream-copy it, with no music or SFX.
 
+- **"Viral" SFX (user preferred these to the soft dings):** `tools/viral_sfx.py <dir>` synthesizes the common ranking-reel sound types from scratch:
+  - Per topic: a whoosh as the cards fly in (−13 dB).
+  - YOMON: a pop (−14) plus a two-tone "eh-eh" buzzer (−16).
+  - YAXSHI: a pop (−14) plus a C6→E6 "correct" chime (−15).
+  - AJOYIB: a saturated bass boom (−9, audible on phone speakers) plus a sparkle (−17).
+  - Limit only the effects bus where voice+fx would clip (smoothed per-sample gain), so the voice keeps its level.
+  - The blur reveal is fine with this user. "No filter" means nothing on the footage.
 - **SFX on request:** use `tools/ui_sfx.py` sounds, mixed in numpy straight onto the source voice (overlay renders are muted):
   - a click at each topic start (−14 dB);
   - a ding on YOMON (−17 dB) and YAXSHI (−15 dB), and ding_big on AJOYIB (−12 dB), each 20 ms before the reveal.
