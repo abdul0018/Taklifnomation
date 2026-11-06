@@ -15,6 +15,7 @@ import {PhoneMockReel, PhoneMockProps, phoneMockDuration} from './PhoneMock';
 import {InvitationReel, InvitationProps, invitationDuration} from './Invitation';
 import {MarbleInviteReel, MarbleInviteProps, marbleInviteDuration} from './MarbleInvite';
 import {PaintedInviteReel, PaintedInviteProps, paintedInviteDuration} from './PaintedInvite';
+import {IslamicInviteReel, IslamicInviteProps, islamicInviteDuration} from './IslamicInvite';
 
 const FPS = 30;
 
@@ -186,6 +187,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={420}
       defaultProps={{art: '', end: 14, turn: 6} as unknown as PaintedInviteProps}
       calculateMetadata={({props}: {props: PaintedInviteProps}) => ({durationInFrames: paintedInviteDuration(props, FPS)})}
+    />
+    {/* Style P: Islamic e-invitation: the user's faceless clip in a gold mihrab arch on a navy girih card, Bismillah. */}
+    <Composition
+      id="IslamicInviteReel"
+      component={IslamicInviteReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={390}
+      defaultProps={{video: '', end: 13, detailsAt: 6} as unknown as IslamicInviteProps}
+      calculateMetadata={({props}: {props: IslamicInviteProps}) => ({durationInFrames: islamicInviteDuration(props, FPS)})}
     />
   </>
 );
