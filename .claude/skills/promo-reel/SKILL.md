@@ -646,7 +646,7 @@ Use it for moody footage (a silhouette first dance against a window).
 - **Music:** the user's track via `music`, trimmed to the reel. Pick the start so the track's swell lands on `detailsAt`: find it with a 0.5 s RMS envelope ("Hijo de la Luna" instrumental: intro at 1.5 s, swell at 9.5 s, so start at 1.3 s with details at 7.9 s). The clip's own audio is muted.
 - Example: `examples/taklifnoma-cinema.props.json`.
 
-**Q2: "wow" version (`GrandInviteReel`), what the user picked over the plain one.**
+**Q2: "wow" variant (`GrandInviteReel`).** On review the user went back to the plain `CinemaInviteReel` ("previous one was better"). Default to plain Q; offer Q2 only when asked for something more dramatic.
 - **Opening:** the couple's names, huge, in **Bodoni Moda italic 700**, with the clip playing *inside the letters*: a black layer with white type in `mix-blend-mode: multiply` over the clip, in an `isolation: isolate` box.
 - **Gold trace:** a 1.6 px gold hairline (`WebkitTextStroke`) traces the letters.
 - **Reveal:** at `revealAt` the black melts away (the clip surfaces from inside the names), while a gold-foil copy of the names (same geometry) glides down under the window to 0.6 scale.
