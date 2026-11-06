@@ -17,6 +17,7 @@ import {MarbleInviteReel, MarbleInviteProps, marbleInviteDuration} from './Marbl
 import {PaintedInviteReel, PaintedInviteProps, paintedInviteDuration} from './PaintedInvite';
 import {IslamicInviteReel, IslamicInviteProps, islamicInviteDuration} from './IslamicInvite';
 import {MinimalIslamicReel, MinimalIslamicProps, minimalIslamicDuration} from './MinimalIslamicInvite';
+import {CinemaInviteReel, CinemaInviteProps, cinemaInviteDuration} from './CinemaInvite';
 
 const FPS = 30;
 
@@ -210,6 +211,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={390}
       defaultProps={{video: '', end: 13, shrinkAt: 4} as unknown as MinimalIslamicProps}
       calculateMetadata={({props}: {props: MinimalIslamicProps}) => ({durationInFrames: minimalIslamicDuration(props, FPS)})}
+    />
+    {/* Style Q: cinematic minimalist invite for a dark clip: near-black page, champagne type, clip window, user music. */}
+    <Composition
+      id="CinemaInviteReel"
+      component={CinemaInviteReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={480}
+      defaultProps={{video: '', srcW: 1080, srcH: 1920, end: 16, detailsAt: 7} as unknown as CinemaInviteProps}
+      calculateMetadata={({props}: {props: CinemaInviteProps}) => ({durationInFrames: cinemaInviteDuration(props, FPS)})}
     />
   </>
 );
