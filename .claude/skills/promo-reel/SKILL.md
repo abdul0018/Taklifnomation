@@ -609,7 +609,12 @@ Reference: a gouache-style couple in a cosmos meadow with a pastel teal sky.
   - The user's generated art came in at 941×1672 (a ~1.15× Lanczos upscale is acceptable for painterly art). Ask for a 2× upscale when available.
 - **Music:** `tools/wedding_music.py` (original), unless the user supplies a track.
 - Example: `examples/taklifnoma-painted.props.json` (two-art).
-- **Client cards in Cyrillic:** copy the card's text exactly, and keep the script it's printed in.
+- **Typography for painterly art: `typo: 'storybook'`.** The user rejected formal wedding scripts (Allura, Great Vibes) on gouache art as not matching, and wants **Latin** text even when the client's card is Cyrillic: transliterate it.
+  - Fraunces, a soft picture-book serif, for everything: italic for names and venue (`NK` 0.66 size factor), upright caps for labels, date and time, and italic 400/500 for body text.
+  - Sacramento (hand-drawn monoline) only for accents: the "&" and the closing line.
+  - Pick fonts from a comparison sheet rendered on the art's own colours, never from memory.
+  - Example: `examples/taklifnoma-painted-storybook.props.json`.
+- **Client cards in Cyrillic** (only if the user asks for Cyrillic): copy the card's text exactly, and keep the script it's printed in.
   - Set `cyrillic: true`: Great Vibes script plus Cormorant Garamond caps, because Allura and Cinzel have no Cyrillic.
   - `invite` takes any number of lines. `family: {lead, name[]}` replaces the names row in the venue scene. Family names are set in Cormorant italic, because Great Vibes draws ғ like Ғ.
   - Example: `examples/taklifnoma-painted-cyrillic.props.json`.

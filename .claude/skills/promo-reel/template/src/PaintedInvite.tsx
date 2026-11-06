@@ -2,6 +2,12 @@ import React from 'react';
 import {AbsoluteFill, Audio, Easing, Img, continueRender, delayRender, interpolate, random, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import '@fontsource/allura/400.css';
 import '@fontsource/great-vibes/400.css';
+import '@fontsource/fraunces/400.css';
+import '@fontsource/fraunces/500.css';
+import '@fontsource/fraunces/600.css';
+import '@fontsource/fraunces/400-italic.css';
+import '@fontsource/fraunces/500-italic.css';
+import '@fontsource/sacramento/400.css';
 import '@fontsource/cormorant-garamond/500.css';
 import '@fontsource/cormorant-garamond/600.css';
 import '@fontsource/cormorant-garamond/500-italic.css';
@@ -19,7 +25,9 @@ import {clamp} from './kit';
  */
 
 let SCRIPT = "'Allura', cursive";
-const SERIF = "'Cormorant Garamond', 'Georgia', serif";
+let SERIF = "'Cormorant Garamond', 'Georgia', serif";
+/** names/venue face, its size factor, and the accent face ("&", closing) — switched by `typo` */
+let NAMEF: React.CSSProperties = {fontFamily: "'Allura', cursive"}; let NK = 1; let ACCENT = "'Allura', cursive";
 let CAPS = "'Cinzel', serif";
 let CAPS_W = 600;
 const INK = '#4E3428';
@@ -27,7 +35,7 @@ const ROSE = '#A3405C';
 
 if (typeof document !== 'undefined') {
   const h = delayRender('fonts');
-  Promise.all(['400 80px Allura', '500 40px "Cormorant Garamond"', '600 40px "Cormorant Garamond"', 'italic 500 40px "Cormorant Garamond"', '600 40px Cinzel', '400 80px "Great Vibes"']
+  Promise.all(['400 80px Allura', '500 40px "Cormorant Garamond"', '600 40px "Cormorant Garamond"', 'italic 500 40px "Cormorant Garamond"', '600 40px Cinzel', '400 80px "Great Vibes"', 'italic 400 60px Fraunces', '500 40px Fraunces', '600 40px Fraunces', 'italic 500 40px Fraunces', '400 80px Sacramento']
     .map((f) => document.fonts.load(f, 'AaŊ‘0'))).then(() => continueRender(h)).catch(() => continueRender(h));
 }
 
@@ -44,6 +52,8 @@ export type PaintedInviteProps = {
   title: string; groom: string; bride: string;
   invite: string[]; date: string;
   /** cyrillic: Great Vibes script + Cormorant caps (Allura/Cinzel have no Cyrillic). family: sign-off shown with the venue. */
+  /** typo: 'storybook' = Fraunces (soft picture-book serif) for names, details and caps + Sacramento hand script accents; suits painterly art. */
+  typo?: 'classic' | 'storybook';
   cyrillic?: boolean; family?: {lead: string; name: string[]}; time: string; venue: string; venueSub: string; address: string;
 };
 
@@ -123,7 +133,7 @@ const Write: React.FC<{at: number; dur?: number; size: number; color?: string; c
   const p = prog(f, s(at), s(at + dur), Easing.inOut(Easing.sin));
   if (p <= 0) return null;
   const x = -15 + 130 * p; const m = `linear-gradient(90deg, #000 ${x - 15}%, transparent ${x}%)`;
-  return <div style={{WebkitMaskImage: m, maskImage: m, padding: `0 ${size * 0.3}px`}}><div style={{fontFamily: SCRIPT, fontSize: size, color, lineHeight: 1.08, whiteSpace: 'nowrap'}}>{children}</div></div>;
+  return <div style={{WebkitMaskImage: m, maskImage: m, padding: `0 ${size * 0.3}px`}}><div style={{...NAMEF, fontSize: size * NK, color, lineHeight: NK < 1 ? 1.2 : 1.08, whiteSpace: 'nowrap'}}>{children}</div></div>;
 };
 const Center: React.FC<{top: number; children: React.ReactNode}> = ({top, children}) => (
   <div style={{position: 'absolute', left: 0, right: 0, top, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>{children}</div>
@@ -141,6 +151,11 @@ export const PaintedInviteReel: React.FC<PaintedInviteProps> = (p) => {
   const {f, s} = useF();
   const two = !!p.art2;
   SCRIPT = p.cyrillic ? "'Great Vibes', cursive" : "'Allura', cursive"; CAPS = p.cyrillic ? "'Cormorant Garamond', serif" : "'Cinzel', serif"; CAPS_W = p.cyrillic ? 700 : 600;
+  SERIF = "'Cormorant Garamond', 'Georgia', serif"; NAMEF = {fontFamily: SCRIPT}; NK = 1; ACCENT = SCRIPT;
+  if (p.typo === 'storybook') {
+    SERIF = "'Fraunces', 'Georgia', serif"; CAPS = SERIF; CAPS_W = 500; ACCENT = "'Sacramento', cursive";
+    NAMEF = {fontFamily: SERIF, fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.01em'}; NK = 0.66;
+  }
   const T = p.turn; const fo = p.focus ?? {x: 0.5, y: 0.55}; const sk = p.sky ?? {x: 0.5, y: 0.12};
   // camera: A pushes 1.0→1.07 toward the couple; B tilts to the sky and pushes to 1.55 (sky is a flat gradient)
   const b = prog(f, s(T - 0.3), s(T + 1.6), Easing.inOut(Easing.cubic));
@@ -182,7 +197,7 @@ export const PaintedInviteReel: React.FC<PaintedInviteProps> = (p) => {
         <Center top={190}><Rise at={0.5}><div style={{fontFamily: CAPS, fontWeight: CAPS_W, fontSize: p.cyrillic ? 40 : 30, textTransform: 'uppercase', letterSpacing: '0.42em', marginRight: '-0.42em', color: INK}}>{p.title}</div></Rise></Center>
         <Center top={255}>
           <Write at={1.1} size={150}>{p.groom}</Write>
-          <Rise at={1.9}><div style={{fontFamily: SCRIPT, fontSize: 84, color: ROSE, lineHeight: 0.7}}>&amp;</div></Rise>
+          <Rise at={1.9}><div style={{fontFamily: ACCENT, fontSize: 84, color: ROSE, lineHeight: NK < 1 ? 0.9 : 0.7}}>&amp;</div></Rise>
           <Write at={2.2} size={150}>{p.bride}</Write>
         </Center>
       </div>
@@ -203,16 +218,16 @@ export const PaintedInviteReel: React.FC<PaintedInviteProps> = (p) => {
               {p.family ? (
                 <Center top={330}>
                   <Rise at={T2 + 1.0}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 500, fontSize: 44, color: INK}}>{p.family.lead}</div></Rise>
-                  {p.family.name.map((l, i) => <Rise key={i} at={T2 + 1.3 + i * 0.3}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 600, fontSize: 58, color: INK, lineHeight: 1.2}}>{l}</div></Rise>)}
+                  {p.family.name.map((l, i) => <Rise key={i} at={T2 + 1.3 + i * 0.3}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: NK < 1 ? 500 : 600, fontSize: NK < 1 ? 54 : 58, color: INK, lineHeight: 1.2}}>{l}</div></Rise>)}
                 </Center>
-              ) : <Center top={470}><Rise at={T2 + 1.1}><div style={{fontFamily: SCRIPT, fontSize: 96, color: INK, lineHeight: 1}}>{p.groom} <span style={{color: ROSE}}>&amp;</span> {p.bride}</div></Rise></Center>}
+              ) : <Center top={470}><Rise at={T2 + 1.1}><div style={{...NAMEF, fontSize: 96 * NK, color: INK, lineHeight: 1}}>{p.groom} <span style={{color: ROSE, fontFamily: ACCENT, fontStyle: 'normal'}}>&amp;</span> {p.bride}</div></Rise></Center>}
               <Center top={p.family ? 640 : 660}><Sprig p={prog(f, s(T2 + 1.9), s(T2 + 2.8))} /></Center>
               <Center top={760}>
-                <Rise at={T2 + 2.1}><div style={{fontFamily: SCRIPT, fontSize: 132, color: INK, lineHeight: 1}}>{p.venue}</div></Rise>
+                <Rise at={T2 + 2.1}><div style={{...NAMEF, fontSize: 132 * NK, color: INK, lineHeight: 1.1}}>{p.venue}</div></Rise>
                 <Rise at={T2 + 2.4}><div style={{fontFamily: CAPS, fontWeight: CAPS_W, fontSize: 32, color: INK, letterSpacing: '0.34em', marginRight: '-0.34em', marginTop: 8}}>{p.venueSub}</div></Rise>
                 <Rise at={T2 + 2.7}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 500, fontSize: 40, color: INK, marginTop: 16}}>{p.address}</div></Rise>
               </Center>
-              {p.closing && <Center top={1130}><Rise at={T2 + 3.0} dur={1.1}><div style={{fontFamily: SCRIPT, fontSize: p.closing.length > 32 ? 76 : 96, color: ROSE, lineHeight: 1.1, textAlign: 'center', padding: '0 90px'}}>{p.closing}</div></Rise></Center>}
+              {p.closing && <Center top={1130}><Rise at={T2 + 3.0} dur={1.1}><div style={{fontFamily: ACCENT, fontSize: p.closing.length > 32 ? 76 : 96, color: ROSE, lineHeight: 1.1, textAlign: 'center', padding: '0 90px'}}>{p.closing}</div></Rise></Center>}
             </>
           )}
         </>
@@ -220,7 +235,7 @@ export const PaintedInviteReel: React.FC<PaintedInviteProps> = (p) => {
       {/* scene B details, on the sky */}
       {!two && f >= s(T) && (
         <>
-          <Center top={430}><Rise at={T + 1.2}><div style={{fontFamily: SCRIPT, fontSize: 104, color: INK, lineHeight: 1}}>{p.groom} <span style={{color: ROSE}}>&amp;</span> {p.bride}</div></Rise></Center>
+          <Center top={430}><Rise at={T + 1.2}><div style={{...NAMEF, fontSize: 104 * NK, color: INK, lineHeight: 1}}>{p.groom} <span style={{color: ROSE, fontFamily: ACCENT, fontStyle: 'normal'}}>&amp;</span> {p.bride}</div></Rise></Center>
           <Center top={620}>
             <Rise at={T + 1.7}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 500, fontSize: 46, color: INK, textAlign: 'center', lineHeight: 1.3}}>{p.invite.map((l, i) => <React.Fragment key={i}>{i > 0 && <br />}{l}</React.Fragment>)}</div></Rise>
           </Center>
@@ -230,7 +245,7 @@ export const PaintedInviteReel: React.FC<PaintedInviteProps> = (p) => {
             <Rise at={T + 3.0}><div style={{fontFamily: SERIF, fontWeight: 600, fontSize: 64, color: ROSE, letterSpacing: '0.1em'}}>{p.time}</div></Rise>
           </Center>
           <Center top={1130}>
-            <Rise at={T + 3.6}><div style={{fontFamily: SCRIPT, fontSize: 112, color: INK, lineHeight: 1}}>{p.venue}</div></Rise>
+            <Rise at={T + 3.6}><div style={{...NAMEF, fontSize: 112 * NK, color: INK, lineHeight: 1.1}}>{p.venue}</div></Rise>
             <Rise at={T + 3.9}><div style={{fontFamily: CAPS, fontWeight: CAPS_W, fontSize: 30, color: INK, letterSpacing: '0.34em', marginRight: '-0.34em', marginTop: 6}}>{p.venueSub}</div></Rise>
             <Rise at={T + 4.2}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 500, fontSize: 36, color: INK, marginTop: 14}}>{p.address}</div></Rise>
           </Center>

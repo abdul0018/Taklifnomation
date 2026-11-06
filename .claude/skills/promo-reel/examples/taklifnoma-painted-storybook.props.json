@@ -1,0 +1,51 @@
+{
+ "art": "couple.png",
+ "skyExt": "sky1.png",
+ "skyH": 1200,
+ "lift": {
+  "a": 120,
+  "b": 120
+ },
+ "focus": {
+  "x": 0.5,
+  "y": 0.6
+ },
+ "art2": "hands.png",
+ "sky2": "sky2.png",
+ "sky2H": 1900,
+ "lift2": {
+  "a": 0,
+  "b": 1780
+ },
+ "focus2": {
+  "x": 0.5,
+  "y": 0.62
+ },
+ "music": "music.wav",
+ "end": 17.0,
+ "turn": 6.0,
+ "tilt2": 11.2,
+ "title": "Assalomu alaykum!",
+ "groom": "Abdulbosit",
+ "bride": "Masrura",
+ "invite": [
+  "Sizni aziz farzandlarimizning",
+  "nikoh to‘ylari munosabati bilan",
+  "yoziladigan «Amru-ma’ruf» osh",
+  "dasturxonimizga taklif etamiz"
+ ],
+ "date": "11 MAY 2025",
+ "time": "soat 08:00",
+ "venue": "«Kulol Nur»",
+ "venueSub": "RESTORANI",
+ "address": "Mo‘ljal: Uch qahramon kurugi",
+ "closing": "Tashrifingizni intizorlik bilan kutamiz",
+ "family": {
+  "lead": "Hurmat va ehtirom ila",
+  "name": [
+   "Sunnatilla hoji ota o‘g‘li",
+   "Ibrohim Rixsiyevlar oilasi"
+  ]
+ },
+ "typo": "storybook"
+}
