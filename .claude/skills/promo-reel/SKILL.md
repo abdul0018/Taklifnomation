@@ -624,6 +624,13 @@ Reference: a gouache-style couple in a cosmos meadow with a pastel teal sky.
 - Example: `examples/taklifnoma-islamic.props.json`.
 
 
+**P2: minimalist version (`MinimalIslamicReel`), which the user preferred.** The arch cropped a head at the frame edge, and the navy ornament read as busy.
+- Warm ivory paper `#F4EFE6`, one ink colour, a muted gold accent and 1 px hairlines. No ornaments, lattice or shadows.
+- The clip is **never cropped**: it keeps its own 9:16 shape in a softly rounded window, with no zoom inside.
+- A small Amiri Bismillah stays on top. At `shrinkAt` the large window (900 wide) glides up and shrinks (600 wide) as one transform, and the details set in below one line at a time: spaced-caps label, script names with a gold &, a hairline with a diamond, date, time, italic venue and city, and a tiny closing.
+- Never place a clip into a shape narrower than its aspect when people sit at the frame edge.
+- Example: `examples/taklifnoma-islamic-minimal.props.json`.
+
 ## 21. Footage quality rules (this user notices any loss; apply to every edit over their video)
 
 - **No grading and no darkening layers** over the footage. That includes "a bit of shadow" gradients: the top gradient in ResourcesReel darkened the top of the frame by about 40%. Use `clean: true`: there are no gradients and no blurred text or icon shadows; legibility comes from crisp outlines (WebkitTextStroke) and hard offset drops only.

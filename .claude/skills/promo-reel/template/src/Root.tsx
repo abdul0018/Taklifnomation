@@ -16,6 +16,7 @@ import {InvitationReel, InvitationProps, invitationDuration} from './Invitation'
 import {MarbleInviteReel, MarbleInviteProps, marbleInviteDuration} from './MarbleInvite';
 import {PaintedInviteReel, PaintedInviteProps, paintedInviteDuration} from './PaintedInvite';
 import {IslamicInviteReel, IslamicInviteProps, islamicInviteDuration} from './IslamicInvite';
+import {MinimalIslamicReel, MinimalIslamicProps, minimalIslamicDuration} from './MinimalIslamicInvite';
 
 const FPS = 30;
 
@@ -198,6 +199,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={390}
       defaultProps={{video: '', end: 13, detailsAt: 6} as unknown as IslamicInviteProps}
       calculateMetadata={({props}: {props: IslamicInviteProps}) => ({durationInFrames: islamicInviteDuration(props, FPS)})}
+    />
+    {/* Style P2: minimalist Islamic invite: ivory paper, uncropped 9:16 clip that glides into a smaller window, hairlines. */}
+    <Composition
+      id="MinimalIslamicReel"
+      component={MinimalIslamicReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={390}
+      defaultProps={{video: '', end: 13, shrinkAt: 4} as unknown as MinimalIslamicProps}
+      calculateMetadata={({props}: {props: MinimalIslamicProps}) => ({durationInFrames: minimalIslamicDuration(props, FPS)})}
     />
   </>
 );
