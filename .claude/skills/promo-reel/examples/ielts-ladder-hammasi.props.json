@@ -1,0 +1,96 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "end": 15.03,
+ "steps": [
+  {
+   "score": "5.0",
+   "scoreAt": 1.0,
+   "icon": {
+    "img": "logos/duolingo.png"
+   },
+   "iconAt": 2.7,
+   "out": 3.95
+  },
+  {
+   "score": "6.0",
+   "scoreAt": 4.5,
+   "icon": {
+    "img": "logos/engnovate_hd.png",
+    "bg": "#FFFFFF",
+    "pad": 30
+   },
+   "iconAt": 6.4,
+   "out": 7.65
+  },
+  {
+   "score": "7.0",
+   "scoreAt": 8.1,
+   "icon": {
+    "img": "logos/liz_full.png",
+    "bg": "#FFFFFF",
+    "pad": 22,
+    "topText": "IELTS"
+   },
+   "iconAt": 10.0,
+   "out": 11.15
+  }
+ ],
+ "captions": [
+  {
+   "text": "Agar *bu* kerak bo‘lsa,",
+   "start": 0.75,
+   "end": 2.5
+  },
+  {
+   "text": "*bundan* foydalaning.",
+   "start": 2.5,
+   "end": 3.4
+  },
+  {
+   "text": "Agar *bu* kerak bo‘lsa,",
+   "start": 4.25,
+   "end": 6.2
+  },
+  {
+   "text": "*bundan* foydalaning.",
+   "start": 6.2,
+   "end": 7.05
+  },
+  {
+   "text": "Agar *bu* kerak bo‘lsa,",
+   "start": 7.85,
+   "end": 9.9
+  },
+  {
+   "text": "*bundan* foydalaning.",
+   "start": 9.9,
+   "end": 10.8
+  },
+  {
+   "text": "Agar *hammasi* kerak bo‘lsa,",
+   "start": 11.25,
+   "end": 13.3,
+   "y": 1250
+  },
+  {
+   "text": "*Goprep.gg* dan",
+   "start": 13.4,
+   "end": 15.03,
+   "y": 1020,
+   "below": {
+    "text": "foydalaning.",
+    "start": 14.05,
+    "y": 1545
+   }
+  }
+ ],
+ "finale": {
+  "score": "5.0|6.0|7.0",
+  "scoreAt": 11.5,
+  "icon": {
+   "img": "logos/goprep.svg"
+  },
+  "iconAt": 13.4
+ }
+}

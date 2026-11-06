@@ -150,7 +150,8 @@ const CaptionLine: React.FC<{text: string; start: number; end: number; y: number
       {words.map((w, i) => {
         const t = a + (dur * 0.8 * i) / words.length;
         const k = interpolate(f - t, [0, 7], [0, 1], {...clamp, easing: ease});
-        return <span key={i} style={{display: 'inline-block', marginRight: '0.26em', transform: `translateY(${(1 - k) * 22}px) scale(${0.9 + 0.1 * k})`, opacity: k}}>{w}</span>;
+        const hi = w.startsWith('*'); // *word* = yellow highlight
+        return <span key={i} style={{display: 'inline-block', marginRight: '0.26em', transform: `translateY(${(1 - k) * 22}px) scale(${0.9 + 0.1 * k})`, opacity: k, color: hi ? '#FFD60A' : undefined}}>{hi ? w.replace(/\*/g, '') : w}</span>;
       })}
     </div>
   );
@@ -181,7 +182,13 @@ export const LadderReel: React.FC<LadderProps> = (p) => {
           </Pop>
         </React.Fragment>
       ))}
-      <Pop at={fin.scoreAt} out={fin.iconAt} from="center" style={{left: 400, top: 1440}}><ScoreCard score={fin.score} w={280} /></Pop>
+      {fin.score.includes('|')
+        ? fin.score.split('|').map((sc, i, arr) => {
+          // "hammasi" finale: every level card pops in a row, staggered, then gives way to the hero
+          const W = 200; const G = 24; const x0 = (1080 - (arr.length * W + (arr.length - 1) * G)) / 2;
+          return <Pop key={`fs${i}`} at={fin.scoreAt + i * 0.18} out={fin.iconAt} from="center" style={{left: x0 + i * (W + G), top: 1460}}><ScoreCard score={sc} w={W} /></Pop>;
+        })
+        : <Pop at={fin.scoreAt} out={fin.iconAt} from="center" style={{left: 400, top: 1440}}><ScoreCard score={fin.score} w={280} /></Pop>}
       <Pop at={fin.iconAt} out={p.end + 1} from="center" style={{left: 340, top: 1120, width: 400, height: 400, filter: CLEAN ? undefined : 'drop-shadow(0 18px 30px rgba(0,0,0,.35))'}}>
         <IconEl icon={fin.icon} />
       </Pop>
