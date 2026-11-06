@@ -27,9 +27,8 @@
     {
      "name": "IELTS Runner",
      "kind": "img",
-     "file": "logos/runner.png",
-     "radius": 0,
-     "scale": 1.45
+     "file": "logos/runner_tile.png",
+     "radius": 28
     }
    ]
   },
@@ -88,9 +87,9 @@
     {
      "name": "Preppy AI",
      "kind": "img",
-     "file": "logos/preppy.png",
+     "file": "logos/preppy_angry.png",
      "radius": 0,
-     "scale": 1.2
+     "scale": 1.12
     }
    ]
   },
@@ -126,5 +125,10 @@
    ]
   }
  ],
- "mirror": true
+ "mirror": true,
+ "row": {
+  "y": 120,
+  "raise": 60,
+  "scale": 0.85
+ }
 }
