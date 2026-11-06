@@ -21,7 +21,7 @@ const SCRIPT = "'Allura', cursive";
 const SERIF = "'Cormorant Garamond', 'Georgia', serif";
 const CAPS = "'Cinzel', serif";
 const INK = '#4E3428';
-const ROSE = '#C9667F';
+const ROSE = '#A3405C';
 
 if (typeof document !== 'undefined') {
   const h = delayRender('fonts');
@@ -35,8 +35,10 @@ export type PaintedInviteProps = {
   music?: string; musicVolume?: number; end: number;
   /** where the couple sits in the art (0..1) — the push-in aims there; sky = the empty area aimed at in scene B */
   focus?: {x: number; y: number}; sky?: {x: number; y: number};
-  /** scene B start (s) */
+  /** scene B start (s). With art2 this is the crossfade to art2; tilt2 is when art2 tilts up into its sky. */
   turn: number;
+  art2?: string; sky2?: string; sky2H?: number; focus2?: {x: number; y: number}; lift2?: {a: number; b: number}; tilt2?: number;
+  closing?: string;
   title: string; groom: string; bride: string;
   invite: [string, string]; date: string; time: string; venue: string; venueSub: string; address: string;
 };
@@ -133,25 +135,42 @@ const Sprig: React.FC<{p: number}> = ({p}) => (
 
 export const PaintedInviteReel: React.FC<PaintedInviteProps> = (p) => {
   const {f, s} = useF();
+  const two = !!p.art2;
   const T = p.turn; const fo = p.focus ?? {x: 0.5, y: 0.55}; const sk = p.sky ?? {x: 0.5, y: 0.12};
   // camera: A pushes 1.0→1.07 toward the couple; B tilts to the sky and pushes to 1.55 (sky is a flat gradient)
   const b = prog(f, s(T - 0.3), s(T + 1.6), Easing.inOut(Easing.cubic));
   const lift = p.lift ?? {a: 0, b: 0};
   // A: slow push-in toward the couple; B: the camera tilts up into the (extended) sky, art slides down out of frame
   const z = interpolate(f, [0, s(T)], [1.0, 1.06], {...clamp, easing: Easing.out(Easing.sin)}) * (1 - 0.04 * b) + 0.02 * prog(f, s(T + 1.6), s(p.end), Easing.linear);
-  const dy = lift.a + (lift.b - lift.a) * b;
+  const dy = lift.a + (lift.b - lift.a) * (two ? 0 : b);
   const ox = fo.x + (sk.x - fo.x) * b; const oy = fo.y + (sk.y - fo.y) * b;
   const sway = 0.35 * Math.sin(f / 60);
-  const fadeA = 1 - prog(f, s(T - 0.4), s(T + 0.2));
+  const X = two ? prog(f, s(T), s(T + 0.9), Easing.inOut(Easing.sin)) : 0; // crossfade art → art2
+  const fadeA = two ? 1 - prog(f, s(T - 0.2), s(T + 0.5)) : 1 - prog(f, s(T - 0.4), s(T + 0.2));
   const intro = prog(f, 0, s(0.8));
+  const T2 = p.tilt2 ?? T + 4.5;
+  const b2 = two ? prog(f, s(T2 - 0.3), s(T2 + 1.6), Easing.inOut(Easing.cubic)) : 0;
+  const L2 = p.lift2 ?? {a: 0, b: 1720};
+  const dy2 = L2.a + (L2.b - L2.a) * b2;
+  const z2 = interpolate(f, [s(T), s(T2)], [1.0, 1.045], {...clamp, easing: Easing.out(Easing.sin)}) * (1 - 0.03 * b2);
+  const fo2 = p.focus2 ?? {x: 0.5, y: 0.62};
+  const gust = two ? Math.sin(Math.PI * prog(f, s(T - 0.4), s(T + 1.3), Easing.linear)) : 0;
   return (
     <AbsoluteFill style={{background: '#9CC0C8', overflow: 'hidden'}}>
-      <AbsoluteFill style={{transform: `scale(${z}) rotate(${sway}deg)`, transformOrigin: `${ox * 100}% ${oy * 100}%`, opacity: intro}}>
+      <AbsoluteFill style={{transform: `scale(${two ? z / (1 - 0.04 * b) : z}) rotate(${sway}deg)`, transformOrigin: `${(two ? fo.x : ox) * 100}% ${(two ? fo.y : oy) * 100}%`, opacity: intro * (1 - X)}}>
         <div style={{position: 'absolute', left: 0, right: 0, top: dy - (p.skyH ?? 0), height: 1920 + (p.skyH ?? 0)}}>
           {p.skyExt && <Img src={staticFile(p.skyExt)} style={{position: 'absolute', top: 0, left: '50%', height: p.skyH, transform: `translateX(-${fo.x * 100}%)`}} />}
           <Img src={staticFile(p.art)} style={{position: 'absolute', top: p.skyH ?? 0, left: '50%', height: 1920, transform: `translateX(-${fo.x * 100}%)`}} />
         </div>
       </AbsoluteFill>
+      {two && X > 0 && (
+        <AbsoluteFill style={{transform: `scale(${z2}) rotate(${sway}deg)`, transformOrigin: `${fo2.x * 100}% ${fo2.y * 100}%`, opacity: X}}>
+          <div style={{position: 'absolute', left: 0, right: 0, top: dy2 - (p.sky2H ?? 0), height: 1920 + (p.sky2H ?? 0)}}>
+            {p.sky2 && <Img src={staticFile(p.sky2)} style={{position: 'absolute', top: 0, left: '50%', height: p.sky2H, transform: `translateX(-${fo2.x * 100}%)`}} />}
+            <Img src={staticFile(p.art2 ?? '')} style={{position: 'absolute', top: p.sky2H ?? 0, left: '50%', height: 1920, transform: `translateX(-${fo2.x * 100}%)`}} />
+          </div>
+        </AbsoluteFill>
+      )}
       <Drift />
       {/* scene A text, in the sky */}
       <div style={{opacity: fadeA}}>
@@ -162,8 +181,33 @@ export const PaintedInviteReel: React.FC<PaintedInviteProps> = (p) => {
           <Write at={2.2} size={150}>{p.bride}</Write>
         </Center>
       </div>
+      {/* two-art: invite + date over the hands shot's sky, then venue after the tilt */}
+      {two && f >= s(T) && (
+        <>
+          <div style={{opacity: 1 - b2}}>
+            <Center top={150}><Rise at={T + 0.9}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 500, fontSize: 50, color: INK, textAlign: 'center', lineHeight: 1.28}}>{p.invite[0]}<br />{p.invite[1]}</div></Rise></Center>
+            <Center top={300}><Sprig p={prog(f, s(T + 1.5), s(T + 2.5))} /></Center>
+            <Center top={380}>
+              <Rise at={T + 1.9}><div style={{fontFamily: CAPS, fontWeight: 600, fontSize: 84, color: INK, letterSpacing: '0.08em', marginRight: '-0.08em'}}>{p.date}</div></Rise>
+              <Rise at={T + 2.3}><div style={{fontFamily: SERIF, fontWeight: 600, fontSize: 66, color: ROSE, letterSpacing: '0.1em'}}>{p.time}</div></Rise>
+            </Center>
+          </div>
+          {f >= s(T2) && (
+            <>
+              <Center top={470}><Rise at={T2 + 1.1}><div style={{fontFamily: SCRIPT, fontSize: 96, color: INK, lineHeight: 1}}>{p.groom} <span style={{color: ROSE}}>&amp;</span> {p.bride}</div></Rise></Center>
+              <Center top={660}><Sprig p={prog(f, s(T2 + 1.5), s(T2 + 2.4))} /></Center>
+              <Center top={760}>
+                <Rise at={T2 + 1.8}><div style={{fontFamily: SCRIPT, fontSize: 132, color: INK, lineHeight: 1}}>{p.venue}</div></Rise>
+                <Rise at={T2 + 2.1}><div style={{fontFamily: CAPS, fontWeight: 600, fontSize: 32, color: INK, letterSpacing: '0.34em', marginRight: '-0.34em', marginTop: 8}}>{p.venueSub}</div></Rise>
+                <Rise at={T2 + 2.4}><div style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 500, fontSize: 40, color: INK, marginTop: 16}}>{p.address}</div></Rise>
+              </Center>
+              {p.closing && <Center top={1130}><Rise at={T2 + 3.0} dur={1.1}><div style={{fontFamily: SCRIPT, fontSize: 96, color: ROSE, lineHeight: 1}}>{p.closing}</div></Rise></Center>}
+            </>
+          )}
+        </>
+      )}
       {/* scene B details, on the sky */}
-      {f >= s(T) && (
+      {!two && f >= s(T) && (
         <>
           <Center top={430}><Rise at={T + 1.2}><div style={{fontFamily: SCRIPT, fontSize: 104, color: INK, lineHeight: 1}}>{p.groom} <span style={{color: ROSE}}>&amp;</span> {p.bride}</div></Rise></Center>
           <Center top={620}>
@@ -182,7 +226,7 @@ export const PaintedInviteReel: React.FC<PaintedInviteProps> = (p) => {
         </>
       )}
       {/* near flowers frame scene A; they clear out for the details so nothing crosses the text */}
-      <DriftNear o={1 - b} />
+      <DriftNear o={two ? Math.max(1 - b2, gust) : 1 - b} />
       {p.music && <Audio src={staticFile(p.music)} volume={(fr) => (p.musicVolume ?? 1) * interpolate(fr, [0, 15, s(p.end) - 40, s(p.end)], [0, 1, 1, 0], clamp)} />}
     </AbsoluteFill>
   );

@@ -1,16 +1,30 @@
 {
- "art": "art.png",
- "music": "music.wav",
- "end": 14.5,
- "turn": 6.2,
+ "art": "couple.png",
+ "skyExt": "sky1.png",
+ "skyH": 1200,
+ "lift": {
+  "a": 120,
+  "b": 120
+ },
  "focus": {
   "x": 0.5,
-  "y": 0.52
+  "y": 0.6
  },
- "sky": {
+ "art2": "hands.png",
+ "sky2": "sky2.png",
+ "sky2H": 1900,
+ "lift2": {
+  "a": 0,
+  "b": 1780
+ },
+ "focus2": {
   "x": 0.5,
-  "y": 0.08
+  "y": 0.62
  },
+ "music": "music.wav",
+ "end": 17.0,
+ "turn": 6.0,
+ "tilt2": 11.2,
  "title": "To'yga taklifnoma",
  "groom": "Azizbek",
  "bride": "Nilufar",
@@ -23,10 +37,5 @@
  "venue": "Oqsaroy",
  "venueSub": "TO‘YXONASI",
  "address": "Samarqand shahri",
- "skyExt": "sky.png",
- "skyH": 1800,
- "lift": {
-  "a": 300,
-  "b": 1720
- }
+ "closing": "Sizni intizorlik bilan kutamiz"
 }

@@ -600,8 +600,15 @@ Reference: a gouache-style couple in a cosmos meadow with a pastel teal sky.
   - A soft near layer gets blur on the graphic only. It fades out in scene B, so nothing crosses the details.
   - A ±0.35° camera sway.
 - **Source art:** never ship someone else's artwork or a low-resolution image (the reference was 736×949). Use it only for a preview, then give the user prompts: a 9:16 original at ≥2160 px wide, couple in the lower half, top 45% empty sky, no text. Swap the result into `art`.
+- **Two-art mode** (`art2`, `sky2`, `sky2H`, `lift2`, `focus2`, `tilt2`, `closing`):
+  - Shot 1: couple + names. Lift ≈120 with a 1200 px sky extension.
+  - At `turn`: a 0.9 s crossfade, with a gust of the soft near flowers covering the cut.
+  - Shot 2: the hands-with-rings art, with the invitation line, sprig, date and time in its sky (top ≈150–500).
+  - At `tilt2`: tilt up 1780 px into the extended sky for the names, venue, city and a rose-script closing ("Sizni intizorlik bilan kutamiz").
+  - Use rose `#A3405C`: the lighter rose disappears on teal.
+  - The user's generated art came in at 941×1672 (a ~1.15× Lanczos upscale is acceptable for painterly art). Ask for a 2× upscale when available.
 - **Music:** `tools/wedding_music.py` (original), unless the user supplies a track.
-- Example: `examples/taklifnoma-painted.props.json`.
+- Example: `examples/taklifnoma-painted.props.json` (two-art).
 
 ## 20. Footage quality rules (this user notices any loss; apply to every edit over their video)
 
