@@ -58,16 +58,23 @@ export const LADDER_ICONS: Record<string, React.FC> = {
   ),
 };
 
-/** Score card: white card, red top band "IELTS", big red score; a small level bar under it. */
+/** Score card: white card, red top band "IELTS", big red score; a small level bar under it. Non-numeric score = skill card (name only). */
 const ScoreCard: React.FC<{score: string; w: number}> = ({score, w}) => {
   const v = parseFloat(score);
   return (
     <div style={{width: w, borderRadius: w * 0.14, overflow: 'hidden', background: '#fff', boxShadow: CLEAN ? undefined : '0 14px 30px rgba(0,0,0,.30), 0 3px 8px rgba(0,0,0,.18)'}}>
       <div style={{background: RED, color: '#fff', fontFamily: FONT, fontWeight: 900, fontSize: w * 0.2, textAlign: 'center', padding: `${w * 0.035}px 0`, letterSpacing: '0.04em'}}>IELTS</div>
-      <div style={{color: RED, fontFamily: FONT, fontWeight: 900, fontSize: w * 0.4, textAlign: 'center', lineHeight: 1.05, padding: `${w * 0.03}px 0 ${w * 0.02}px`}}>{score}</div>
-      <div style={{display: 'flex', gap: w * 0.025, padding: `0 ${w * 0.1}px ${w * 0.08}px`}}>
-        {[5, 6, 7, 8, 9].map((k) => <div key={k} style={{flex: 1, height: w * 0.05, borderRadius: 4, background: k <= v ? RED : '#F1D3D4'}} />)}
-      </div>
+      {isNaN(v) ? (
+        // skill / word card ("Listening", "HAMMASI"): name sized to fit, no level bar
+        <div style={{color: RED, fontFamily: FONT, fontWeight: 900, fontSize: Math.min(w * 0.17, (w * 1.1) / Math.max(4, score.length)), textAlign: 'center', lineHeight: 1.1, padding: `${w * 0.1}px ${w * 0.05}px ${w * 0.11}px`, textTransform: 'uppercase'}}>{score}</div>
+      ) : (
+        <>
+          <div style={{color: RED, fontFamily: FONT, fontWeight: 900, fontSize: w * 0.4, textAlign: 'center', lineHeight: 1.05, padding: `${w * 0.03}px 0 ${w * 0.02}px`}}>{score}</div>
+          <div style={{display: 'flex', gap: w * 0.025, padding: `0 ${w * 0.1}px ${w * 0.08}px`}}>
+            {[5, 6, 7, 8, 9].map((k) => <div key={k} style={{flex: 1, height: w * 0.05, borderRadius: 4, background: k <= v ? RED : '#F1D3D4'}} />)}
+          </div>
+        </>
+      )}
     </div>
   );
 };

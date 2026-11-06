@@ -373,6 +373,9 @@ Reference: the "Agar bu kerak bo'lsa → bundan foydalaning" reel.
 - `icon` is a `LADDER_ICONS` key (original drawings: owl, liz, engnovate, goprep) **or a real logo tile** `{img, bg?, pad?, topText?, topColor?, radius?}`. Prefer real logos, because real icons build trust. Use the official Duolingo Play Store icon (`=w512`), the ieltsliz.com icon on white with `topText: "IELTS"`, Engnovate's favicon rebuilt to 512 px and GoPrep's `favicon.svg`.
 - `clean: true`: no card shadow, no icon drop shadow, and captions get a crisp 6 px dark `WebkitTextStroke` instead of `textShadow`. `overlayOnly: true` renders the graphics on transparent for the ffmpeg 4:2:0 composite (see §19). Use both whenever the user cares about quality.
 - With a continuous single take, keep the reference's level order if the gestures already match it (5 → 7 → 6 → 8 here), so the left and right finger points line up. Time `scoreAt` to the left-finger frame and `iconAt` to the right-finger frame, from a 10 fps strip.
+- **Skill-ladder variant:** a non-numeric `score` renders a skill card (red "IELTS" band plus the skill name, sized to fit, no level bar). For a take that ends "Agar **hammasi** kerak bo‘lsa → Goprep.gg dan foydalaning", use the steps Listening→YouTube, Writing→Engnovate and Speaking→HelloTalk, then the finale "Hammasi"→Goprep.gg. Those match the user's own tier picks.
+  - SFX: a click when each skill card pops, pop + chime on each resource, and whoosh + boom + sparkle on the Goprep hero.
+  - Example: `examples/ielts-ladder-skills.props.json`.
 - Keep the voice by stream-copying the source audio (`-map 0:a -c:a copy`), so there is no re-encode and no processing.
 
 **Editing rules learned here:**
