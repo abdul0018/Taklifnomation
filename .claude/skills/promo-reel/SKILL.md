@@ -445,6 +445,8 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
 - **User-supplied icons:** crop them from the screenshots the user sends (1080×2400 phone captures).
   - Angry Preppy (goprep.gg/preppy-ai): crop the head and drop the floor shadow. Key out the page background by colour distance (ramp 6→32). The white face can stay transparent, because the card is white.
   - IELTS Runner (goprep.gg/games): crop it as a square dark tile including its glow, and show it with radius 28. Both files are in `template/public/logos/`.
+- **`row: {y, raise, scale}`** places the card row. The user wants the cards **above the head**, never over the hair. Measure the hair top from frames (here ≈250 px in the closest shots) and fit the row above it: `{y: 58, raise: 38, scale: 0.64}` keeps the side cards ending at ≈y 245.
+- **Section changes get a click** (`ui_sfx.py` click.wav at −9 dB, at each topic start). Keep the viral pop/buzzer, pop/chime and boom/sparkle on the reveals.
 - **Default gesture read for this user:** an index finger pointing to screen-right, then a finger up, then a thumb toward screen-left means `mirror: true`.
 - Add the viral SFX by default after the user asked for them once. Also offer a clean, voice-only copy, which costs only another mux.
 - **Pen-in-hand takes (Writing version):** the speaker may not point left, centre and right at all. Here a pen sat at chest height (YOMON), was raised beside the head (YAXSHI), then raised high (AJOYIB). Read the rising pose from a full-frame 10 fps strip; a chest crop misses it. Use the later of the pose and the tier word.
