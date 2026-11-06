@@ -14,6 +14,7 @@ import {CaptionsReel, CaptionsProps, captionsDuration} from './Captions';
 import {PhoneMockReel, PhoneMockProps, phoneMockDuration} from './PhoneMock';
 import {InvitationReel, InvitationProps, invitationDuration} from './Invitation';
 import {MarbleInviteReel, MarbleInviteProps, marbleInviteDuration} from './MarbleInvite';
+import {PaintedInviteReel, PaintedInviteProps, paintedInviteDuration} from './PaintedInvite';
 
 const FPS = 30;
 
@@ -174,6 +175,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={400}
       defaultProps={{marble: '', end: 13, turn: 3.6} as unknown as MarbleInviteProps}
       calculateMetadata={({props}: {props: MarbleInviteProps}) => ({durationInFrames: marbleInviteDuration(props, FPS)})}
+    />
+    {/* Style O: painterly-illustration e-invitation: push-in on the art, drifting cosmos, tilt into the sky for details. */}
+    <Composition
+      id="PaintedInviteReel"
+      component={PaintedInviteReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={420}
+      defaultProps={{art: '', end: 14, turn: 6} as unknown as PaintedInviteProps}
+      calculateMetadata={({props}: {props: PaintedInviteProps}) => ({durationInFrames: paintedInviteDuration(props, FPS)})}
     />
   </>
 );
