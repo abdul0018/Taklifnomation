@@ -18,6 +18,7 @@ import {PaintedInviteReel, PaintedInviteProps, paintedInviteDuration} from './Pa
 import {IslamicInviteReel, IslamicInviteProps, islamicInviteDuration} from './IslamicInvite';
 import {MinimalIslamicReel, MinimalIslamicProps, minimalIslamicDuration} from './MinimalIslamicInvite';
 import {CinemaInviteReel, CinemaInviteProps, cinemaInviteDuration} from './CinemaInvite';
+import {GrandInviteReel, GrandInviteProps, grandInviteDuration} from './GrandInvite';
 
 const FPS = 30;
 
@@ -222,6 +223,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={480}
       defaultProps={{video: '', srcW: 1080, srcH: 1920, end: 16, detailsAt: 7} as unknown as CinemaInviteProps}
       calculateMetadata={({props}: {props: CinemaInviteProps}) => ({durationInFrames: cinemaInviteDuration(props, FPS)})}
+    />
+    {/* Style Q2: "wow" cinematic invite: clip plays inside giant Bodoni names, black melts away, gold names glide down. */}
+    <Composition
+      id="GrandInviteReel"
+      component={GrandInviteReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={480}
+      defaultProps={{video: '', srcW: 1080, srcH: 1920, end: 16, revealAt: 3.2, detailsAt: 7.9} as unknown as GrandInviteProps}
+      calculateMetadata={({props}: {props: GrandInviteProps}) => ({durationInFrames: grandInviteDuration(props, FPS)})}
     />
   </>
 );
