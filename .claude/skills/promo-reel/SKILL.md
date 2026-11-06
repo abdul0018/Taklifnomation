@@ -442,6 +442,11 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
   - a ding on YOMON (−17 dB) and YAXSHI (−15 dB), and ding_big on AJOYIB (−12 dB), each 20 ms before the reveal.
   - If the sum clips, scale the whole mix to −0.2 dBFS. Mux it with `-c:v copy` and AAC at 320k.
 - **`mirror: true`** puts YOMON on the right and AJOYIB on the left. The user asked for it on the pen take, where the final "zo'r" pose ends on screen-left. Rule: AJOYIB goes on the side where the last, highest gesture ends.
+- **User-supplied icons:** crop them from the screenshots the user sends (1080×2400 phone captures).
+  - Angry Preppy (goprep.gg/preppy-ai): crop the head and drop the floor shadow. Key out the page background by colour distance (ramp 6→32). The white face can stay transparent, because the card is white.
+  - IELTS Runner (goprep.gg/games): crop it as a square dark tile including its glow, and show it with radius 28. Both files are in `template/public/logos/`.
+- **Default gesture read for this user:** an index finger pointing to screen-right, then a finger up, then a thumb toward screen-left means `mirror: true`.
+- Add the viral SFX by default after the user asked for them once. Also offer a clean, voice-only copy, which costs only another mux.
 - **Pen-in-hand takes (Writing version):** the speaker may not point left, centre and right at all. Here a pen sat at chest height (YOMON), was raised beside the head (YAXSHI), then raised high (AJOYIB). Read the rising pose from a full-frame 10 fps strip; a chest crop misses it. Use the later of the pose and the tier word.
 - For this user's topics, "IELTS Writing ✍️" uses ChatGPT, then Engnovate (the 512 px rebuild of its official favicon), then Goprep.gg.
 - When measuring PSNR, crop a region with no graphics. The topic pill covers y≈1270–1400, so use y≥1500.
