@@ -1,0 +1,110 @@
+{
+ "video": "video.mp4",
+ "end": 29.93,
+ "captions": [
+  {
+   "text": "Erkakning ingliz tilida\n**nima deyiladi?**",
+   "start": 5.45,
+   "end": 7.3,
+   "size": 60,
+   "emoji": "emoji/1f914.svg",
+   "y": 960
+  },
+  {
+   "text": "Oyoqni **barmog‘ichi?**",
+   "start": 7.9,
+   "end": 9.7,
+   "emoji": "emoji/1f9b6.svg",
+   "y": 960
+  },
+  {
+   "text": "Xitoycha **chuqur tova?**",
+   "start": 10.85,
+   "end": 12.55,
+   "emoji": "emoji/1f373.svg",
+   "y": 960
+  },
+  {
+   "text": "Erkakni **nima deding?**",
+   "start": 14.3,
+   "end": 16.0,
+   "y": 960
+  },
+  {
+   "text": "Endi hammasini **qo‘shib**\naytib ko‘r-chi",
+   "start": 17.55,
+   "end": 19.5,
+   "size": 60,
+   "emoji": "emoji/1f92d.svg",
+   "y": 960
+  },
+  {
+   "text": "YO‘Q, BAS!",
+   "start": 23.0,
+   "end": 23.8,
+   "size": 74,
+   "icon": "preppy.png",
+   "emoji": "emoji/1f624.svg",
+   "y": 960
+  },
+  {
+   "text": "O‘ZING **TOVUQSAN!**",
+   "start": 23.8,
+   "end": 24.95,
+   "size": 62,
+   "icon": "preppy.png",
+   "emoji": "emoji/1faf5.svg",
+   "y": 960
+  },
+  {
+   "text": "Seni hozir tovuqxonaga\nolib borib",
+   "start": 24.95,
+   "end": 26.5,
+   "size": 58,
+   "icon": "preppy.png",
+   "y": 960
+  },
+  {
+   "text": "tiqib qo‘yganimdan keyin\ngaplashamiz",
+   "start": 26.5,
+   "end": 29.93,
+   "size": 58,
+   "icon": "preppy.png",
+   "emoji": "emoji/1f480.svg",
+   "y": 960
+  }
+ ],
+ "chips": {
+  "y": 185,
+  "outAt": 21.1,
+  "items": [
+   {
+    "text": "MAN",
+    "at": 7.45,
+    "lit": 19.65
+   },
+   {
+    "text": "TOE",
+    "at": 9.8,
+    "lit": 19.95
+   },
+   {
+    "text": "WOK",
+    "at": 12.7,
+    "lit": 20.3
+   },
+   {
+    "text": "MAN",
+    "at": 16.15,
+    "lit": 20.6
+   }
+  ]
+ },
+ "title": {
+  "text": "MEN TOVUQMAN?!",
+  "at": 21.65,
+  "y": 185,
+  "size": 86,
+  "emoji": "emoji/1f414.svg"
+ }
+}
