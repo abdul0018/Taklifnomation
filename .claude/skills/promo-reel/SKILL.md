@@ -675,3 +675,5 @@ Reference: the Russian "5 apps" countdown (Duolingo 5th → YouTube → HelloTal
   - Use two-pass x264 `-preset slow -tune film -profile:v high -b:v 12M -maxrate 18M -bufsize 24M`, `fps=30`, BT.709 limited-range tags, `-an` if silent. Expect about 27 MB for 18 s.
   - Offer a CRF 8 "master" (~50 Mbps) only if the user asks for maximum quality.
 - **Verify** against the source in an overlay-free area. Expect luma PSNR ≈ 46 dB at 12 Mbps (≈ 52 dB for a CRF 8 master) and chroma ≥ 54 dB. Also check that the brightness in the top area matches the source.
+
+- **Reading a low PSNR:** before blaming the pipeline, compute per-frame PSNR (`psnr=stats_file=`) and sort it. Ladder pops slide across the frame, so a "graphics-free" crop can still catch a moving card for a few frames and drag the average down (here 38 dB average vs 48 dB typical per frame). For comparison, a plain 12 Mbps re-encode of the same source gives the ceiling.
