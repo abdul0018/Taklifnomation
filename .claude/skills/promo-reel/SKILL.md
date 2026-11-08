@@ -355,6 +355,7 @@ Reference: the Speaking / Listening / Reading / Writing "8+" table reel.
 - `clean: true`: no drop shadows, no blurred glow, no pill shadow; each cell gets a crisp 2 px hairline outline. Pair it with `overlayOnly: true` and the §22 ffmpeg composite.
 - That reference doesn't highlight the active row. Rows slide in from the left with a small tilt in the first ~10 frames, then only the resources pop on their words. Use `highlight: false, enter: 'left', scale: 0.91, top: 1050` (an 800 px wide table).
 - Keep the rows in the order the speaker says them, not the reference's skill order.
+- **Section clicks:** `ui_sfx.py` click.wav at −9 dB, 20 ms before each row's `at`, mixed onto the stream-copied voice (limit only the effects bus). Example: `examples/ielts-table-click.props.json`.
 
 Examples: `examples/ielts-8plus-table.props.json` (original tiles, music + SFX) and `examples/ielts-table-real-logos.props.json` (real logos, clean, silent, voice stream-copied).
 
