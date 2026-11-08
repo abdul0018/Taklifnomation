@@ -19,6 +19,7 @@ import {IslamicInviteReel, IslamicInviteProps, islamicInviteDuration} from './Is
 import {MinimalIslamicReel, MinimalIslamicProps, minimalIslamicDuration} from './MinimalIslamicInvite';
 import {CinemaInviteReel, CinemaInviteProps, cinemaInviteDuration} from './CinemaInvite';
 import {GrandInviteReel, GrandInviteProps, grandInviteDuration} from './GrandInvite';
+import {RankReel, RankProps, rankDuration} from './RankReel';
 
 const FPS = 30;
 
@@ -234,6 +235,17 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={480}
       defaultProps={{video: '', srcW: 1080, srcH: 1920, end: 16, revealAt: 3.2, detailsAt: 7.9} as unknown as GrandInviteProps}
       calculateMetadata={({props}: {props: GrandInviteProps}) => ({durationInFrames: grandInviteDuration(props, FPS)})}
+    />
+    {/* Style R: top-5 countdown ranking bar: logos pop big, then drop into their numbered slot. */}
+    <Composition
+      id="RankReel"
+      component={RankReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={600}
+      defaultProps={{video: '', end: 20, hideAt: 18, apps: []} as unknown as RankProps}
+      calculateMetadata={({props}: {props: RankProps}) => ({durationInFrames: rankDuration(props, FPS)})}
     />
   </>
 );

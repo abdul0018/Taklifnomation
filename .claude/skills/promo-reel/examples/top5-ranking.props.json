@@ -1,0 +1,54 @@
+{
+ "video": "video.mp4",
+ "end": 26.06,
+ "top": 1080,
+ "hideAt": 21.5,
+ "apps": [
+  {
+   "name": "Duolingo",
+   "place": 5,
+   "nameAt": 0.3,
+   "placeAt": 1.4,
+   "logo": {
+    "img": "logos/duolingo.png"
+   }
+  },
+  {
+   "name": "YouTube",
+   "place": 4,
+   "nameAt": 3.55,
+   "placeAt": 4.6,
+   "logo": {
+    "img": "logos/youtube.svg",
+    "radius": 0
+   }
+  },
+  {
+   "name": "HelloTalk",
+   "place": 3,
+   "nameAt": 7.6,
+   "placeAt": 9.25,
+   "logo": {
+    "img": "logos/hellotalk.png"
+   }
+  },
+  {
+   "name": "BBC Learning English",
+   "place": 2,
+   "nameAt": 13.45,
+   "placeAt": 15.25,
+   "logo": {
+    "bbc": true
+   }
+  },
+  {
+   "name": "Goprep.gg",
+   "place": 1,
+   "nameAt": 18.3,
+   "placeAt": 19.65,
+   "logo": {
+    "img": "logos/goprep.svg"
+   }
+  }
+ ]
+}
