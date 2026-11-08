@@ -86,11 +86,13 @@
   }
  ],
  "finale": {
-  "score": "8.0",
+  "score": "5.0|6.0|7.0",
   "scoreAt": 8.45,
   "icon": {
    "img": "logos/goprep.svg"
   },
-  "iconAt": 9.8
+  "iconAt": 9.8,
+  "scoresTop": 150,
+  "scoresOut": 12.26
  }
 }

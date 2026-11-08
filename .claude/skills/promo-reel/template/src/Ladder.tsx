@@ -88,7 +88,8 @@ export type Step = {score: string; scoreAt: number; icon: LIcon; iconAt: number;
 export type LadderProps = {
   video: string; voice?: string; voiceVolume?: number; music?: string; musicVolume?: number; sfx?: boolean;
   steps: Step[]; captions: Cap[];
-  finale: {score: string; scoreAt: number; icon: LIcon; iconAt: number; hit?: string};
+  /** score 'a|b|c' = several cards in a row; scoresTop = their y (e.g. above the head), scoresOut = when they leave (default iconAt). */
+  finale: {score: string; scoreAt: number; icon: LIcon; iconAt: number; hit?: string; scoresTop?: number; scoresOut?: number};
   /** clean: no shadows anywhere (crisp outlines only). overlayOnly: graphics on transparent for ffmpeg compositing. */
   clean?: boolean; overlayOnly?: boolean;
   /** Explicit sound cues (e.g. one-shots lifted from a reference): file in public/, time in s, volume. */
@@ -186,7 +187,7 @@ export const LadderReel: React.FC<LadderProps> = (p) => {
         ? fin.score.split('|').map((sc, i, arr) => {
           // "hammasi" finale: every level card pops in a row, staggered, then gives way to the hero
           const W = 200; const G = 24; const x0 = (1080 - (arr.length * W + (arr.length - 1) * G)) / 2;
-          return <Pop key={`fs${i}`} at={fin.scoreAt + i * 0.18} out={fin.iconAt} from="center" style={{left: x0 + i * (W + G), top: 1460}}><ScoreCard score={sc} w={W} /></Pop>;
+          return <Pop key={`fs${i}`} at={fin.scoreAt + i * 0.18} out={fin.scoresOut ?? fin.iconAt} from="center" style={{left: x0 + i * (W + G), top: fin.scoresTop ?? 1460}}><ScoreCard score={sc} w={W} /></Pop>;
         })
         : <Pop at={fin.scoreAt} out={fin.iconAt} from="center" style={{left: 400, top: 1440}}><ScoreCard score={fin.score} w={280} /></Pop>}
       <Pop at={fin.iconAt} out={p.end + 1} from="center" style={{left: 340, top: 1120, width: 400, height: 400, filter: CLEAN ? undefined : 'drop-shadow(0 18px 30px rgba(0,0,0,.35))'}}>
