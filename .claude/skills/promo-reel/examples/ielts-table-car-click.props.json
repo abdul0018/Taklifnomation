@@ -1,0 +1,56 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "highlight": false,
+ "enter": "left",
+ "scale": 0.91,
+ "top": 1050,
+ "end": 10.53,
+ "rows": [
+  {
+   "skill": "listening",
+   "label": "Listening",
+   "at": 2.33,
+   "resource": {
+    "at": 3.2,
+    "img": "logos/youtube.svg",
+    "imgH": 74
+   }
+  },
+  {
+   "skill": "reading",
+   "label": "Reading",
+   "at": 3.9,
+   "resource": {
+    "img": "logos/goprep.svg",
+    "imgH": 50,
+    "textSize": 31,
+    "text": "Goprep.gg",
+    "at": 5.05
+   }
+  },
+  {
+   "skill": "writing",
+   "label": "Writing",
+   "at": 5.85,
+   "resource": {
+    "img": "logos/goprep.svg",
+    "imgH": 50,
+    "textSize": 31,
+    "text": "Goprep.gg",
+    "at": 7.5
+   }
+  },
+  {
+   "skill": "speaking",
+   "label": "Speaking",
+   "at": 8.5,
+   "resource": {
+    "at": 9.55,
+    "img": "logos/preppy.png",
+    "imgH": 58,
+    "caption": "Preppy AI"
+   }
+  }
+ ]
+}
