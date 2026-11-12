@@ -668,6 +668,13 @@ Reference: the Russian "5 apps" countdown (Duolingo 5th → YouTube → HelloTal
 - **Clicks:** one click per app at `nameAt`.
 - Example: `examples/top5-ranking.props.json`.
 
+**Background recolour on request (`tools/recolor_bg.py`):** e.g. "change the background to purple".
+- It edits **only the U/V chroma planes** of the decoded yuv420p frames. The Y plane stays bit-identical (verify the max Y diff is 0), so detail and sharpness are untouched.
+- The warm (gold/brown) chroma is rotated toward the target hue: the angle from gold is compressed ×0.5, magnitude ×0.82.
+- Kept as they were: fixed emoji circles; yellow caption fill and red caption words (bright, or red next to a black stroke); Preppy (the red outline plus a 14 px zone, which protects the flame).
+- Widening the red-caption keep left gold halos around the stroke, so keep it narrow (angle 0.6, dilation 2).
+- Encode losslessly first, then do the final export.
+
 ## 23. Footage quality rules (this user notices any loss; apply to every edit over their video)
 
 - **No grading and no darkening layers** over the footage. That includes "a bit of shadow" gradients: the top gradient in ResourcesReel darkened the top of the frame by about 40%. Use `clean: true`: there are no gradients and no blurred text or icon shadows; legibility comes from crisp outlines (WebkitTextStroke) and hard offset drops only.
