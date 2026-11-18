@@ -29,7 +29,8 @@
     "@fontsource/aref-ruqaa": "5.2.5",
     "@fontsource/fraunces": "5.3.0",
     "@fontsource/sacramento": "5.3.0",
-    "@fontsource/bodoni-moda": "5.3.0"
+    "@fontsource/bodoni-moda": "5.3.0",
+    "@fontsource/amiri": "5.2.5"
   },
   "devDependencies": {
     "@types/react": "18.3.12",

@@ -452,6 +452,14 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
   - Angry Preppy (goprep.gg/preppy-ai): crop the head and drop the floor shadow. Key out the page background by colour distance (ramp 6→32). The white face can stay transparent, because the card is white.
   - IELTS Runner (goprep.gg/games): crop it as a square dark tile including its glow, and show it with radius 28. Both files are in `template/public/logos/`.
 - **`row: {y, raise, scale}`** places the card row. The user wants the cards **above the head**, never over the hair. Measure the hair top from frames (here ≈250 px in the closest shots) and fit the row above it: `{y: 58, raise: 38, scale: 0.64}` keeps the side cards ending at ≈y 245.
+- **Click + wrong/true set (user's standard):**
+  - A click at each topic start.
+  - YOMON: pop + "wrong" buzzer.
+  - YAXSHI: pop + "correct" chime.
+  - AJOYIB: pop + "correct" chime + sparkle.
+  - Pick left/right per take from the gestures: YOMON goes where the first point lands.
+  - The user's own pink edit of a tier video is a style reference. "Without filtering" means keep the footage's real colours.
+- **Fresh container:** the scratchpad and pip packages can vanish. Reinstall with `pip install faster-whisper scipy pillow`, run `npm install` in a copy of the template, and get the browser from `ls -d /opt/pw-browsers/chromium_headless_shell-*/*/chrome-headless-shell`. `template/public/logos` now holds every tier logo, including engnovate.png.
 - **Section changes get a click** (`ui_sfx.py` click.wav at −9 dB, at each topic start). Keep the viral pop/buzzer, pop/chime and boom/sparkle on the reveals.
 - **Default gesture read for this user:** an index finger pointing to screen-right, then a finger up, then a thumb toward screen-left means `mirror: true`.
 - Add the viral SFX by default after the user asked for them once. Also offer a clean, voice-only copy, which costs only another mux.
