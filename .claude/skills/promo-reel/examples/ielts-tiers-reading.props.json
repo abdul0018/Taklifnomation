@@ -1,0 +1,126 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "end": 14.16,
+ "topics": [
+  {
+   "title": "IELTS Speaking",
+   "emoji": "emoji/1f5e3.svg",
+   "start": 0.6,
+   "reveal": [
+    2.8,
+    3.55,
+    4.28
+   ],
+   "logos": [
+    {
+     "name": "ChatGPT",
+     "kind": "mask",
+     "file": "logos/openai.svg",
+     "color": "#000000",
+     "scale": 0.9
+    },
+    {
+     "name": "HelloTalk",
+     "kind": "img",
+     "file": "logos/hellotalk.png"
+    },
+    {
+     "name": "Preppy AI",
+     "kind": "img",
+     "file": "logos/preppy_angry.png",
+     "radius": 0,
+     "scale": 1.12
+    }
+   ]
+  },
+  {
+   "title": "IELTS Listening",
+   "emoji": "emoji/1f3a7.svg",
+   "start": 5.1,
+   "reveal": [
+    6.3,
+    6.75,
+    7.45
+   ],
+   "logos": [
+    {
+     "name": "Instagram",
+     "kind": "mask",
+     "file": "logos/instagram.svg",
+     "gradient": "linear-gradient(45deg,#FEDA75,#FA7E1E 30%,#D62976 60%,#962FBF 80%,#4F5BD5)"
+    },
+    {
+     "name": "YouTube",
+     "kind": "img",
+     "file": "logos/youtube.svg",
+     "radius": 0
+    },
+    {
+     "name": "Goprep.gg",
+     "kind": "img",
+     "file": "logos/goprep.svg"
+    }
+   ]
+  },
+  {
+   "title": "IELTS Writing",
+   "emoji": "emoji/270d.svg",
+   "start": 8.05,
+   "reveal": [
+    9.25,
+    9.75,
+    10.4
+   ],
+   "logos": [
+    {
+     "name": "ChatGPT",
+     "kind": "mask",
+     "file": "logos/openai.svg",
+     "color": "#000000",
+     "scale": 0.9
+    },
+    {
+     "name": "Engnovate",
+     "kind": "img",
+     "file": "logos/engnovate.png",
+     "radius": 0
+    },
+    {
+     "name": "Goprep.gg",
+     "kind": "img",
+     "file": "logos/goprep.svg"
+    }
+   ]
+  },
+  {
+   "title": "IELTS Reading",
+   "emoji": "emoji/1f4d6.svg",
+   "start": 11.15,
+   "reveal": [
+    12.3,
+    12.85,
+    13.4
+   ],
+   "logos": [
+    {
+     "name": "Google Translate",
+     "kind": "mask",
+     "file": "logos/googletranslate.svg",
+     "color": "#4285F4"
+    },
+    {
+     "name": "Engnovate",
+     "kind": "img",
+     "file": "logos/engnovate.png",
+     "radius": 0
+    },
+    {
+     "name": "Goprep.gg",
+     "kind": "img",
+     "file": "logos/goprep.svg"
+    }
+   ]
+  }
+ ]
+}
