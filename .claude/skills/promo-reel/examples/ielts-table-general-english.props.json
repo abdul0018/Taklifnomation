@@ -1,0 +1,54 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "highlight": false,
+ "enter": "left",
+ "scale": 0.91,
+ "top": 1050,
+ "end": 8.96,
+ "rows": [
+  {
+   "skill": "vocabulary",
+   "label": "General English",
+   "at": 0.02,
+   "resource": {
+    "at": 1.6,
+    "text": "Anglify",
+    "textSize": 40
+   }
+  },
+  {
+   "skill": "listening",
+   "label": "Listening",
+   "at": 2.4,
+   "resource": {
+    "at": 4.0,
+    "img": "logos/youtube.svg",
+    "imgH": 74
+   }
+  },
+  {
+   "skill": "writing",
+   "label": "Writing",
+   "at": 4.7,
+   "resource": {
+    "at": 5.85,
+    "img": "logos/goprep.svg",
+    "imgH": 50,
+    "text": "Goprep.gg",
+    "textSize": 31
+   }
+  },
+  {
+   "skill": "speaking",
+   "label": "Speaking",
+   "at": 6.62,
+   "resource": {
+    "at": 7.5,
+    "img": "logos/preppy.png",
+    "imgH": 58,
+    "caption": "Preppy AI"
+   }
+  }
+ ]
+}
