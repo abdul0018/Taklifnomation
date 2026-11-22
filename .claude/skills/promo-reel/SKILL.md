@@ -466,6 +466,8 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
 - **Pen-in-hand takes (Writing version):** the speaker may not point left, centre and right at all. Here a pen sat at chest height (YOMON), was raised beside the head (YAXSHI), then raised high (AJOYIB). Read the rising pose from a full-frame 10 fps strip; a chest crop misses it. Use the later of the pose and the tier word.
 - For this user's topics, "IELTS Writing ✍️" uses ChatGPT, then Engnovate (the 512 px rebuild of its official favicon), then Goprep.gg.
 - When measuring PSNR, crop a region with no graphics. The topic pill covers y≈1270–1400, so use y≥1500.
+- **`pillY`** moves the topic pill (default 1270). In takes that open each topic on a face close-up, 1270 covers the chin, and the thumb gestures sit at y≈1100–1450 in the wide shots. Use `pillY: 1500` with `row: {y: 100, raise: 60, scale: 0.95}` (example `examples/ielts-tiers-4topics-above-head.props.json`). Measure PSNR at y≥1700 then.
+- This user's spoken tier words can be "rasvo / bo'ladi / voobshe zo'r" ("babshe zo'r" in Whisper). Keep the YOMON / YAXSHI / AJOYIB labels and the 4-topic logo picks.
 
 Examples: `examples/ai-tools-tiers.props.json`, `examples/ielts-tiers-4topics.props.json` (clean, real logos) and `examples/ielts-tiers-writing.props.json`.
 

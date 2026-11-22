@@ -28,9 +28,10 @@ export type Topic = {title: string; emoji?: string; start: number; logos: [Logo,
 /** clean: no shadows anywhere (cards get a crisp hairline, labels a crisp stroke). The reveal blur stays: it is on the card graphic, never the footage. */
 /** mirror: YOMON on the right, AJOYIB on the left (for takes where the speaker's gestures run right→left on screen). */
 /** row: card row placement — y of the side cards' label top, how much the centre card is raised, and card scale (default 330 / 125 / 1). */
-export type TiersProps = {row?: {y: number; raise: number; scale: number}; mirror?: boolean; clean?: boolean; overlayOnly?: boolean; video: string; voice?: string; voiceVolume?: number; topics: Topic[]; cues?: {file: string; at: number; vol?: number}[]; end: number};
+/** pillY: top of the topic pill (default 1270, chest height); move it lower when close-ups or hand gestures sit there. */
+export type TiersProps = {pillY?: number; row?: {y: number; raise: number; scale: number}; mirror?: boolean; clean?: boolean; overlayOnly?: boolean; video: string; voice?: string; voiceVolume?: number; topics: Topic[]; cues?: {file: string; at: number; vol?: number}[]; end: number};
 
-let CLEAN = false; let MIRROR = false; let ROW: {y: number; raise: number; scale: number} | null = null;
+let CLEAN = false; let MIRROR = false; let ROW: {y: number; raise: number; scale: number} | null = null; let PILLY = 1270;
 
 const useT = () => { const f = useCurrentFrame(); const {fps} = useVideoConfig(); return {f, fps, s: (x: number) => Math.round(x * fps)}; };
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -91,7 +92,7 @@ const TopicPill: React.FC<{t: Topic; out: number}> = ({t, out}) => {
   const p = spring({frame: f - a, fps, config: {damping: 11, stiffness: 220}});
   const o = interpolate(f, [out - 5, out], [0, 1], clamp);
   return (
-    <div style={{position: 'absolute', top: 1270, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: (1 - o) * Math.min(1, p * 1.6)}}>
+    <div style={{position: 'absolute', top: PILLY, left: 0, right: 0, display: 'flex', justifyContent: 'center', opacity: (1 - o) * Math.min(1, p * 1.6)}}>
       <div style={{display: 'flex', alignItems: 'center', gap: 14, background: '#FFFFFF', borderRadius: 30, padding: '16px 34px', boxShadow: CLEAN ? 'inset 0 0 0 2px rgba(0,0,0,.12)' : '0 14px 30px rgba(0,0,0,.3)',
         transform: `scale(${interpolate(p, [0, 1], [0.6, 1]) * (1 - 0.2 * o)}) scaleY(${1 + 0.08 * Math.sin(p * Math.PI)})`}}>
         <span style={{fontFamily: FONT, fontWeight: 900, fontSize: 74, color: '#0E0E0E', letterSpacing: '-0.01em'}}>{t.title}</span>
@@ -103,7 +104,7 @@ const TopicPill: React.FC<{t: Topic; out: number}> = ({t, out}) => {
 
 export const TiersReel: React.FC<TiersProps> = (p) => {
   const {s} = useT();
-  CLEAN = !!p.clean; MIRROR = !!p.mirror; ROW = p.row ?? null;
+  CLEAN = !!p.clean; MIRROR = !!p.mirror; ROW = p.row ?? null; PILLY = p.pillY ?? 1270;
   return (
     <AbsoluteFill style={{background: p.overlayOnly ? 'transparent' : '#000'}}>
       {!p.overlayOnly && <OffthreadVideo src={src(p.video)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} toneMapped={false} />}
