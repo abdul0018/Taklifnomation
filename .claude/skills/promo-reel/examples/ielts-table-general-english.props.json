@@ -13,8 +13,9 @@
    "at": 0.02,
    "resource": {
     "at": 1.6,
-    "text": "Anglify",
-    "textSize": 40
+    "img": "logos/englify.png",
+    "imgH": 64,
+    "caption": "Englify"
    }
   },
   {
