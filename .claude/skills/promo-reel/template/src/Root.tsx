@@ -11,6 +11,7 @@ import {ScoreTableReel, ScoreTableProps, scoreTableDuration} from './ScoreTable'
 import {LadderReel, LadderProps, ladderDuration} from './Ladder';
 import {TiersReel, TiersProps, tiersDuration} from './Tiers';
 import {PaperTiersReel, PaperTiersProps, paperTiersDuration} from './PaperTiers';
+import {CorkTiersReel, CorkTiersProps, corkTiersDuration} from './CorkTiers';
 import {CaptionsReel, CaptionsProps, captionsDuration} from './Captions';
 import {PhoneMockReel, PhoneMockProps, phoneMockDuration} from './PhoneMock';
 import {InvitationReel, InvitationProps, invitationDuration} from './Invitation';
@@ -147,6 +148,16 @@ export const RemotionRoot: React.FC = () => (
       durationInFrames={530}
       defaultProps={{video: '', topics: [], end: 10} as PaperTiersProps}
       calculateMetadata={({props}: {props: PaperTiersProps}) => ({durationInFrames: paperTiersDuration(props, FPS)})}
+    />
+    <Composition
+      id="CorkTiersReel"
+      component={CorkTiersReel}
+      width={1080}
+      height={1920}
+      fps={FPS}
+      durationInFrames={530}
+      defaultProps={{video: '', topics: [], end: 10} as CorkTiersProps}
+      calculateMetadata={({props}: {props: CorkTiersProps}) => ({durationInFrames: corkTiersDuration(props, FPS)})}
     />
     {/* Style K: captions-only edit of an already-cut clip: popping stroke captions, word-chain chips, punchline title. */}
     <Composition
