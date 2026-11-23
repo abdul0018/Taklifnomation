@@ -1,0 +1,55 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "highlight": false,
+ "enter": "left",
+ "scale": 0.91,
+ "top": 1050,
+ "end": 7.63,
+ "rows": [
+  {
+   "skill": "listening",
+   "label": "Listening",
+   "at": 0.15,
+   "resource": {
+    "at": 1.05,
+    "img": "logos/youtube.svg",
+    "imgH": 74
+   }
+  },
+  {
+   "skill": "vocabulary",
+   "label": "Vocabulary",
+   "at": 1.65,
+   "resource": {
+    "at": 2.75,
+    "img": "logos/runner_tile.png",
+    "imgH": 68,
+    "caption": "IELTS Runner"
+   }
+  },
+  {
+   "skill": "speaking",
+   "label": "Speaking",
+   "at": 3.68,
+   "resource": {
+    "at": 4.63,
+    "img": "logos/preppy.png",
+    "imgH": 58,
+    "caption": "Preppy AI"
+   }
+  },
+  {
+   "skill": "reading",
+   "label": "Reading",
+   "at": 5.73,
+   "resource": {
+    "at": 6.5,
+    "img": "logos/goprep.svg",
+    "imgH": 50,
+    "text": "Goprep.gg",
+    "textSize": 31
+   }
+  }
+ ]
+}
