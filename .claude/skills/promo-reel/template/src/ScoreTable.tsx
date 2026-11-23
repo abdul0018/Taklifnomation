@@ -3,6 +3,9 @@ import {AbsoluteFill, Audio, Easing, Img, OffthreadVideo, Sequence, continueRend
 import '@fontsource/montserrat/700.css';
 import '@fontsource/montserrat/800.css';
 import '@fontsource/montserrat/900.css';
+import '@fontsource/oswald/500.css';
+import '@fontsource/oswald/600.css';
+import '@fontsource/oswald/700.css';
 import {clamp, src} from './kit';
 
 /**
@@ -19,7 +22,7 @@ const GREEN = '#1F8A3B';
 
 if (typeof document !== 'undefined') {
   const h = delayRender('fonts');
-  Promise.all(['900 60px Montserrat', '800 60px Montserrat', '700 60px Montserrat'].map((f) => document.fonts.load(f, 'Aa8+.')))
+  Promise.all(['900 60px Montserrat', '800 60px Montserrat', '700 60px Montserrat', '500 60px Oswald', '600 60px Oswald', '700 60px Oswald'].map((f) => document.fonts.load(f, 'Aa8+.')))
     .then(() => continueRender(h)).catch(() => continueRender(h));
 }
 
@@ -106,7 +109,10 @@ export type Row = {skill: string; label: string; badge?: string; at: number; res
  * enter: 'up' (default) or 'left' (rows slide in from the left with a small tilt). scale: size of the whole table (1 = 880 px wide).
  */
 export type ScoreTableProps = {video: string; rows: Row[]; top?: number; voice?: string; voiceVolume?: number; music?: string; musicVolume?: number; sfx?: boolean; end: number;
-  clean?: boolean; overlayOnly?: boolean; highlight?: boolean; enter?: 'up' | 'left'; scale?: number};
+  clean?: boolean; overlayOnly?: boolean; highlight?: boolean; enter?: 'up' | 'left'; scale?: number;
+  /** theme 'board': one dark scoreboard panel (leaf corners: big radius top-left/bottom-right, small on the others), Oswald caps,
+   *  yellow row numbers, white logo slots; rows wipe in one by one and the named row gets a yellow bar + yellow label. title: header text. */
+  theme?: 'mint' | 'board'; title?: string; titleAccent?: string};
 
 const useT = () => { const f = useCurrentFrame(); const {fps} = useVideoConfig(); return {f, fps, s: (x: number) => Math.round(x * fps)}; };
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -172,6 +178,68 @@ const RowView: React.FC<{row: Row; i: number; next?: Row}> = ({row, i, next}) =>
   );
 };
 
+
+/* ------------------------------------------------------------------ theme: board */
+
+const OSWALD = "'Oswald', 'Arial Narrow', sans-serif";
+const BOARD = 'rgba(17,18,21,.94)'; const YEL = '#FFD23F'; const BW = 880; const BH = 112;
+
+const BoardRow: React.FC<{row: Row; i: number; next?: Row; last: boolean}> = ({row, i, next, last}) => {
+  const {f, fps, s} = useT();
+  const t0 = 6 + i * 4;
+  const wipe = interpolate(f, [t0, t0 + 10], [0, 1], {...clamp, easing: ease});
+  const a = s(row.at); const until = next ? s(next.at) : 100000;
+  const act = f >= a && f < until ? interpolate(f - a, [0, 6], [0, 1], {...clamp, easing: ease}) * interpolate(f, [until - 5, until], [1, 0], clamp) : 0;
+  const Skill = SKILL_ICONS[row.skill];
+  const r = row.resource;
+  const rp = f >= s(r.at) ? spring({frame: f - s(r.at), fps, config: {damping: 11, stiffness: 240, mass: 0.6}}) : 0;
+  const flash = f >= s(r.at) ? interpolate(f - s(r.at), [0, 3, 12], [0, 1, 0], clamp) : 0;
+  const Tile = r.tile ? RESOURCE_TILES[r.tile] : null;
+  return (
+    <div style={{position: 'relative', height: BH, display: 'flex', alignItems: 'center', clipPath: `inset(0 ${(1 - wipe) * 100}% 0 0)`,
+      borderTop: '1px solid rgba(255,255,255,.12)', ...(last ? {} : {})}}>
+      {/* active bar */}
+      <div style={{position: 'absolute', left: 0, top: 14, bottom: 14, width: 7, borderRadius: 4, background: YEL, transform: `scaleY(${act})`}} />
+      <div style={{width: 74, marginLeft: 26, fontFamily: OSWALD, fontWeight: 700, fontSize: 40, color: YEL, opacity: 0.55 + 0.45 * act}}>{String(i + 1).padStart(2, '0')}</div>
+      <div style={{width: 84, height: 84, borderRadius: 42, background: 'rgba(255,255,255,.88)', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${1 + 0.1 * act})`}}><div style={{width: 66, height: 66}}>{Skill ? <Skill /> : null}</div></div>
+      <div style={{marginLeft: 20, flex: 1, fontFamily: OSWALD, fontWeight: 600, fontSize: 52, lineHeight: 1, textTransform: 'uppercase', letterSpacing: '0.02em',
+        color: act > 0.5 ? YEL : '#FFFFFF', whiteSpace: 'nowrap'}}>{row.label}</div>
+      {/* logo slot */}
+      <div style={{width: 196, height: 90, marginRight: 14, borderRadius: 14, position: 'relative', overflow: 'visible',
+        background: rp > 0 ? '#FFFFFF' : 'rgba(255,255,255,.06)', boxShadow: rp > 0 ? `inset 0 0 0 ${3 * flash}px ${YEL}` : 'inset 0 0 0 2px rgba(255,255,255,.14)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        {rp > 0 && (
+          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', transform: `scale(${rp}) translateY(${(1 - rp) * 18}px)`, opacity: Math.min(1, rp * 1.6)}}>
+            {Tile ? <Tile /> : null}
+            {r.img && <Img src={staticFile(r.img)} style={{height: (r.imgH ?? 72) * 0.86, width: 'auto', display: 'block'}} />}
+            {r.text && <div style={{fontFamily: FONT, fontWeight: 900, fontSize: (r.textSize ?? 40) * 0.9, color: INK, letterSpacing: '-0.01em', lineHeight: 1.05, textAlign: 'center'}}>{r.text}</div>}
+            {r.caption && (Tile || r.img) && <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 15, color: INK, marginTop: -2, whiteSpace: 'nowrap'}}>{r.caption}</div>}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const Board: React.FC<{rows: Row[]; title?: string; accent?: string}> = ({rows, title, accent}) => {
+  const {f, fps} = useT();
+  const p = spring({frame: f, fps, config: {damping: 15, stiffness: 150}});
+  const hd = interpolate(f, [2, 12], [0, 1], {...clamp, easing: ease});
+  return (
+    <div style={{width: BW, background: BOARD, borderRadius: '34px 8px 34px 8px', overflow: 'hidden', boxShadow: 'inset 0 0 0 1.5px rgba(255,255,255,.16)',
+      transform: `translateY(${(1 - p) * 70}px) scale(${0.94 + 0.06 * p})`, opacity: Math.min(1, p * 1.5)}}>
+      {title && (
+        <div style={{height: 92, display: 'flex', alignItems: 'center', paddingLeft: 32, paddingRight: 28, gap: 16, opacity: hd, transform: `translateX(${(1 - hd) * -30}px)`}}>
+          <div style={{fontFamily: OSWALD, fontWeight: 700, fontSize: 46, color: '#fff', letterSpacing: '0.04em', textTransform: 'uppercase'}}>{title}</div>
+          {accent && <div style={{fontFamily: OSWALD, fontWeight: 700, fontSize: 38, color: INK, background: YEL, borderRadius: '12px 4px 12px 4px', padding: '0 16px', lineHeight: 1.35}}>{accent}</div>}
+          <div style={{flex: 1, height: 3, background: `linear-gradient(90deg, ${YEL}, rgba(255,210,63,0))`, transform: `scaleX(${hd})`, transformOrigin: '0 50%'}} />
+        </div>
+      )}
+      {rows.map((r, i) => <BoardRow key={i} row={r} i={i} next={rows[i + 1]} last={i === rows.length - 1} />)}
+    </div>
+  );
+};
+
 /* ------------------------------------------------------------------ composition */
 
 export const ScoreTableReel: React.FC<ScoreTableProps> = (p) => {
@@ -185,9 +253,9 @@ export const ScoreTableReel: React.FC<ScoreTableProps> = (p) => {
     <AbsoluteFill style={{background: p.overlayOnly ? 'transparent' : '#000'}}>
       {/* untouched footage */}
       {!p.overlayOnly && <OffthreadVideo src={src(p.video)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} toneMapped={false} />}
-      <div style={{position: 'absolute', top: p.top ?? 1010, left: (1080 - W) / 2, width: W, display: 'flex', flexDirection: 'column', gap: GAP,
+      <div style={{position: 'absolute', top: p.top ?? 1010, left: (1080 - (p.theme === 'board' ? BW : W)) / 2, width: p.theme === 'board' ? BW : W, display: 'flex', flexDirection: 'column', gap: GAP,
         transform: p.scale && p.scale !== 1 ? `scale(${p.scale})` : undefined, transformOrigin: '50% 0'}}>
-        {p.rows.map((r, i) => <RowView key={i} row={r} i={i} next={p.rows[i + 1]} />)}
+        {p.theme === 'board' ? <Board rows={p.rows} title={p.title} accent={p.titleAccent} /> : p.rows.map((r, i) => <RowView key={i} row={r} i={i} next={p.rows[i + 1]} />)}
       </div>
       {p.voice && <Audio src={src(p.voice)} volume={p.voiceVolume ?? 1} />}
       {p.music && <Audio src={staticFile(p.music)} volume={p.musicVolume ?? 0.5} />}

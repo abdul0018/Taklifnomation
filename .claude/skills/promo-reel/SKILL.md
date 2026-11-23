@@ -396,6 +396,13 @@ Examples: `examples/ielts-ladder.props.json` (original icons, music + SFX) and `
 4. Place them with `cues[{file, at, vol}]` on your own event times (≈20–30 ms before the visual pop). Set `music` to the bed.
 5. Match the reference's voice-to-SFX ratio. Measure LUFS of its vocal and music stems, set `voiceVolume` so your voice sits at the same offset, keep SFX at 1.0 (they're near full scale), and loudnorm the final mix.
 
+- **`theme: 'board'`** (user asked for "another board style, change the corners or the font"): one dark scoreboard panel instead of separate mint pills.
+  - Leaf corners (34 px top-left/bottom-right, 8 px on the others), a 1.5 px hairline, no shadows.
+  - Header `title` + yellow `titleAccent` chip (e.g. "IELTS" + "8+") with a yellow rule that draws in.
+  - Rows: yellow 01–04 numbers, the skill icon on a light disc, Oswald 600 uppercase labels. Rows wipe in left to right one by one.
+  - The named row gets a yellow side bar and a yellow label; the logo lands in a white slot with a yellow flash ring.
+  - Example: `examples/ielts-table-board-theme.props.json` (`scale: 0.9`, `top: 1060`). Same SFX as the mint table: click per row, pop + correct per logo.
+
 ## 14. Style J: YOMON / YAXSHI / AJOYIB tiers (`TiersReel`)
 
 Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
