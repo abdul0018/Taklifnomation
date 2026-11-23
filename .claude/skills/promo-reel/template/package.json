@@ -30,7 +30,9 @@
     "@fontsource/fraunces": "5.3.0",
     "@fontsource/sacramento": "5.3.0",
     "@fontsource/bodoni-moda": "5.3.0",
-    "@fontsource/amiri": "5.2.5"
+    "@fontsource/amiri": "5.2.5",
+    "@fontsource/architects-daughter": "^5.3.0",
+    "@fontsource/patrick-hand": "^5.3.0"
   },
   "devDependencies": {
     "@types/react": "18.3.12",

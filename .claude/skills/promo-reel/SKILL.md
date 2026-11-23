@@ -403,6 +403,13 @@ Examples: `examples/ielts-ladder.props.json` (original icons, music + SFX) and `
   - The named row gets a yellow side bar and a yellow label; the logo lands in a white slot with a yellow flash ring.
   - Example: `examples/ielts-table-board-theme.props.json` (`scale: 0.9`, `top: 1060`). Same SFX as the mint table: click per row, pop + correct per logo.
 
+- **`theme: 'notebook'`** (reference: the user's "BAND 9 IELTS SPEAKING / PART 1 QUESTIONS" handwritten notes pin): a ruled cream page with a red margin, the row numbers sitting in the margin.
+  - Navy handwriting: Architects Daughter caps for `title` / `subtitle`, Patrick Hand for the rows. Hand-drawn wavy underlines, and a cloud badge holding `titleAccent` ("BAND 8+").
+  - Each row is "1. Vocabulary → [wobbly pen box with the logo] Anki". The text is uncovered left to right as if written. The named skill gets its underline drawn. On the resource, the arrow and box draw in, the logo pops, and the name is written. Give every resource a `caption` (including YouTube).
+  - Ruled lines: one per row (`NRH` 124), sitting under the writing, never through it.
+  - Example: `examples/ielts-table-notebook-theme.props.json` (`scale: 0.86`, `top: 1010`).
+- **Vocabulary → Anki** (the user corrected IELTS Runner in this slot): `template/public/logos/anki.png` is the classic grey-card Anki icon with two blue stars, cut from the user's screenshot. Use it, not the Simple Icons star mark.
+
 ## 14. Style J: YOMON / YAXSHI / AJOYIB tiers (`TiersReel`)
 
 Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.

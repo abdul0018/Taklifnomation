@@ -1,0 +1,57 @@
+{
+ "video": "video.mp4",
+ "theme": "notebook",
+ "title": "IELTS 8+ UCHUN",
+ "titleAccent": "BAND 8+",
+ "clean": true,
+ "scale": 0.86,
+ "top": 1010,
+ "end": 8.53,
+ "rows": [
+  {
+   "skill": "vocabulary",
+   "label": "Vocabulary",
+   "at": 0.05,
+   "resource": {
+    "at": 1.72,
+    "img": "logos/anki.png",
+    "caption": "Anki"
+   }
+  },
+  {
+   "skill": "listening",
+   "label": "Listening",
+   "at": 2.1,
+   "resource": {
+    "at": 3.62,
+    "img": "logos/youtube.svg",
+    "imgH": 74,
+    "caption": "YouTube"
+   }
+  },
+  {
+   "skill": "writing",
+   "label": "Writing",
+   "at": 4.55,
+   "resource": {
+    "at": 5.42,
+    "img": "logos/goprep.svg",
+    "imgH": 50,
+    "text": "Goprep.gg",
+    "textSize": 31
+   }
+  },
+  {
+   "skill": "speaking",
+   "label": "Speaking",
+   "at": 6.2,
+   "resource": {
+    "at": 7.3,
+    "img": "logos/preppy.png",
+    "imgH": 58,
+    "caption": "Preppy AI"
+   }
+  }
+ ],
+ "subtitle": "RESURSLAR"
+}

@@ -1,11 +1,13 @@
 import React from 'react';
-import {AbsoluteFill, Audio, Easing, Img, OffthreadVideo, Sequence, continueRender, delayRender, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Audio, Easing, Img, OffthreadVideo, Sequence, continueRender, delayRender, interpolate, spring, staticFile, random, useCurrentFrame, useVideoConfig} from 'remotion';
 import '@fontsource/montserrat/700.css';
 import '@fontsource/montserrat/800.css';
 import '@fontsource/montserrat/900.css';
 import '@fontsource/oswald/500.css';
 import '@fontsource/oswald/600.css';
 import '@fontsource/oswald/700.css';
+import '@fontsource/architects-daughter/400.css';
+import '@fontsource/patrick-hand/400.css';
 import {clamp, src} from './kit';
 
 /**
@@ -22,7 +24,7 @@ const GREEN = '#1F8A3B';
 
 if (typeof document !== 'undefined') {
   const h = delayRender('fonts');
-  Promise.all(['900 60px Montserrat', '800 60px Montserrat', '700 60px Montserrat', '500 60px Oswald', '600 60px Oswald', '700 60px Oswald'].map((f) => document.fonts.load(f, 'Aa8+.')))
+  Promise.all(['900 60px Montserrat', '800 60px Montserrat', '700 60px Montserrat', '500 60px Oswald', '600 60px Oswald', '700 60px Oswald', '400 60px "Architects Daughter"', '400 60px "Patrick Hand"'].map((f) => document.fonts.load(f, 'Aa8+.')))
     .then(() => continueRender(h)).catch(() => continueRender(h));
 }
 
@@ -112,7 +114,10 @@ export type ScoreTableProps = {video: string; rows: Row[]; top?: number; voice?:
   clean?: boolean; overlayOnly?: boolean; highlight?: boolean; enter?: 'up' | 'left'; scale?: number;
   /** theme 'board': one dark scoreboard panel (leaf corners: big radius top-left/bottom-right, small on the others), Oswald caps,
    *  yellow row numbers, white logo slots; rows wipe in one by one and the named row gets a yellow bar + yellow label. title: header text. */
-  theme?: 'mint' | 'board'; title?: string; titleAccent?: string};
+  theme?: 'mint' | 'board' | 'notebook'; title?: string; titleAccent?: string;
+  /** notebook: ruled-paper page with a red margin, navy handwriting (Architects Daughter caps title + Patrick Hand rows), hand-drawn
+   *  underlines, a cloud badge (`titleAccent`) and wobbly pen boxes for the logos. subtitle: second title line. */
+  subtitle?: string};
 
 const useT = () => { const f = useCurrentFrame(); const {fps} = useVideoConfig(); return {f, fps, s: (x: number) => Math.round(x * fps)}; };
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -240,6 +245,114 @@ const Board: React.FC<{rows: Row[]; title?: string; accent?: string}> = ({rows, 
   );
 };
 
+
+/* ------------------------------------------------------------------ theme: notebook */
+
+const HAND_T = "'Architects Daughter', 'Patrick Hand', cursive";
+const HAND = "'Patrick Hand', 'Architects Daughter', cursive";
+const NAVY = '#1E3566'; const PEN = '#2C56A6'; const NW = 880; const NRH = 124; const NTOP = 176;
+
+/** a wobbly hand-drawn rectangle path (closed, slightly overshooting start) */
+const roughRect = (w: number, h: number, seed: string, j = 2.6) => {
+  const pts: [number, number][] = [];
+  const side = (x0: number, y0: number, x1: number, y1: number, k: string) => {
+    for (let t = 0; t < 4; t++) { const u = t / 4; pts.push([x0 + (x1 - x0) * u + (random(`${seed}${k}x${t}`) - 0.5) * j, y0 + (y1 - y0) * u + (random(`${seed}${k}y${t}`) - 0.5) * j]); }
+  };
+  side(3, 3, w - 3, 3, 'a'); side(w - 3, 3, w - 3, h - 3, 'b'); side(w - 3, h - 3, 3, h - 3, 'c'); side(3, h - 3, 3, 3, 'd');
+  pts.push([pts[0][0] + 7, pts[0][1] + 1.5]);
+  return 'M' + pts.map((p) => p.map((v) => v.toFixed(1)).join(' ')).join(' L');
+};
+/** hand underline: gentle wave */
+const Underline: React.FC<{w: number; p: number; color?: string; thick?: number; seed: string}> = ({w, p, color = PEN, thick = 3.4, seed}) => {
+  const a = (random(seed) - 0.5) * 5; const b = (random(seed + 'b') - 0.5) * 5;
+  const d = `M2 ${6 + a} C ${w * 0.3} ${3 + b}, ${w * 0.65} ${9 - a}, ${w - 2} ${5 + b}`;
+  return <svg width={w} height={14} style={{display: 'block', overflow: 'visible'}}><path d={d} fill="none" stroke={color} strokeWidth={thick} strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - p} /></svg>;
+};
+/** pen reveal: text uncovered left→right like it is being written */
+const Write: React.FC<{p: number; children: React.ReactNode; style?: React.CSSProperties}> = ({p, children, style}) => (
+  <div style={{clipPath: `inset(-20% ${(1 - p) * 100}% -30% -4%)`, ...style}}>{children}</div>
+);
+
+const NoteRow: React.FC<{row: Row; i: number; next?: Row}> = ({row, i, next}) => {
+  const {f, fps, s} = useT();
+  const t0 = 10 + i * 6;
+  const w = interpolate(f, [t0, t0 + 12], [0, 1], {...clamp, easing: Easing.inOut(Easing.quad)});
+  const a = s(row.at); const until = next ? s(next.at) : 100000;
+  const ul = f >= a ? interpolate(f - a, [0, 9], [0, 1], {...clamp, easing: Easing.out(Easing.quad)}) : 0;
+  const on = f >= a && f < until;
+  const r = row.resource; const ra = s(r.at);
+  const box = f >= ra ? interpolate(f - ra, [0, 8], [0, 1], {...clamp, easing: Easing.out(Easing.quad)}) : 0;
+  const lp = f >= ra ? spring({frame: f - ra - 2, fps, config: {damping: 10, stiffness: 230, mass: 0.6}}) : 0;
+  const nm = f >= ra ? interpolate(f - ra, [4, 14], [0, 1], {...clamp, easing: Easing.inOut(Easing.quad)}) : 0;
+  const arrow = f >= ra ? interpolate(f - ra, [0, 6], [0, 1], clamp) : 0;
+  const Tile = r.tile ? RESOURCE_TILES[r.tile] : null;
+  const name = r.caption ?? r.text ?? '';
+  return (
+    <div style={{position: 'absolute', left: 0, top: NTOP + i * NRH, width: NW, height: NRH}}>
+      <Write p={w} style={{position: 'absolute', left: 22, top: 26, fontFamily: HAND, fontSize: 50, color: on ? PEN : NAVY, lineHeight: 1}}>{i + 1}.</Write>
+      <div style={{position: 'absolute', left: 92, top: 22}}>
+        <Write p={w}><div style={{fontFamily: HAND, fontSize: 60, color: NAVY, lineHeight: 1, whiteSpace: 'nowrap'}}>{row.label}</div></Write>
+        <div style={{marginTop: 2}}><Underline w={Math.min(300, row.label.length * 27)} p={ul} seed={`u${i}`} /></div>
+      </div>
+      {/* arrow */}
+      <svg width={64} height={30} style={{position: 'absolute', left: 422, top: 46, overflow: 'visible'}}>
+        <path d="M2 16 C 20 12, 40 18, 56 14 M44 5 L58 14 L45 24" fill="none" stroke={NAVY} strokeWidth={3.2} strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - arrow} />
+      </svg>
+      {/* pen box + logo */}
+      <svg width={104} height={104} style={{position: 'absolute', left: 498, top: 10, overflow: 'visible'}}>
+        <path d={roughRect(104, 104, `b${i}`)} fill="none" stroke={NAVY} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - box} />
+      </svg>
+      {lp > 0 && (
+        <div style={{position: 'absolute', left: 498, top: 10, width: 104, height: 104, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          transform: `scale(${lp}) rotate(${(1 - lp) * -12 + (i % 2 ? 2 : -2)}deg)`, opacity: Math.min(1, lp * 1.6)}}>
+          {Tile ? <Tile /> : r.img ? <Img src={staticFile(r.img)} style={{maxWidth: 80, maxHeight: 80, width: 'auto', height: 'auto', display: 'block'}} /> : null}
+        </div>
+      )}
+      {name && <Write p={nm} style={{position: 'absolute', left: 620, top: 34, fontFamily: HAND, fontSize: 46, color: PEN, lineHeight: 1, whiteSpace: 'nowrap'}}>{name}</Write>}
+    </div>
+  );
+};
+
+const NoteBoard: React.FC<{rows: Row[]; title?: string; subtitle?: string; badge?: string}> = ({rows, title, subtitle, badge}) => {
+  const {f, fps} = useT();
+  const p = spring({frame: f, fps, config: {damping: 16, stiffness: 140}});
+  const H = NTOP + rows.length * NRH + 22;
+  const t1 = interpolate(f, [4, 16], [0, 1], {...clamp, easing: Easing.inOut(Easing.quad)});
+  const t2 = interpolate(f, [10, 22], [0, 1], {...clamp, easing: Easing.inOut(Easing.quad)});
+  const bd = interpolate(f, [12, 26], [0, 1], {...clamp, easing: Easing.out(Easing.quad)});
+  const cloud = 'M30 62 C 8 62, 6 36, 26 33 C 24 12, 52 6, 62 20 C 72 4, 104 6, 108 24 C 130 18, 146 38, 134 52 C 146 66, 124 80, 106 72 C 96 86, 64 86, 58 72 C 50 80, 30 78, 30 62 Z';
+  return (
+    <div style={{position: 'relative', width: NW, height: H, borderRadius: 14, background: '#FBFAF3', boxShadow: 'inset 0 0 0 1.5px rgba(30,53,102,.18)', overflow: 'hidden',
+      transform: `translateY(${(1 - p) * 60}px) rotate(${(1 - p) * -2.5}deg)`, opacity: Math.min(1, p * 1.5), transformOrigin: '50% 100%'}}>
+      {/* ruled lines + red margin */}
+      <div style={{position: 'absolute', left: 0, right: 0, top: NTOP - 2, bottom: 0,
+        backgroundImage: `repeating-linear-gradient(180deg, transparent 0, transparent ${NRH - 2}px, #C7D6EE ${NRH - 2}px, #C7D6EE ${NRH}px)`, backgroundPosition: '0 -16px'}} />
+      <div style={{position: 'absolute', top: 0, bottom: 0, left: 76, width: 2, background: '#E9A7A7'}} />
+      {/* title */}
+      {title && (
+        <div style={{position: 'absolute', left: 0, right: 0, top: 22, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <Write p={t1}><div style={{fontFamily: HAND_T, fontSize: 52, color: NAVY, letterSpacing: '0.05em', lineHeight: 1.05, whiteSpace: 'nowrap'}}>{title}</div></Write>
+          <Underline w={title.length * 34} p={t1} color={PEN} thick={3} seed="t1" />
+          {subtitle && <>
+            <Write p={t2} style={{marginTop: 8}}><div style={{fontFamily: HAND_T, fontSize: 40, color: PEN, letterSpacing: '0.06em', lineHeight: 1.05, whiteSpace: 'nowrap'}}>{subtitle}</div></Write>
+            <Underline w={subtitle.length * 28} p={t2} color={NAVY} thick={3} seed="t2" />
+          </>}
+        </div>
+      )}
+      {/* cloud badge */}
+      {badge && (
+        <div style={{position: 'absolute', right: 18, top: 18, width: 150, height: 92}}>
+          <svg width={150} height={92} style={{position: 'absolute', inset: 0, overflow: 'visible'}}>
+            <path d={cloud} fill="none" stroke={NAVY} strokeWidth={3} strokeLinejoin="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - bd} />
+          </svg>
+          <Write p={interpolate(f, [20, 30], [0, 1], clamp)} style={{position: 'absolute', left: 0, right: 0, top: 31, textAlign: 'center', fontFamily: HAND_T, fontSize: 25, color: PEN, lineHeight: 1, whiteSpace: 'nowrap', paddingLeft: 6}}>{badge}</Write>
+        </div>
+      )}
+      {rows.map((r, i) => <NoteRow key={i} row={r} i={i} next={rows[i + 1]} />)}
+    </div>
+  );
+};
+
 /* ------------------------------------------------------------------ composition */
 
 export const ScoreTableReel: React.FC<ScoreTableProps> = (p) => {
@@ -253,9 +366,9 @@ export const ScoreTableReel: React.FC<ScoreTableProps> = (p) => {
     <AbsoluteFill style={{background: p.overlayOnly ? 'transparent' : '#000'}}>
       {/* untouched footage */}
       {!p.overlayOnly && <OffthreadVideo src={src(p.video)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} toneMapped={false} />}
-      <div style={{position: 'absolute', top: p.top ?? 1010, left: (1080 - (p.theme === 'board' ? BW : W)) / 2, width: p.theme === 'board' ? BW : W, display: 'flex', flexDirection: 'column', gap: GAP,
+      <div style={{position: 'absolute', top: p.top ?? 1010, left: (1080 - (p.theme === 'board' ? BW : p.theme === 'notebook' ? NW : W)) / 2, width: p.theme === 'board' ? BW : p.theme === 'notebook' ? NW : W, display: 'flex', flexDirection: 'column', gap: GAP,
         transform: p.scale && p.scale !== 1 ? `scale(${p.scale})` : undefined, transformOrigin: '50% 0'}}>
-        {p.theme === 'board' ? <Board rows={p.rows} title={p.title} accent={p.titleAccent} /> : p.rows.map((r, i) => <RowView key={i} row={r} i={i} next={p.rows[i + 1]} />)}
+        {p.theme === 'notebook' ? <NoteBoard rows={p.rows} title={p.title} subtitle={p.subtitle} badge={p.titleAccent} /> : p.theme === 'board' ? <Board rows={p.rows} title={p.title} accent={p.titleAccent} /> : p.rows.map((r, i) => <RowView key={i} row={r} i={i} next={p.rows[i + 1]} />)}
       </div>
       {p.voice && <Audio src={src(p.voice)} volume={p.voiceVolume ?? 1} />}
       {p.music && <Audio src={staticFile(p.music)} volume={p.musicVolume ?? 0.5} />}
