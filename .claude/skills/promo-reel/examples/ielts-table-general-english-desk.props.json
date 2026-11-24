@@ -1,0 +1,55 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "highlight": false,
+ "enter": "left",
+ "scale": 0.91,
+ "top": 1050,
+ "end": 7.7,
+ "rows": [
+  {
+   "skill": "vocabulary",
+   "label": "General English",
+   "at": 0.15,
+   "resource": {
+    "at": 1.1,
+    "img": "logos/englify.png",
+    "imgH": 64,
+    "caption": "Englify"
+   }
+  },
+  {
+   "skill": "speaking",
+   "label": "Speaking",
+   "at": 2.12,
+   "resource": {
+    "at": 2.8,
+    "img": "logos/preppy.png",
+    "imgH": 58,
+    "caption": "Preppy AI"
+   }
+  },
+  {
+   "skill": "listening",
+   "label": "Listening",
+   "at": 3.97,
+   "resource": {
+    "at": 4.75,
+    "img": "logos/youtube.svg",
+    "imgH": 74
+   }
+  },
+  {
+   "skill": "writing",
+   "label": "Writing",
+   "at": 5.73,
+   "resource": {
+    "at": 6.5,
+    "img": "logos/goprep.svg",
+    "imgH": 50,
+    "text": "Goprep.gg",
+    "textSize": 31
+   }
+  }
+ ]
+}
