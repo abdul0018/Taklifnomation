@@ -189,7 +189,7 @@ export const LadderReel: React.FC<LadderProps> = (p) => {
           const W = 200; const G = 24; const x0 = (1080 - (arr.length * W + (arr.length - 1) * G)) / 2;
           return <Pop key={`fs${i}`} at={fin.scoreAt + i * 0.18} out={fin.scoresOut ?? fin.iconAt} from="center" style={{left: x0 + i * (W + G), top: fin.scoresTop ?? 1460}}><ScoreCard score={sc} w={W} /></Pop>;
         })
-        : <Pop at={fin.scoreAt} out={fin.iconAt} from="center" style={{left: 400, top: 1440}}><ScoreCard score={fin.score} w={280} /></Pop>}
+        : <Pop at={fin.scoreAt} out={fin.scoresOut ?? fin.iconAt} from="center" style={{left: fin.scoresTop != null ? 425 : 400, top: fin.scoresTop ?? 1440}}><ScoreCard score={fin.score} w={fin.scoresTop != null ? 230 : 280} /></Pop>}
       <Pop at={fin.iconAt} out={p.end + 1} from="center" style={{left: 340, top: 1120, width: 400, height: 400, filter: CLEAN ? undefined : 'drop-shadow(0 18px 30px rgba(0,0,0,.35))'}}>
         <IconEl icon={fin.icon} />
       </Pop>
