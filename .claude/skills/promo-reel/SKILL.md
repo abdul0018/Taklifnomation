@@ -773,3 +773,12 @@ Used to remake a paper-collage IELTS explainer ("3 ta sir": Reading qat'iy so'zl
   - a whoosh at −17 dB into each scene.
 - **Render:** it's a fully generated video with no footage, so render straight from Remotion (`--codec=h264 --video-bitrate=12M`). Flat paper compresses to about 4.5 Mbps whatever the target.
 - Example: `examples/angry-board-3sir.props.json` + `.tts.txt`. `env` is stripped there; recompute it from the VO.
+
+- **User's own ElevenLabs voice (preferred over edge-tts):** the session proxy injects the ElevenLabs key, so call `api.elevenlabs.io` directly with a placeholder `xi-api-key`.
+  - Voice: **"Adizzbek - hikoya va instagram video"** (`v4cqTf6wc2CXwA2tR7TF`, male, Uzbek). Only `eleven_v4` accepts `language_code: "uz"` (v3 refuses it).
+  - Use `POST /v1/text-to-speech/{id}/with-timestamps?output_format=mp3_44100_128`. The 192k format needs the Creator tier.
+  - Write normal spelling (IELTS, Goprep.gg, 8); it pronounces those fine.
+  - Build word timings from `alignment.characters` / `character_start_times_seconds`.
+  - To re-time an existing board to a new voice: align old and new word lists with difflib, then map every item `at` / `times` / punch through a piecewise-linear old→new time map per scene.
+  - Example: `examples/angry-board-3sir-adizzbek.props.json`.
+  - Whisper-medium transcribes this voice's Uzbek badly. Don't use it to judge quality.

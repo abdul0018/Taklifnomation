@@ -1,0 +1,387 @@
+{
+ "voice": "vo.wav",
+ "sfx": "sfx.wav",
+ "brand": "GOPREP.GG",
+ "mascot": "logos/preppy_angry_clean.png",
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 6.249,
+   "items": [
+    {
+     "type": "text",
+     "text": "IELTSdan 8 ololmayapsanmi?!",
+     "color": "red",
+     "y": 220,
+     "at": 0.2,
+     "size": 85
+    },
+    {
+     "type": "doodle",
+     "kind": "score",
+     "at": 1.661,
+     "x": 380,
+     "y": 830,
+     "text": "8.0",
+     "s": 1.15
+    },
+    {
+     "type": "doodle",
+     "kind": "stick",
+     "at": 2.885,
+     "x": 780,
+     "y": 870,
+     "text": "?",
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Kalla yo‘qmi?!",
+     "color": "red",
+     "y": 1180,
+     "at": 3.006,
+     "size": 107
+    },
+    {
+     "type": "text",
+     "text": "It’s NOT that hard!",
+     "color": "blue",
+     "y": 372,
+     "at": 4.365
+    }
+   ]
+  },
+  {
+   "start": 6.249,
+   "end": 10.72,
+   "items": [
+    {
+     "type": "text",
+     "text": "3 ta sirni eslab qol!",
+     "color": "red",
+     "y": 220,
+     "at": 6.499
+    },
+    {
+     "type": "doodle",
+     "kind": "boxes",
+     "at": 6.892,
+     "x": 540,
+     "y": 830,
+     "times": [
+      6.945,
+      7.343,
+      7.698
+     ],
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "+1–2 band!",
+     "color": "blue",
+     "y": 372,
+     "at": 8.224,
+     "size": 89
+    }
+   ]
+  },
+  {
+   "start": 10.72,
+   "end": 21.251,
+   "items": [
+    {
+     "type": "text",
+     "text": "1-sir: READING",
+     "color": "red",
+     "y": 220,
+     "at": 10.972
+    },
+    {
+     "type": "text",
+     "text": "only · never · always",
+     "color": "blue",
+     "y": 372,
+     "at": 13.048,
+     "dur": 1.1
+    },
+    {
+     "type": "text",
+     "text": "Qat’iy so‘zlar — tuzoq!",
+     "color": "grey",
+     "y": 500,
+     "at": 15.373
+    },
+    {
+     "type": "text",
+     "text": "Javob deyarli hech qachon TRUE emas",
+     "color": "grey",
+     "y": 1000,
+     "at": 17.13,
+     "size": 51
+    },
+    {
+     "type": "doodle",
+     "kind": "cross",
+     "at": 18.849,
+     "x": 540,
+     "y": 830,
+     "text": "TRUE",
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Tushundingmi?!",
+     "color": "red",
+     "y": 1180,
+     "at": 20.174,
+     "size": 107
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 20.174,
+     "x": 880,
+     "y": 1360,
+     "img": "emoji/1f621.svg",
+     "s": 1.15
+    }
+   ]
+  },
+  {
+   "start": 21.251,
+   "end": 32.2,
+   "items": [
+    {
+     "type": "text",
+     "text": "2-sir: LISTENING",
+     "color": "red",
+     "y": 220,
+     "at": 21.501
+    },
+    {
+     "type": "doodle",
+     "kind": "stick",
+     "at": 23.575,
+     "x": 260,
+     "y": 880,
+     "text": "wait, actually...",
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Oh, sorry... wait, actually...",
+     "color": "blue",
+     "y": 372,
+     "at": 24.539,
+     "size": 64,
+     "dur": 1.4
+    },
+    {
+     "type": "text",
+     "text": "Fikrini o‘zgartirdi!",
+     "color": "grey",
+     "y": 500,
+     "at": 27.628
+    },
+    {
+     "type": "doodle",
+     "kind": "cross",
+     "at": 29.175,
+     "x": 640,
+     "y": 910,
+     "text": "15",
+     "s": 0.69
+    },
+    {
+     "type": "doodle",
+     "kind": "circle",
+     "at": 30.009,
+     "x": 880,
+     "y": 910,
+     "text": "50",
+     "s": 0.92
+    },
+    {
+     "type": "text",
+     "text": "Doim 2-variant to‘g‘ri!",
+     "color": "grey",
+     "y": 1220,
+     "at": 29.184
+    },
+    {
+     "type": "text",
+     "text": "Uxlab o‘tirma!",
+     "color": "red",
+     "y": 1340,
+     "at": 30.904,
+     "size": 107
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 30.904,
+     "x": 880,
+     "y": 1360,
+     "img": "emoji/1f621.svg",
+     "s": 1.15
+    }
+   ]
+  },
+  {
+   "start": 32.2,
+   "end": 40.824,
+   "items": [
+    {
+     "type": "text",
+     "text": "3-sir: SPEAKING",
+     "color": "red",
+     "y": 220,
+     "at": 32.457
+    },
+    {
+     "type": "text",
+     "text": "eng zo‘r sir",
+     "color": "grey",
+     "y": 500,
+     "at": 33.322
+    },
+    {
+     "type": "text",
+     "text": "Ustoz qidirib yurma!",
+     "color": "blue",
+     "y": 372,
+     "at": 35.408
+    },
+    {
+     "type": "doodle",
+     "kind": "laptop",
+     "at": 37.01,
+     "x": 540,
+     "y": 830,
+     "text": "GOPREP.GG",
+     "s": 1.15
+    },
+    {
+     "type": "doodle",
+     "kind": "cards",
+     "at": 38.37,
+     "x": 540,
+     "y": 1170,
+     "times": [
+      38.37,
+      38.73,
+      38.97
+     ],
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Qayta-qayta topshir!",
+     "color": "red",
+     "y": 1360,
+     "at": 39.568,
+     "size": 80
+    }
+   ]
+  },
+  {
+   "start": 40.824,
+   "end": 49.134,
+   "items": [
+    {
+     "type": "text",
+     "text": "A.I.ga ishonmaysanmi?!",
+     "color": "red",
+     "y": 220,
+     "at": 41.082
+    },
+    {
+     "type": "text",
+     "text": "Official band descriptors",
+     "color": "blue",
+     "y": 372,
+     "at": 42.8
+    },
+    {
+     "type": "doodle",
+     "kind": "paper",
+     "at": 43.485,
+     "x": 560,
+     "y": 920,
+     "times": [
+      47.114,
+      47.315,
+      47.47
+     ],
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Maqtab qo‘ymaydi!",
+     "color": "grey",
+     "y": 500,
+     "at": 45.635,
+     "size": 62
+    },
+    {
+     "type": "text",
+     "text": "Har bir xato tushuntiriladi!",
+     "color": "red",
+     "y": 1290,
+     "at": 47.114,
+     "size": 73
+    }
+   ]
+  },
+  {
+   "start": 49.134,
+   "end": 54.974,
+   "items": [
+    {
+     "type": "text",
+     "text": "Saqlab qo‘y!",
+     "color": "red",
+     "y": 220,
+     "at": 49.388,
+     "size": 112
+    },
+    {
+     "type": "text",
+     "text": "Do‘stingga yubor!",
+     "color": "blue",
+     "y": 372,
+     "at": 50.347
+    },
+    {
+     "type": "doodle",
+     "kind": "img",
+     "at": 51.574,
+     "x": 540,
+     "y": 850,
+     "img": "logos/goprep.svg",
+     "s": 1.15
+    },
+    {
+     "type": "doodle",
+     "kind": "big",
+     "at": 52.024,
+     "x": 540,
+     "y": 1150,
+     "text": "goprep.gg",
+     "s": 0.92
+    }
+   ]
+  }
+ ],
+ "punches": [
+  3.006,
+  20.174,
+  30.904,
+  35.408,
+  41.082,
+  45.635,
+  49.388
+ ],
+ "env": [],
+ "end": 54.97
+}
