@@ -1,0 +1,52 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "highlight": false,
+ "enter": "left",
+ "scale": 0.94,
+ "top": 1052,
+ "end": 8.98,
+ "rows": [
+  {
+   "skill": "speaking",
+   "label": "Speaking",
+   "at": 0.12,
+   "resource": {
+    "at": 1.17,
+    "img": "logos/preppy_angry.png",
+    "imgH": 64,
+    "caption": "Preppy AI"
+   }
+  },
+  {
+   "skill": "listening",
+   "label": "Listening",
+   "at": 2.43,
+   "resource": {
+    "at": 3.45,
+    "img": "logos/youtube.svg",
+    "imgH": 74
+   }
+  },
+  {
+   "skill": "reading",
+   "label": "Reading",
+   "at": 4.53,
+   "resource": {
+    "at": 5.4,
+    "text": "Goprep.gg",
+    "textSize": 34
+   }
+  },
+  {
+   "skill": "writing",
+   "label": "Writing",
+   "at": 6.55,
+   "resource": {
+    "at": 7.83,
+    "text": "Goprep.gg",
+    "textSize": 34
+   }
+  }
+ ]
+}

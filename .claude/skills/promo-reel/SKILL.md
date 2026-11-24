@@ -412,6 +412,11 @@ Examples: `examples/ielts-ladder.props.json` (original icons, music + SFX) and `
   - Example: `examples/ielts-table-notebook-theme.props.json` (`scale: 0.86`, `top: 1010`).
 - **Vocabulary → Anki** (the user corrected IELTS Runner in this slot): `template/public/logos/anki.png` is the classic grey-card Anki icon with two blue stars, cut from the user's screenshot. Use it, not the Simple Icons star mark.
 
+- **"Bloop" reference sound (user's own edit of the puffer-jacket take):** that table has no row clicks. Instead, one short bright bloop lands on each logo pop: about 890 Hz plus the 2nd and 3rd harmonics, a 2 ms attack, τ ≈ 36 ms decay, and about −8 dBFS RMS in its first 5 ms (about as loud as the voice). It's synthesized in `template/public/sfx/bloop.wav`, mixed at −1.5 dB, 10 ms before the pop.
+  - The reference board is the same mint table: `scale 0.94`, `top 1052`, Reading and Writing as text-only "Goprep.gg" (`textSize 34`), Speaking as angry Preppy.
+  - Its last 2 s (darkened frame + Instagram handle card + music) is an end card. When the user says "only the sound effect and the board", skip it (the dimming counts as a filter).
+  - Example: `examples/ielts-table-bloop-ref.props.json`.
+
 ## 14. Style J: YOMON / YAXSHI / AJOYIB tiers (`TiersReel`)
 
 Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
