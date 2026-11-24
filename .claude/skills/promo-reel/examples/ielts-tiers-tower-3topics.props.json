@@ -1,0 +1,103 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "mirror": true,
+ "row": {
+  "y": 58,
+  "raise": 38,
+  "scale": 0.64
+ },
+ "pillY": 1500,
+ "end": 10.3,
+ "topics": [
+  {
+   "title": "So‘z yodlash",
+   "emoji": "emoji/1f4da.svg",
+   "start": 0.0,
+   "reveal": [
+    1.0,
+    1.7,
+    2.4
+   ],
+   "logos": [
+    {
+     "name": "Duolingo",
+     "kind": "img",
+     "file": "logos/duolingo.png"
+    },
+    {
+     "name": "Anki",
+     "kind": "img",
+     "file": "logos/anki.png",
+     "radius": 0
+    },
+    {
+     "name": "IELTS Runner",
+     "kind": "img",
+     "file": "logos/runner_tile.png",
+     "radius": 28
+    }
+   ]
+  },
+  {
+   "title": "IELTS Speaking",
+   "emoji": "emoji/1f5e3.svg",
+   "start": 3.38,
+   "reveal": [
+    4.5,
+    5.2,
+    5.9
+   ],
+   "logos": [
+    {
+     "name": "ChatGPT",
+     "kind": "mask",
+     "file": "logos/openai.svg",
+     "color": "#000000",
+     "scale": 0.9
+    },
+    {
+     "name": "HelloTalk",
+     "kind": "img",
+     "file": "logos/hellotalk.png"
+    },
+    {
+     "name": "Preppy AI",
+     "kind": "img",
+     "file": "logos/preppy_angry.png",
+     "radius": 0,
+     "scale": 1.12
+    }
+   ]
+  },
+  {
+   "title": "IELTS Reading",
+   "emoji": "emoji/1f4d6.svg",
+   "start": 6.73,
+   "reveal": [
+    7.8,
+    8.5,
+    9.3
+   ],
+   "logos": [
+    {
+     "name": "Google Translate",
+     "kind": "mask",
+     "file": "logos/googletranslate.svg",
+     "color": "#4285F4"
+    },
+    {
+     "name": "Engnovate",
+     "kind": "img",
+     "file": "logos/engnovate.png",
+     "radius": 0
+    },
+    {
+     "name": "Goprep.gg",
+     "kind": "img",
+     "file": "logos/goprep.svg"
+    }
+   ]
+  }
+ ]
+}
