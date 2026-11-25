@@ -10,6 +10,7 @@ import {clamp} from './kit';
  * doodles draw on stroke by stroke, the mascot bobs with the voice envelope and shakes on the angry punch lines.
  */
 
+let FAST = false;
 const HAND = "'Patrick Hand', 'Comic Sans MS', cursive";
 const COL: Record<string, string> = {red: '#C8102E', blue: '#1F4FD1', grey: '#4A4A4A', green: '#1E7B34', ink: '#222'};
 
@@ -17,7 +18,8 @@ export type BoardItem =
   | {type: 'text'; text: string; color: 'red' | 'blue' | 'grey' | 'green'; y: number; size?: number; at: number; dur?: number; underline?: boolean}
   | {type: 'doodle'; kind: string; at: number; x: number; y: number; s?: number; text?: string; times?: number[]; img?: string};
 export type BoardScene = {start: number; end: number; items: BoardItem[]};
-export type AngryBoardProps = {voice: string; sfx?: string; scenes: BoardScene[]; punches: number[]; env: number[]; mascot: string; brand?: string; end: number};
+/** fast: snappy "fast motion" mode — lines write ~2x faster, doodles draw in 10 frames, hard cuts with a punch-in zoom at every scene and a camera kick on punches. */
+export type AngryBoardProps = {fast?: boolean; voice: string; sfx?: string; scenes: BoardScene[]; punches: number[]; env: number[]; mascot: string; brand?: string; end: number};
 
 const useT = () => { const f = useCurrentFrame(); const {fps} = useVideoConfig(); return {f, fps, s: (x: number) => Math.round(x * fps)}; };
 const draw = (p: number) => ({pathLength: 1, strokeDasharray: 1, strokeDashoffset: 1 - Math.max(0, Math.min(1, p))});
@@ -37,7 +39,7 @@ const Marker: React.FC<{x: number; y: number; o: number}> = ({x, y, o}) => (
 const Line: React.FC<{it: Extract<BoardItem, {type: 'text'}>}> = ({it}) => {
   const {f, s} = useT();
   const size = it.size ?? (it.color === 'red' ? 94 : it.color === 'blue' ? 72 : 56);
-  const dur = it.dur ?? Math.min(1.3, 0.25 + it.text.length * 0.045);
+  const dur = (it.dur ?? Math.min(1.3, 0.25 + it.text.length * 0.045)) * (FAST ? 0.5 : 1);
   const p = interpolate(f, [s(it.at), s(it.at + dur)], [0, 1], {...clamp, easing: Easing.inOut(Easing.quad)});
   if (p <= 0) return null;
   const w = Math.min(1000, it.text.length * size * 0.47);
@@ -64,7 +66,7 @@ const Doodle: React.FC<{d: Extract<BoardItem, {type: 'doodle'}>}> = ({d}) => {
   const {f, fps, s} = useT();
   const a = s(d.at);
   if (f < a) return null;
-  const p = interpolate(f, [a, a + 18], [0, 1], {...clamp, easing: Easing.out(Easing.quad)});
+  const p = interpolate(f, [a, a + (FAST ? 10 : 18)], [0, 1], {...clamp, easing: Easing.out(Easing.quad)});
   const pop = spring({frame: f - a, fps, config: {damping: 10, stiffness: 220, mass: 0.6}});
   const k = d.s ?? 1;
   const box = (w: number, h: number, children: React.ReactNode, extra: React.CSSProperties = {}) => (
@@ -185,9 +187,16 @@ const Doodle: React.FC<{d: Extract<BoardItem, {type: 'doodle'}>}> = ({d}) => {
 
 export const AngryBoardReel: React.FC<AngryBoardProps> = (p) => {
   const {f, fps, s} = useT();
+  FAST = !!p.fast;
   const sc = p.scenes.find((x) => f >= s(x.start) && f < s(x.end)) ?? null;
-  const fadeOut = sc ? interpolate(f, [s(sc.end) - 5, s(sc.end)], [1, 0], clamp) : 0;
-  const fadeIn = sc ? interpolate(f, [s(sc.start), s(sc.start) + 4], [0, 1], clamp) : 0;
+  const fadeOut = sc ? (FAST ? 1 : interpolate(f, [s(sc.end) - 5, s(sc.end)], [1, 0], clamp)) : 0;
+  const fadeIn = sc ? (FAST ? 1 : interpolate(f, [s(sc.start), s(sc.start) + 4], [0, 1], clamp)) : 0;
+  // fast motion: punch-in zoom at each scene cut, camera kick on punch lines
+  const since = sc ? f - s(sc.start) : 99;
+  const zoomIn = FAST ? 1 + 0.14 * Math.exp(-since / 4) : 1;
+  const pk = p.punches.map((t) => f - s(t)).filter((d) => d >= 0 && d < 12).sort((x, y) => x - y)[0];
+  const kick = FAST && pk != null ? 1 + 0.05 * Math.exp(-pk / 3) : 1;
+  const jit = FAST && pk != null ? Math.sin(pk * 3.1) * 10 * Math.exp(-pk / 3) : 0;
   // mascot: bob with the voice, shake + grow on punch lines
   const env = p.env[Math.min(p.env.length - 1, f)] ?? 0;
   const pu = p.punches.map((t) => f - s(t)).filter((d) => d >= 0 && d < 24).sort((x, y) => x - y)[0];
@@ -197,7 +206,7 @@ export const AngryBoardReel: React.FC<AngryBoardProps> = (p) => {
     <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, #F7EDD3 0%, #EFDFB9 55%, #E2CB98 100%)'}}>
       {p.brand && <div style={{position: 'absolute', left: 40, top: 40, padding: '6px 16px', border: '3px solid #8E2A1C', borderRadius: 6, color: '#8E2A1C', fontFamily: HAND, fontSize: 34,
         letterSpacing: '0.08em', transform: 'rotate(-3deg)', background: 'rgba(255,255,255,.35)'}}>{p.brand}</div>}
-      {sc && <AbsoluteFill style={{opacity: fadeOut * fadeIn}}>
+      {sc && <AbsoluteFill style={{opacity: fadeOut * fadeIn, transform: `translateX(${jit}px) scale(${zoomIn * kick}) rotate(${FAST ? (1 - Math.min(1, since / 5)) * -1.5 : 0}deg)`}}>
         {sc.items.map((it, i) => it.type === 'text' ? <Line key={i} it={it} /> : <Doodle key={i} d={it} />)}
       </AbsoluteFill>}
       <div style={{position: 'absolute', left: 40, top: 1520, width: 300, height: 300, transformOrigin: '50% 100%',
