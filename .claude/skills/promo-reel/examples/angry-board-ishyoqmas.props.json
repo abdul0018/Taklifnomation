@@ -1,0 +1,459 @@
+{
+ "fast": true,
+ "voice": "vo.wav",
+ "sfx": "sfx.wav",
+ "brand": "GOPREP.GG",
+ "mascot": "logos/preppy_angry_clean.png",
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 5.03,
+   "items": [
+    {
+     "type": "text",
+     "text": "Ey ahmoq bola!",
+     "color": "red",
+     "y": 220,
+     "at": 0.1,
+     "size": 110
+    },
+    {
+     "type": "text",
+     "text": "“Ishyoqmas” inglizchada?",
+     "color": "blue",
+     "y": 380,
+     "at": 1.352,
+     "size": 76
+    },
+    {
+     "type": "doodle",
+     "kind": "stick",
+     "at": 2.535,
+     "x": 780,
+     "y": 880,
+     "text": "?"
+    },
+    {
+     "type": "doodle",
+     "kind": "big",
+     "at": 1.352,
+     "x": 330,
+     "y": 860,
+     "text": "?!",
+     "s": 1.6
+    },
+    {
+     "type": "text",
+     "text": "Kallang ishlaydimi?!",
+     "color": "red",
+     "y": 1300,
+     "at": 3.787,
+     "size": 96
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 3.787,
+     "x": 900,
+     "y": 1470,
+     "img": "emoji/1f621.svg"
+    }
+   ]
+  },
+  {
+   "start": 5.03,
+   "end": 10.923,
+   "items": [
+    {
+     "type": "text",
+     "text": "Ishyoqmas = dangasa",
+     "color": "red",
+     "y": 220,
+     "at": 5.09,
+     "size": 96
+    },
+    {
+     "type": "text",
+     "text": "kun bo‘yi telefon titkilaydi",
+     "color": "grey",
+     "y": 380,
+     "at": 6.342,
+     "size": 60
+    },
+    {
+     "type": "doodle",
+     "kind": "stick",
+     "at": 6.829,
+     "x": 330,
+     "y": 900,
+     "text": "keyin qilaman..."
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 6.829,
+     "x": 800,
+     "y": 820,
+     "img": "emoji/1f4f1.svg",
+     "s": 1.5
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 8.15,
+     "x": 800,
+     "y": 1060,
+     "img": "emoji/1f634.svg",
+     "s": 1.5
+    },
+    {
+     "type": "text",
+     "text": "Xuddi senga o‘xshab!",
+     "color": "red",
+     "y": 1300,
+     "at": 9.681,
+     "size": 96
+    }
+   ]
+  },
+  {
+   "start": 10.923,
+   "end": 17.791,
+   "items": [
+    {
+     "type": "text",
+     "text": "Ko‘chada deyishadi:",
+     "color": "red",
+     "y": 220,
+     "at": 10.983
+    },
+    {
+     "type": "text",
+     "text": "lazybones",
+     "color": "blue",
+     "y": 400,
+     "at": 11.54,
+     "size": 120
+    },
+    {
+     "type": "text",
+     "text": "couch potato",
+     "color": "blue",
+     "y": 590,
+     "at": 13.418,
+     "size": 110
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 14.983,
+     "x": 420,
+     "y": 1000,
+     "img": "emoji/1f6cb.svg",
+     "s": 1.8
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 15.575,
+     "x": 700,
+     "y": 980,
+     "img": "emoji/1f954.svg",
+     "s": 1.8
+    },
+    {
+     "type": "text",
+     "text": "Hey, couch potato!",
+     "color": "red",
+     "y": 1300,
+     "at": 16.572,
+     "size": 90
+    }
+   ]
+  },
+  {
+   "start": 17.791,
+   "end": 23.163,
+   "items": [
+    {
+     "type": "text",
+     "text": "IELTS Speaking’da:",
+     "color": "red",
+     "y": 220,
+     "at": 17.851,
+     "size": 100
+    },
+    {
+     "type": "doodle",
+     "kind": "cross",
+     "at": 19.608,
+     "x": 540,
+     "y": 820,
+     "text": "lazybones",
+     "s": 1.4
+    },
+    {
+     "type": "text",
+     "text": "Examiner kuladi!",
+     "color": "grey",
+     "y": 500,
+     "at": 20.947,
+     "size": 64
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 21.417,
+     "x": 840,
+     "y": 1080,
+     "img": "emoji/1f602.svg",
+     "s": 1.3
+    },
+    {
+     "type": "text",
+     "text": "Kallang ishlaydimi?!",
+     "color": "red",
+     "y": 1300,
+     "at": 22.112,
+     "size": 96
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 22.112,
+     "x": 900,
+     "y": 1470,
+     "img": "emoji/1f621.svg"
+    }
+   ]
+  },
+  {
+   "start": 23.163,
+   "end": 30.797,
+   "items": [
+    {
+     "type": "text",
+     "text": "Imtihonda shunday de:",
+     "color": "red",
+     "y": 220,
+     "at": 23.223
+    },
+    {
+     "type": "text",
+     "text": "→ procrastinate",
+     "color": "green",
+     "y": 420,
+     "at": 23.85,
+     "size": 100
+    },
+    {
+     "type": "text",
+     "text": "I tend to procrastinate.",
+     "color": "blue",
+     "y": 590,
+     "at": 25.31,
+     "size": 58
+    },
+    {
+     "type": "text",
+     "text": "→ unmotivated",
+     "color": "green",
+     "y": 820,
+     "at": 27.467,
+     "size": 100
+    },
+    {
+     "type": "text",
+     "text": "Many students feel unmotivated.",
+     "color": "blue",
+     "y": 990,
+     "at": 28.789,
+     "size": 54
+    }
+   ]
+  },
+  {
+   "start": 30.797,
+   "end": 38.082,
+   "items": [
+    {
+     "type": "text",
+     "text": "Ey ahmoq bola, eslab qol!",
+     "color": "red",
+     "y": 220,
+     "at": 30.857,
+     "size": 88
+    },
+    {
+     "type": "text",
+     "text": "Ko‘chada:",
+     "color": "grey",
+     "y": 440,
+     "at": 32.63,
+     "size": 64
+    },
+    {
+     "type": "text",
+     "text": "lazybones, couch potato",
+     "color": "blue",
+     "y": 560,
+     "at": 33.291,
+     "size": 80
+    },
+    {
+     "type": "text",
+     "text": "Imtihonda:",
+     "color": "grey",
+     "y": 780,
+     "at": 35.309,
+     "size": 64
+    },
+    {
+     "type": "text",
+     "text": "procrastinate, unmotivated ✓",
+     "color": "green",
+     "y": 900,
+     "at": 36.167,
+     "size": 74
+    }
+   ]
+  },
+  {
+   "start": 38.082,
+   "end": 45.228,
+   "items": [
+    {
+     "type": "text",
+     "text": "Ishyoqmaslikni tashla!",
+     "color": "red",
+     "y": 220,
+     "at": 38.142
+    },
+    {
+     "type": "text",
+     "text": "goprep.gg → Speaking",
+     "color": "blue",
+     "y": 372,
+     "at": 39.637,
+     "size": 76
+    },
+    {
+     "type": "doodle",
+     "kind": "screen",
+     "at": 40.724,
+     "x": 540,
+     "y": 900,
+     "text": "speaking",
+     "img": "logos/preppy_angry_clean.png",
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Har kuni 10 daqiqa!",
+     "color": "green",
+     "y": 1330,
+     "at": 41.55,
+     "size": 90
+    }
+   ]
+  },
+  {
+   "start": 45.228,
+   "end": 51.122,
+   "items": [
+    {
+     "type": "text",
+     "text": "Zerikib qoldingmi?",
+     "color": "red",
+     "y": 220,
+     "at": 45.288
+    },
+    {
+     "type": "text",
+     "text": "goprep.gg → IELTS Runner",
+     "color": "blue",
+     "y": 372,
+     "at": 46.331,
+     "size": 70
+    },
+    {
+     "type": "doodle",
+     "kind": "screen",
+     "at": 46.331,
+     "x": 540,
+     "y": 900,
+     "text": "game",
+     "img": "logos/runner_tile.png",
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Kallang ishlasa — kir!",
+     "color": "red",
+     "y": 1330,
+     "at": 49.392,
+     "size": 90
+    }
+   ]
+  },
+  {
+   "start": 51.122,
+   "end": 57.59,
+   "items": [
+    {
+     "type": "text",
+     "text": "Keyingi so‘z qaysi? 👇",
+     "color": "red",
+     "y": 220,
+     "at": 51.182,
+     "size": 96
+    },
+    {
+     "type": "text",
+     "text": "Kommentda yoz!",
+     "color": "blue",
+     "y": 372,
+     "at": 52.573
+    },
+    {
+     "type": "text",
+     "text": "Saqlab qo‘y, o‘rtog‘ingga tashla!",
+     "color": "grey",
+     "y": 520,
+     "at": 53.547,
+     "size": 54
+    },
+    {
+     "type": "doodle",
+     "kind": "img",
+     "at": 55.352000000000004,
+     "x": 540,
+     "y": 900,
+     "img": "logos/goprep.svg"
+    },
+    {
+     "type": "doodle",
+     "kind": "big",
+     "at": 55.702,
+     "x": 540,
+     "y": 1200,
+     "text": "goprep.gg",
+     "s": 0.9
+    }
+   ]
+  }
+ ],
+ "punches": [
+  0.1,
+  3.787,
+  9.681,
+  16.572,
+  22.112,
+  30.857,
+  38.142,
+  49.392,
+  52.573
+ ],
+ "env": [],
+ "end": 57.59
+}
