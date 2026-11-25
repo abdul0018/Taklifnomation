@@ -1,0 +1,393 @@
+{
+ "voice": "vo.wav",
+ "sfx": "sfx.wav",
+ "brand": "GOPREP.GG",
+ "mascot": "logos/preppy_angry_clean.png",
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 6.981,
+   "items": [
+    {
+     "type": "text",
+     "text": "Hali ham “very good”?!",
+     "color": "red",
+     "y": 220,
+     "at": 0.2,
+     "size": 96
+    },
+    {
+     "type": "doodle",
+     "kind": "paper",
+     "at": 1.48,
+     "x": 560,
+     "y": 800,
+     "times": [
+      1.88,
+      2.04,
+      2.2
+     ]
+    },
+    {
+     "type": "text",
+     "text": "Kalla yo‘qmi?!",
+     "color": "red",
+     "y": 1290,
+     "at": 3.2,
+     "size": 100
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 3.2,
+     "x": 880,
+     "y": 1330,
+     "img": "emoji/1f621.svg"
+    },
+    {
+     "type": "text",
+     "text": "Examiner ballingni kesadi!",
+     "color": "blue",
+     "y": 372,
+     "at": 4.44,
+     "size": 66
+    }
+   ]
+  },
+  {
+   "start": 6.981,
+   "end": 10.485,
+   "items": [
+    {
+     "type": "text",
+     "text": "5 ta so‘z — ISHLATMA!",
+     "color": "red",
+     "y": 220,
+     "at": 7.231,
+     "size": 96
+    },
+    {
+     "type": "doodle",
+     "kind": "big",
+     "at": 7.671,
+     "x": 540,
+     "y": 820,
+     "text": "5",
+     "s": 2.2
+    },
+    {
+     "type": "text",
+     "text": "Bugundan boshlab!",
+     "color": "blue",
+     "y": 372,
+     "at": 8.591
+    }
+   ]
+  },
+  {
+   "start": 10.485,
+   "end": 16.235,
+   "items": [
+    {
+     "type": "text",
+     "text": "1. very good",
+     "color": "red",
+     "y": 220,
+     "at": 10.735
+    },
+    {
+     "type": "doodle",
+     "kind": "cross",
+     "at": 12.355,
+     "x": 540,
+     "y": 820,
+     "text": "very good",
+     "s": 1.25
+    },
+    {
+     "type": "text",
+     "text": "→ Excellent",
+     "color": "green",
+     "y": 1090,
+     "at": 13.855,
+     "size": 104
+    },
+    {
+     "type": "text",
+     "text": "Juda oddiy — ball bermaydi",
+     "color": "grey",
+     "y": 500,
+     "at": 13.455
+    },
+    {
+     "type": "text",
+     "text": "Tushundingmi?!",
+     "color": "red",
+     "y": 1330,
+     "at": 15.135,
+     "size": 100
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 15.135,
+     "x": 880,
+     "y": 1360,
+     "img": "emoji/1f621.svg"
+    }
+   ]
+  },
+  {
+   "start": 16.235,
+   "end": 22.691,
+   "items": [
+    {
+     "type": "text",
+     "text": "2. a lot of",
+     "color": "red",
+     "y": 220,
+     "at": 16.485
+    },
+    {
+     "type": "doodle",
+     "kind": "cross",
+     "at": 18.105,
+     "x": 540,
+     "y": 820,
+     "text": "a lot of",
+     "s": 1.25
+    },
+    {
+     "type": "text",
+     "text": "→ A significant number of",
+     "color": "green",
+     "y": 1090,
+     "at": 20.064999999999998,
+     "size": 76
+    },
+    {
+     "type": "text",
+     "text": "Bu og‘zaki gap!",
+     "color": "grey",
+     "y": 500,
+     "at": 18.685
+    }
+   ]
+  },
+  {
+   "start": 22.691,
+   "end": 28.755,
+   "items": [
+    {
+     "type": "text",
+     "text": "3. kids",
+     "color": "red",
+     "y": 220,
+     "at": 22.941
+    },
+    {
+     "type": "doodle",
+     "kind": "cross",
+     "at": 24.201,
+     "x": 540,
+     "y": 820,
+     "text": "kids",
+     "s": 1.25
+    },
+    {
+     "type": "text",
+     "text": "→ children",
+     "color": "green",
+     "y": 1090,
+     "at": 25.901,
+     "size": 104
+    },
+    {
+     "type": "text",
+     "text": "Kids — ko‘cha gapi!",
+     "color": "grey",
+     "y": 500,
+     "at": 24.941
+    }
+   ]
+  },
+  {
+   "start": 28.755,
+   "end": 36.099,
+   "items": [
+    {
+     "type": "text",
+     "text": "4. I think",
+     "color": "red",
+     "y": 220,
+     "at": 29.005
+    },
+    {
+     "type": "doodle",
+     "kind": "cross",
+     "at": 30.485,
+     "x": 540,
+     "y": 820,
+     "text": "I think",
+     "s": 1.25
+    },
+    {
+     "type": "text",
+     "text": "→ It can be argued that",
+     "color": "green",
+     "y": 1090,
+     "at": 33.565,
+     "size": 76
+    },
+    {
+     "type": "text",
+     "text": "Har gapda “I think” deyaverma!",
+     "color": "grey",
+     "y": 500,
+     "at": 31.085
+    }
+   ]
+  },
+  {
+   "start": 36.099,
+   "end": 42.869,
+   "items": [
+    {
+     "type": "text",
+     "text": "5. gonna / wanna",
+     "color": "red",
+     "y": 220,
+     "at": 36.349
+    },
+    {
+     "type": "doodle",
+     "kind": "cross",
+     "at": 38.109,
+     "x": 540,
+     "y": 820,
+     "text": "gonna",
+     "s": 1.25
+    },
+    {
+     "type": "text",
+     "text": "→ going to / want to",
+     "color": "green",
+     "y": 1090,
+     "at": 39.989,
+     "size": 76
+    },
+    {
+     "type": "text",
+     "text": "Writing’da yozsang — ball yo‘q!",
+     "color": "grey",
+     "y": 500,
+     "at": 38.989
+    },
+    {
+     "type": "text",
+     "text": "Uxlab o‘tirma!",
+     "color": "red",
+     "y": 1330,
+     "at": 41.549,
+     "size": 100
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 41.549,
+     "x": 880,
+     "y": 1360,
+     "img": "emoji/1f621.svg"
+    }
+   ]
+  },
+  {
+   "start": 42.869,
+   "end": 50.918,
+   "items": [
+    {
+     "type": "text",
+     "text": "Xatongni kim topadi?",
+     "color": "red",
+     "y": 220,
+     "at": 43.119
+    },
+    {
+     "type": "doodle",
+     "kind": "laptop",
+     "at": 44.599,
+     "x": 540,
+     "y": 820,
+     "text": "GOPREP.GG"
+    },
+    {
+     "type": "text",
+     "text": "AI har bir so‘zni tekshiradi",
+     "color": "blue",
+     "y": 372,
+     "at": 46.639,
+     "size": 62
+    },
+    {
+     "type": "text",
+     "text": "+ yaxshirog‘ini taklif qiladi",
+     "color": "green",
+     "y": 1220,
+     "at": 48.959,
+     "size": 70
+    }
+   ]
+  },
+  {
+   "start": 50.918,
+   "end": 56.68,
+   "items": [
+    {
+     "type": "text",
+     "text": "Saqlab qo‘y!",
+     "color": "red",
+     "y": 220,
+     "at": 51.168,
+     "size": 110
+    },
+    {
+     "type": "text",
+     "text": "Do‘stingga yubor!",
+     "color": "blue",
+     "y": 372,
+     "at": 52.168
+    },
+    {
+     "type": "doodle",
+     "kind": "img",
+     "at": 53.358000000000004,
+     "x": 540,
+     "y": 800,
+     "img": "logos/goprep.svg"
+    },
+    {
+     "type": "doodle",
+     "kind": "big",
+     "at": 53.808,
+     "x": 540,
+     "y": 1100,
+     "text": "goprep.gg",
+     "s": 0.9
+    }
+   ]
+  }
+ ],
+ "punches": [
+  3.2,
+  7.231,
+  13.055,
+  15.135,
+  25.261,
+  32.605,
+  40.189,
+  41.549,
+  51.168
+ ],
+ "env": [],
+ "end": 56.68
+}

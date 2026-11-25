@@ -100,13 +100,13 @@ const Doodle: React.FC<{d: Extract<BoardItem, {type: 'doodle'}>}> = ({d}) => {
     }
     case 'cross': // word with a red X slashed over it
       return box(420, 200, <svg width="100%" height="100%" viewBox="0 0 420 200" style={{overflow: 'visible'}}>
-        <text x={210} y={140} textAnchor="middle" fontFamily={HAND} fontSize={140} fill={COL.ink} opacity={Math.min(1, pop)}>{d.text}</text>
+        <text x={210} y={140} textAnchor="middle" fontFamily={HAND} fontSize={140} fill={COL.ink} opacity={Math.min(1, pop)} {...((d.text ?? '').length > 5 ? {textLength: 380, lengthAdjust: 'spacingAndGlyphs'} : {})}>{d.text}</text>
         <path d="M30 20 L390 180" {...ink(COL.red, 12)} {...draw((f - a - 8) / 8)} />
         <path d="M390 20 L30 180" {...ink(COL.red, 12)} {...draw((f - a - 14) / 8)} />
       </svg>);
     case 'circle': // word circled in red
       return box(320, 220, <svg width="100%" height="100%" viewBox="0 0 320 220" style={{overflow: 'visible'}}>
-        <text x={160} y={150} textAnchor="middle" fontFamily={HAND} fontSize={140} fill={COL.ink} opacity={Math.min(1, pop)}>{d.text}</text>
+        <text x={160} y={150} textAnchor="middle" fontFamily={HAND} fontSize={140} fill={COL.ink} opacity={Math.min(1, pop)} {...((d.text ?? '').length > 4 ? {textLength: 270, lengthAdjust: 'spacingAndGlyphs'} : {})}>{d.text}</text>
         <path d="M170 18 C 300 14, 316 196, 150 204 C 10 206, 6 22, 190 26" {...ink(COL.red, 8)} {...draw((f - a - 6) / 14)} />
       </svg>);
     case 'laptop':

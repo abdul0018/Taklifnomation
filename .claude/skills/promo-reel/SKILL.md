@@ -782,3 +782,7 @@ Used to remake a paper-collage IELTS explainer ("3 ta sir": Reading qat'iy so'zl
   - To re-time an existing board to a new voice: align old and new word lists with difflib, then map every item `at` / `times` / punch through a piecewise-linear old→new time map per scene.
   - Example: `examples/angry-board-3sir-adizzbek.props.json`.
   - Whisper-medium transcribes this voice's Uzbek badly. Don't use it to judge quality.
+- **Second idea in this style:** "Writing'da bu 5 so'zni ishlatma!" (very good → Excellent, a lot of → A significant number of, kids → children, I think → It can be argued that, gonna/wanna → going to/want to), ending on Goprep's AI check and a CTA.
+  - Per-word scene: red title "N. word" at y 220; grey note at 500; `cross` doodle of the bad word at about 820 (`s 1.25`); a green "→ better word" line at 1090; an optional angry punch line plus 😡 at 1330.
+  - Long words now auto-fit inside the cross and circle doodles (`textLength`).
+  - Example: `examples/angry-board-writing-5-words.props.json` + `.script.txt` (Adizzbek voice, 57 s).
