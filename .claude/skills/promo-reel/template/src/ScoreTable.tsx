@@ -114,7 +114,7 @@ export type ScoreTableProps = {video: string; rows: Row[]; top?: number; voice?:
   clean?: boolean; overlayOnly?: boolean; highlight?: boolean; enter?: 'up' | 'left'; scale?: number;
   /** theme 'board': one dark scoreboard panel (leaf corners: big radius top-left/bottom-right, small on the others), Oswald caps,
    *  yellow row numbers, white logo slots; rows wipe in one by one and the named row gets a yellow bar + yellow label. title: header text. */
-  theme?: 'mint' | 'board' | 'notebook'; title?: string; titleAccent?: string;
+  theme?: 'mint' | 'board' | 'notebook' | 'cork'; title?: string; titleAccent?: string;
   /** notebook: ruled-paper page with a red margin, navy handwriting (Architects Daughter caps title + Patrick Hand rows), hand-drawn
    *  underlines, a cloud badge (`titleAccent`) and wobbly pen boxes for the logos. subtitle: second title line. */
   subtitle?: string};
@@ -313,6 +313,107 @@ const NoteRow: React.FC<{row: Row; i: number; next?: Row}> = ({row, i, next}) =>
   );
 };
 
+
+/* ------------------------------------------------------------------ theme: cork (craft study-board reference) */
+
+const CW = 960; const CROW = 150; const CHEAD = 120;
+const CPAPER = ['#8EC1EC', '#F6D55C', '#A8D08D', '#F08A7E'];
+const CENV = ['#6FA8DC', '#F1C232', '#93C47D', '#E06666'];
+const CPIN = ['#E5493F', '#2F7FD8', '#F3B11B', '#3FA34D'];
+const CREAM = '#FFF8E6';
+const CPin: React.FC<{c: string; x: number; y: number; r?: number; s?: number}> = ({c, x, y, r = 10, s = 1}) => (
+  <div style={{position: 'absolute', left: x - r, top: y - r, width: 2 * r, height: 2 * r, borderRadius: r, transform: `scale(${s})`,
+    background: `radial-gradient(circle at 35% 30%, #FFFFFF 0, ${c} 32%, ${c} 70%, rgba(0,0,0,.25) 100%)`, boxShadow: 'inset 0 0 0 1.5px rgba(0,0,0,.25)'}} />
+);
+const CStar: React.FC<{c: string; x: number; y: number; s?: number; rot?: number}> = ({c, x, y, s = 24, rot = 0}) => (
+  <svg width={s} height={s} viewBox="0 0 24 24" style={{position: 'absolute', left: x - s / 2, top: y - s / 2, transform: `rotate(${rot}deg)`}}>
+    <path d="M12 1.8l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9l7.1-.6z" fill={c} stroke="rgba(0,0,0,.22)" strokeWidth={0.8} strokeLinejoin="round" />
+  </svg>
+);
+
+const CorkRow: React.FC<{row: Row; i: number; next?: Row}> = ({row, i, next}) => {
+  const {f, fps, s} = useT();
+  const t0 = 8 + i * 5;
+  const drop = spring({frame: f - t0, fps, config: {damping: 12, stiffness: 140}});
+  const a = s(row.at); const until = next ? s(next.at) : 100000;
+  const on = f >= a && f < until;
+  const pinP = f >= a ? spring({frame: f - a, fps, config: {damping: 9, stiffness: 300, mass: 0.5}}) : 0;
+  const swing = f >= a ? Math.sin((f - a) / 2.6) * 4 * Math.exp(-(f - a) / 10) : 0;
+  const r = row.resource; const ra = s(r.at);
+  const up = f >= ra ? spring({frame: f - ra, fps, config: {damping: 10, stiffness: 220, mass: 0.6}}) : 0;
+  const tick = f >= ra ? spring({frame: f - ra - 6, fps, config: {damping: 9, stiffness: 280, mass: 0.5}}) : 0;
+  const Skill = SKILL_ICONS[row.skill];
+  const Tile = r.tile ? RESOURCE_TILES[r.tile] : null;
+  const rot = [-0.8, 0.6, -0.5, 0.9][i % 4];
+  const name = r.caption ?? r.text ?? '';
+  return (
+    <div style={{position: 'absolute', left: 34, top: CHEAD + i * CROW, width: CW - 68, height: CROW - 16,
+      transform: `translateY(${(1 - drop) * -180}px) rotate(${rot + swing}deg)`, opacity: Math.min(1, drop * 2), transformOrigin: '50% 0'}}>
+      {/* coloured paper strip */}
+      <div style={{position: 'absolute', inset: 0, borderRadius: 6, background: CPAPER[i % 4], boxShadow: 'inset 0 0 0 2px rgba(0,0,0,.12)', filter: on ? undefined : 'saturate(.8)'}} />
+      {/* cream label tag with skill icon */}
+      <div style={{position: 'absolute', left: 18, top: 16, width: 440, height: CROW - 48, background: CREAM, borderRadius: 4, boxShadow: `inset 0 0 0 ${on ? 3 : 1.5}px ${on ? '#C0392B' : 'rgba(80,60,30,.25)'}`,
+        display: 'flex', alignItems: 'center', gap: 14, paddingLeft: 16, boxSizing: 'border-box', transform: `rotate(${-rot * 0.6}deg) scale(${1 + 0.04 * Math.sin(Math.min(1, pinP) * Math.PI)})`}}>
+        <div style={{width: 72, height: 72}}>{Skill ? <Skill /> : null}</div>
+        <div style={{fontFamily: HAND, fontSize: 56, lineHeight: 1, color: '#2B2622', WebkitTextStroke: '1px #2B2622', whiteSpace: 'nowrap'}}>{row.label}</div>
+        <CPin c={CPIN[(i + 1) % 4]} x={14} y={12} r={9} s={0.6 + 0.4 * Math.min(1, pinP)} />
+        <CPin c={CPIN[(i + 2) % 4]} x={426} y={12} r={9} s={0.6 + 0.4 * Math.min(1, pinP)} />
+      </div>
+      {/* 8+ sticky note */}
+      <div style={{position: 'absolute', left: 482, top: 22, width: 104, height: 92, background: '#FFE066', boxShadow: 'inset 0 0 0 1.5px rgba(120,90,0,.3)', transform: `rotate(${i % 2 ? 4 : -4}deg)`,
+        display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: HAND, fontSize: 52, color: '#C0392B', WebkitTextStroke: '1px #C0392B'}}>{row.badge ?? '8+'}</div>
+      {/* envelope pocket with the resource sliding out */}
+      <div style={{position: 'absolute', left: 612, top: -6, width: 262, height: CROW - 4, overflow: 'visible'}}>
+        <div style={{position: 'absolute', left: 22, right: 22, top: 14, bottom: 40, background: '#FFFFFF', borderRadius: 4, boxShadow: 'inset 0 0 0 1.5px rgba(0,0,0,.15)',
+          transform: `translateY(${(1 - up) * 70 - 8 * up}px)`, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: up > 0 ? 1 : 0}}>
+          {Tile ? <Tile /> : r.img ? <Img src={staticFile(r.img)} style={{maxHeight: (r.imgH ?? 64) * 0.85, maxWidth: 190, width: 'auto', height: 'auto'}} /> : <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 34, color: INK}}>{r.text}</div>}
+        </div>
+        <svg width={262} height={92} viewBox="0 0 262 92" style={{position: 'absolute', left: 0, bottom: 0}}>
+          <path d="M4 4 L131 52 L258 4 L258 88 L4 88 Z" fill={CENV[i % 4]} stroke="rgba(0,0,0,.25)" strokeWidth={2} strokeLinejoin="round" />
+          <path d="M4 4 L131 52 L258 4" fill="none" stroke="rgba(0,0,0,.18)" strokeWidth={2} />
+        </svg>
+        <div style={{position: 'absolute', left: 40, right: 40, bottom: 8, height: 36, background: CREAM, borderRadius: 3, boxShadow: 'inset 0 0 0 1.5px rgba(80,60,30,.25)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: HAND, fontSize: 28, color: '#2B2622', whiteSpace: 'nowrap', overflow: 'hidden'}}>
+          <span style={{clipPath: `inset(-20% ${(1 - Math.min(1, up)) * 100}% -30% 0)`}}>{name}</span>
+        </div>
+        {tick > 0.01 && <div style={{position: 'absolute', right: -14, top: -10, width: 54, height: 54, background: '#FFE066', boxShadow: 'inset 0 0 0 1.5px rgba(120,90,0,.3)',
+          transform: `scale(${interpolate(tick, [0, 1], [1.8, 1])}) rotate(8deg)`, opacity: Math.min(1, tick * 2), display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <svg width={34} height={30}><path d="M4 16 L13 25 L30 5" fill="none" stroke="#2E7D32" strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </div>}
+      </div>
+    </div>
+  );
+};
+
+const CorkBoardTable: React.FC<{rows: Row[]; title?: string}> = ({rows, title}) => {
+  const {f, fps} = useT();
+  const p = spring({frame: f, fps, config: {damping: 15, stiffness: 140}});
+  const tg = spring({frame: f - 6, fps, config: {damping: 10, stiffness: 220, mass: 0.6}});
+  const H = CHEAD + rows.length * CROW + 26;
+  return (
+    <div style={{position: 'relative', width: CW, height: H, transform: `translateY(${(1 - p) * 90}px) scale(${0.94 + 0.06 * p})`, opacity: Math.min(1, p * 1.6)}}>
+      <div style={{position: 'absolute', inset: 0, borderRadius: 12, background: 'repeating-linear-gradient(45deg, #3E7CC4 0 6px, #F4F1E8 6px 12px, #9CC3EA 12px 15px, #F4F1E8 15px 21px)', boxShadow: 'inset 0 0 0 1.5px rgba(30,60,110,.45)'}} />
+      <div style={{position: 'absolute', inset: 16, borderRadius: 4, background: '#C69B68', overflow: 'hidden', boxShadow: 'inset 0 0 0 1.5px rgba(90,60,30,.35)'}}>
+        <svg width="100%" height="100%" style={{position: 'absolute', inset: 0}}>
+          <filter id="corkT"><feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="3" seed={3} /><feColorMatrix values="0 0 0 0 0.36  0 0 0 0 0.22  0 0 0 0 0.1  0 0 0 1.25 -0.45" /></filter>
+          <rect width="100%" height="100%" filter="url(#corkT)" />
+        </svg>
+      </div>
+      {/* header tag */}
+      {title && <div style={{position: 'absolute', left: '50%', top: 30, transform: `translateX(-50%) rotate(-1.5deg) scale(${tg})`, padding: '10px 42px', background: '#F6D55C', borderRadius: 4,
+        boxShadow: 'inset 0 0 0 2px rgba(150,110,10,.35)', fontFamily: HAND, fontSize: 54, lineHeight: 1.05, color: '#2B2622', WebkitTextStroke: '1.2px #2B2622', whiteSpace: 'nowrap'}}>
+        {title}
+        <CPin c="#E5493F" x={18} y={14} r={10} />
+        <div style={{position: 'absolute', right: 8, top: 4, width: 20, height: 20}}><CPin c="#2F7FD8" x={10} y={10} r={10} /></div>
+      </div>}
+      <CStar c="#3E7CC4" x={70} y={60} s={26} rot={12} />
+      <CStar c="#E5493F" x={CW - 70} y={58} s={24} rot={-10} />
+      <CStar c="#F3B11B" x={CW - 104} y={86} s={16} rot={20} />
+      {rows.map((r, i) => <CorkRow key={i} row={r} i={i} next={rows[i + 1]} />)}
+    </div>
+  );
+};
+
 const NoteBoard: React.FC<{rows: Row[]; title?: string; subtitle?: string; badge?: string}> = ({rows, title, subtitle, badge}) => {
   const {f, fps} = useT();
   const p = spring({frame: f, fps, config: {damping: 16, stiffness: 140}});
@@ -366,9 +467,9 @@ export const ScoreTableReel: React.FC<ScoreTableProps> = (p) => {
     <AbsoluteFill style={{background: p.overlayOnly ? 'transparent' : '#000'}}>
       {/* untouched footage */}
       {!p.overlayOnly && <OffthreadVideo src={src(p.video)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} toneMapped={false} />}
-      <div style={{position: 'absolute', top: p.top ?? 1010, left: (1080 - (p.theme === 'board' ? BW : p.theme === 'notebook' ? NW : W)) / 2, width: p.theme === 'board' ? BW : p.theme === 'notebook' ? NW : W, display: 'flex', flexDirection: 'column', gap: GAP,
+      <div style={{position: 'absolute', top: p.top ?? 1010, left: (1080 - (p.theme === 'cork' ? CW : p.theme === 'board' ? BW : p.theme === 'notebook' ? NW : W)) / 2, width: p.theme === 'cork' ? CW : p.theme === 'board' ? BW : p.theme === 'notebook' ? NW : W, display: 'flex', flexDirection: 'column', gap: GAP,
         transform: p.scale && p.scale !== 1 ? `scale(${p.scale})` : undefined, transformOrigin: '50% 0'}}>
-        {p.theme === 'notebook' ? <NoteBoard rows={p.rows} title={p.title} subtitle={p.subtitle} badge={p.titleAccent} /> : p.theme === 'board' ? <Board rows={p.rows} title={p.title} accent={p.titleAccent} /> : p.rows.map((r, i) => <RowView key={i} row={r} i={i} next={p.rows[i + 1]} />)}
+        {p.theme === 'cork' ? <CorkBoardTable rows={p.rows} title={p.title} /> : p.theme === 'notebook' ? <NoteBoard rows={p.rows} title={p.title} subtitle={p.subtitle} badge={p.titleAccent} /> : p.theme === 'board' ? <Board rows={p.rows} title={p.title} accent={p.titleAccent} /> : p.rows.map((r, i) => <RowView key={i} row={r} i={i} next={p.rows[i + 1]} />)}
       </div>
       {p.voice && <Audio src={src(p.voice)} volume={p.voiceVolume ?? 1} />}
       {p.music && <Audio src={staticFile(p.music)} volume={p.musicVolume ?? 0.5} />}

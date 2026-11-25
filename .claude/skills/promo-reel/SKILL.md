@@ -417,6 +417,12 @@ Examples: `examples/ielts-ladder.props.json` (original icons, music + SFX) and `
   - Its last 2 s (darkened frame + Instagram handle card + music) is an end card. When the user says "only the sound effect and the board", skip it (the dimming counts as a filter).
   - Example: `examples/ielts-table-bloop-ref.props.json`.
 
+- **`theme: 'cork'`** (reference: the craft study-board pin: cork, washi frame, push pins, coloured papers, envelopes). A cork panel with a blue-striped washi frame, a yellow `title` tag with two push pins, and paper stars.
+  - Each row is a coloured paper strip (blue / yellow / green / red) that drops in. It carries a cream label tag (skill icon + Patrick Hand name) whose pins pop when the skill is named, and a yellow "8+" sticky note.
+  - On the resource, a white card rises out of a matching coloured envelope (it stays inside its row), the cream envelope label writes the name, and a yellow ✓ sticky pops.
+  - Give every resource a `caption`.
+  - Example: `examples/ielts-table-cork-theme.props.json` (`scale 0.9`, `top 1075`, title "IELTS 8+ resurslar"). SFX: click per row, pop + correct per logo.
+
 ## 14. Style J: YOMON / YAXSHI / AJOYIB tiers (`TiersReel`)
 
 Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
