@@ -1,0 +1,431 @@
+{
+ "fast": true,
+ "voice": "vo.wav",
+ "sfx": "sfx.wav",
+ "brand": "GOPREP.GG",
+ "mascot": "logos/preppy_angry_clean.png",
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 4.821,
+   "items": [
+    {
+     "type": "text",
+     "text": "Ey ahmoq bola!",
+     "color": "red",
+     "y": 220,
+     "at": 0.1,
+     "size": 110
+    },
+    {
+     "type": "text",
+     "text": "“Hezalak” inglizchada?",
+     "color": "blue",
+     "y": 380,
+     "at": 1.283,
+     "size": 80
+    },
+    {
+     "type": "doodle",
+     "kind": "stick",
+     "at": 2.257,
+     "x": 780,
+     "y": 880,
+     "text": "?"
+    },
+    {
+     "type": "doodle",
+     "kind": "big",
+     "at": 1.283,
+     "x": 330,
+     "y": 860,
+     "text": "?!",
+     "s": 1.6
+    },
+    {
+     "type": "text",
+     "text": "Kallang ishlaydimi?!",
+     "color": "red",
+     "y": 1300,
+     "at": 3.543,
+     "size": 96
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 3.543,
+     "x": 900,
+     "y": 1470,
+     "img": "emoji/1f621.svg"
+    }
+   ]
+  },
+  {
+   "start": 4.821,
+   "end": 8.906,
+   "items": [
+    {
+     "type": "text",
+     "text": "Hezalak = qo‘rqoq",
+     "color": "red",
+     "y": 220,
+     "at": 4.881,
+     "size": 100
+    },
+    {
+     "type": "text",
+     "text": "yuragi dov bermaydigan odam",
+     "color": "grey",
+     "y": 380,
+     "at": 6.62,
+     "size": 60
+    },
+    {
+     "type": "doodle",
+     "kind": "stick",
+     "at": 5.924,
+     "x": 330,
+     "y": 900,
+     "text": "qo‘rqaman..."
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 7.246,
+     "x": 800,
+     "y": 900,
+     "img": "emoji/1f628.svg",
+     "s": 2.0
+    }
+   ]
+  },
+  {
+   "start": 8.906,
+   "end": 13.965,
+   "items": [
+    {
+     "type": "text",
+     "text": "Ko‘chada deyishadi:",
+     "color": "red",
+     "y": 220,
+     "at": 8.966
+    },
+    {
+     "type": "text",
+     "text": "wimp",
+     "color": "blue",
+     "y": 400,
+     "at": 9.523,
+     "size": 130
+    },
+    {
+     "type": "text",
+     "text": "chicken",
+     "color": "blue",
+     "y": 600,
+     "at": 11.192,
+     "size": 130
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 12.236,
+     "x": 540,
+     "y": 1000,
+     "img": "emoji/1f414.svg",
+     "s": 2.4
+    },
+    {
+     "type": "text",
+     "text": "Hey, chicken!",
+     "color": "red",
+     "y": 1300,
+     "at": 13.001,
+     "size": 100
+    }
+   ]
+  },
+  {
+   "start": 13.965,
+   "end": 18.85,
+   "items": [
+    {
+     "type": "text",
+     "text": "IELTS Speaking’da:",
+     "color": "red",
+     "y": 220,
+     "at": 14.025,
+     "size": 100
+    },
+    {
+     "type": "doodle",
+     "kind": "cross",
+     "at": 15.677,
+     "x": 540,
+     "y": 820,
+     "text": "wimp",
+     "s": 1.4
+    },
+    {
+     "type": "text",
+     "text": "Examiner kuladi!",
+     "color": "grey",
+     "y": 500,
+     "at": 16.686,
+     "size": 64
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 17.103,
+     "x": 840,
+     "y": 1060,
+     "img": "emoji/1f602.svg",
+     "s": 1.3
+    },
+    {
+     "type": "text",
+     "text": "Kallang ishlaydimi?!",
+     "color": "red",
+     "y": 1300,
+     "at": 17.706,
+     "size": 96
+    },
+    {
+     "type": "doodle",
+     "kind": "emoji",
+     "at": 17.706,
+     "x": 900,
+     "y": 1470,
+     "img": "emoji/1f621.svg"
+    }
+   ]
+  },
+  {
+   "start": 18.85,
+   "end": 25.579,
+   "items": [
+    {
+     "type": "text",
+     "text": "Imtihonda shunday de:",
+     "color": "red",
+     "y": 220,
+     "at": 18.91
+    },
+    {
+     "type": "text",
+     "text": "→ coward",
+     "color": "green",
+     "y": 420,
+     "at": 19.502,
+     "size": 110
+    },
+    {
+     "type": "text",
+     "text": "He was too cowardly to say no.",
+     "color": "blue",
+     "y": 590,
+     "at": 20.51,
+     "size": 58
+    },
+    {
+     "type": "text",
+     "text": "→ timid",
+     "color": "green",
+     "y": 820,
+     "at": 23.693,
+     "size": 110
+    },
+    {
+     "type": "text",
+     "text": "She is a bit timid.",
+     "color": "blue",
+     "y": 990,
+     "at": 24.441,
+     "size": 58
+    }
+   ]
+  },
+  {
+   "start": 25.579,
+   "end": 31.473,
+   "items": [
+    {
+     "type": "text",
+     "text": "Ey ahmoq bola, eslab qol!",
+     "color": "red",
+     "y": 220,
+     "at": 25.639,
+     "size": 88
+    },
+    {
+     "type": "text",
+     "text": "Ko‘chada:",
+     "color": "grey",
+     "y": 440,
+     "at": 27.552,
+     "size": 64
+    },
+    {
+     "type": "text",
+     "text": "wimp, chicken",
+     "color": "blue",
+     "y": 560,
+     "at": 28.19,
+     "size": 96
+    },
+    {
+     "type": "text",
+     "text": "Imtihonda:",
+     "color": "grey",
+     "y": 780,
+     "at": 29.465,
+     "size": 64
+    },
+    {
+     "type": "text",
+     "text": "coward, timid ✓",
+     "color": "green",
+     "y": 900,
+     "at": 30.23,
+     "size": 110
+    }
+   ]
+  },
+  {
+   "start": 31.473,
+   "end": 37.576,
+   "items": [
+    {
+     "type": "text",
+     "text": "Gapirib mashq qil!",
+     "color": "red",
+     "y": 220,
+     "at": 31.533
+    },
+    {
+     "type": "text",
+     "text": "goprep.gg → Speaking",
+     "color": "blue",
+     "y": 372,
+     "at": 32.437,
+     "size": 76
+    },
+    {
+     "type": "doodle",
+     "kind": "screen",
+     "at": 33.559,
+     "x": 540,
+     "y": 900,
+     "text": "speaking",
+     "img": "logos/preppy_angry_clean.png",
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Xato so‘zni darrov aytadi!",
+     "color": "green",
+     "y": 1330,
+     "at": 35.359,
+     "size": 76
+    }
+   ]
+  },
+  {
+   "start": 37.576,
+   "end": 44.026,
+   "items": [
+    {
+     "type": "text",
+     "text": "Yangi so‘zlar?",
+     "color": "red",
+     "y": 220,
+     "at": 37.636
+    },
+    {
+     "type": "text",
+     "text": "goprep.gg → IELTS Runner",
+     "color": "blue",
+     "y": 372,
+     "at": 38.783,
+     "size": 70
+    },
+    {
+     "type": "doodle",
+     "kind": "screen",
+     "at": 38.783,
+     "x": 540,
+     "y": 900,
+     "text": "game",
+     "img": "logos/runner_tile.png",
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Kallang ishlasa — kir!",
+     "color": "red",
+     "y": 1330,
+     "at": 42.088,
+     "size": 90
+    }
+   ]
+  },
+  {
+   "start": 44.026,
+   "end": 50.56,
+   "items": [
+    {
+     "type": "text",
+     "text": "Keyingi so‘z qaysi? 👇",
+     "color": "red",
+     "y": 220,
+     "at": 44.086,
+     "size": 96
+    },
+    {
+     "type": "text",
+     "text": "Kommentda yoz!",
+     "color": "blue",
+     "y": 372,
+     "at": 45.477
+    },
+    {
+     "type": "text",
+     "text": "Saqlab qo‘y, o‘rtog‘ingga tashla!",
+     "color": "grey",
+     "y": 520,
+     "at": 46.382,
+     "size": 54
+    },
+    {
+     "type": "doodle",
+     "kind": "img",
+     "at": 48.21,
+     "x": 540,
+     "y": 900,
+     "img": "logos/goprep.svg"
+    },
+    {
+     "type": "doodle",
+     "kind": "big",
+     "at": 48.559999999999995,
+     "x": 540,
+     "y": 1200,
+     "text": "goprep.gg",
+     "s": 0.9
+    }
+   ]
+  }
+ ],
+ "punches": [
+  0.1,
+  3.543,
+  13.001,
+  17.706,
+  25.639,
+  42.088,
+  45.477
+ ],
+ "env": [],
+ "end": 50.56
+}

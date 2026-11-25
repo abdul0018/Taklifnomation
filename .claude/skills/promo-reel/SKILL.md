@@ -807,3 +807,11 @@ Used to remake a paper-collage IELTS explainer ("3 ta sir": Reading qat'iy so'zl
 - **Fast-motion / fast-read version (user preference):** `fast: true` on `AngryBoardReel` writes lines about 2× faster and draws doodles in 10 frames. Scenes hard-cut with a punch-in zoom (1.14 → 1), and the camera kicks and jitters on punches.
   - Voice: `voice_settings.speed: 1.2` barely changes eleven_v4's length, so time-stretch each line with `rubberband=tempo=1.15` (pitch kept) and divide the word timings by 1.15.
   - Scene gap 0.12 s, a shorter whoosh, a faster scribble rhythm. The 76 s cut becomes 63 s.
+- **Spliced "IELTS" (verified):** `tools/angry_vo.py` builds each scene from `(lang, text)` parts.
+  - Uzbek parts use `uz`; the word "IELTS" alone uses `en`, with `previous_text`/`next_text` for prosody. Each part is trimmed to speech (−30 ms / +50 ms) and joined with 40 ms gaps.
+  - Whisper large-v3 then hears "Lekin IELTS Speaking'da…" correctly in both uz and en. Use this whenever the user wants IELTS spoken.
+- **"How to say an Uzbek word in English" format (user idea: "Hezalak"):**
+  - Open on "Ey ahmoq bola!" + "Hezalak inglizchada?". Sprinkle "Kallang ishlaydimi?!" between lines (the user asked for it).
+  - Then the meaning, the street words (wimp, chicken 🐔) and "IELTS Speaking'da" with the slang crossed out (+ a wrong buzzer).
+  - Then the exam words with example sentences (coward, timid), an "eslab qol" recap, the Goprep Speaking + Runner screens and a "Keyingi so'z qaysi bo'lsin?" comment CTA.
+  - Fast mode, 51 s. Example: `examples/angry-board-hezalak.props.json` + `.script.txt`.
