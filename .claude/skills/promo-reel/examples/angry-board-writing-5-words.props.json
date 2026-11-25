@@ -6,99 +6,62 @@
  "scenes": [
   {
    "start": 0.0,
-   "end": 8.261,
+   "end": 8.973,
    "items": [
     {
+     "type": "doodle",
+     "kind": "big",
+     "at": 0.15,
+     "x": 540,
+     "y": 330,
+     "text": "TO‘XTA!",
+     "s": 1.15
+    },
+    {
      "type": "text",
-     "text": "Haliyam “very good”?!",
-     "color": "red",
-     "y": 220,
-     "at": 0.2,
-     "size": 96
+     "text": "5 ta so‘z = IELTS 7 yo‘q!",
+     "color": "blue",
+     "y": 560,
+     "at": 1.91,
+     "size": 74
     },
     {
      "type": "doodle",
      "kind": "paper",
-     "at": 1.32,
+     "at": 4.15,
      "x": 560,
-     "y": 800,
+     "y": 980,
      "times": [
-      1.8,
-      2.24,
-      2.48
+      4.63,
+      5.03,
+      5.19
      ]
     },
     {
      "type": "text",
-     "text": "Kallang ishlayaptimi?!",
+     "text": "5-chisi eng yomoni — oxirigacha ko‘r!",
      "color": "red",
-     "y": 1290,
-     "at": 3.52,
-     "size": 90
-    },
-    {
-     "type": "doodle",
-     "kind": "emoji",
-     "at": 3.52,
-     "x": 920,
-     "y": 1500,
-     "img": "emoji/1f621.svg"
-    },
-    {
-     "type": "text",
-     "text": "Examiner ballingni qirqadi!",
-     "color": "blue",
-     "y": 372,
-     "at": 5.36,
-     "size": 66
+     "y": 1330,
+     "at": 5.91,
+     "size": 60
     }
    ]
   },
   {
-   "start": 8.261,
-   "end": 12.966,
+   "start": 8.973,
+   "end": 14.523,
    "items": [
     {
      "type": "text",
-     "text": "5 ta so‘z — YOZMA!",
+     "text": "1/5 · very good",
      "color": "red",
      "y": 220,
-     "at": 8.511,
-     "size": 100
-    },
-    {
-     "type": "doodle",
-     "kind": "big",
-     "at": 9.231,
-     "x": 540,
-     "y": 820,
-     "text": "5",
-     "s": 2.2
-    },
-    {
-     "type": "text",
-     "text": "Bugundan boshlab, xo‘pmi?!",
-     "color": "blue",
-     "y": 372,
-     "at": 10.431
-    }
-   ]
-  },
-  {
-   "start": 12.966,
-   "end": 18.874,
-   "items": [
-    {
-     "type": "text",
-     "text": "1. very good",
-     "color": "red",
-     "y": 220,
-     "at": 13.216325999999999
+     "at": 9.122653000000001
     },
     {
      "type": "doodle",
      "kind": "cross",
-     "at": 14.756,
+     "at": 10.743,
      "x": 540,
      "y": 820,
      "text": "very good",
@@ -109,7 +72,7 @@
      "text": "→ Excellent",
      "color": "green",
      "y": 1090,
-     "at": 16.256,
+     "at": 12.323,
      "size": 104
     },
     {
@@ -117,41 +80,41 @@
      "text": "Juda oddiy, ball olib bermaydi",
      "color": "grey",
      "y": 500,
-     "at": 14.995999999999999
+     "at": 11.062999999999999
     },
     {
      "type": "text",
      "text": "Tushundingmi?!",
      "color": "red",
      "y": 1330,
-     "at": 17.456,
+     "at": 13.523,
      "size": 100
     },
     {
      "type": "doodle",
      "kind": "emoji",
-     "at": 17.456,
-     "x": 880,
-     "y": 1360,
+     "at": 13.523,
+     "x": 900,
+     "y": 1480,
      "img": "emoji/1f621.svg"
     }
    ]
   },
   {
-   "start": 18.874,
-   "end": 27.08,
+   "start": 14.523,
+   "end": 22.451,
    "items": [
     {
      "type": "text",
-     "text": "2. a lot of",
+     "text": "2/5 · a lot of",
      "color": "red",
      "y": 220,
-     "at": 19.123672999999997
+     "at": 14.673265
     },
     {
      "type": "doodle",
      "kind": "cross",
-     "at": 20.664,
+     "at": 16.293000000000003,
      "x": 540,
      "y": 820,
      "text": "a lot of",
@@ -162,33 +125,71 @@
      "text": "→ A significant number of",
      "color": "green",
      "y": 1090,
-     "at": 24.543999999999997,
+     "at": 20.173,
      "size": 76
     },
     {
      "type": "text",
-     "text": "Gaplashishga, Writing’ga emas!",
+     "text": "Gaplashishga, inshoga emas!",
      "color": "grey",
      "y": 500,
-     "at": 21.244
+     "at": 16.913
     }
    ]
   },
   {
-   "start": 27.08,
-   "end": 34.189,
+   "start": 22.451,
+   "end": 31.424,
    "items": [
     {
      "type": "text",
-     "text": "3. kids",
+     "text": "Qayerdan bilaman?",
      "color": "red",
      "y": 220,
-     "at": 27.329794999999997
+     "at": 22.601
+    },
+    {
+     "type": "text",
+     "text": "goprep.gg → Writing",
+     "color": "blue",
+     "y": 372,
+     "at": 25.241,
+     "size": 76
+    },
+    {
+     "type": "doodle",
+     "kind": "screen",
+     "at": 24.521,
+     "x": 540,
+     "y": 900,
+     "text": "writing",
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "A.I. qizil qilib belgilaydi!",
+     "color": "red",
+     "y": 1330,
+     "at": 29.301,
+     "size": 76
+    }
+   ]
+  },
+  {
+   "start": 31.424,
+   "end": 37.444,
+   "items": [
+    {
+     "type": "text",
+     "text": "3/5 · kids",
+     "color": "red",
+     "y": 220,
+     "at": 31.573673
     },
     {
      "type": "doodle",
      "kind": "cross",
-     "at": 28.777,
+     "at": 32.913999999999994,
      "x": 540,
      "y": 820,
      "text": "kids",
@@ -199,7 +200,7 @@
      "text": "→ children",
      "color": "green",
      "y": 1090,
-     "at": 30.45,
+     "at": 34.534,
      "size": 104
     },
     {
@@ -207,25 +208,25 @@
      "text": "Kids — ko‘chaning so‘zi!",
      "color": "grey",
      "y": 500,
-     "at": 29.41
+     "at": 35.574
     }
    ]
   },
   {
-   "start": 34.189,
-   "end": 42.97,
+   "start": 37.444,
+   "end": 45.294,
    "items": [
     {
      "type": "text",
-     "text": "4. I think",
+     "text": "4/5 · I think",
      "color": "red",
      "y": 220,
-     "at": 34.438775
+     "at": 37.594488999999996
     },
     {
      "type": "doodle",
      "kind": "cross",
-     "at": 36.079,
+     "at": 39.074000000000005,
      "x": 540,
      "y": 820,
      "text": "I think",
@@ -236,7 +237,7 @@
      "text": "→ It can be argued that",
      "color": "green",
      "y": 1090,
-     "at": 40.679,
+     "at": 43.114,
      "size": 76
     },
     {
@@ -244,25 +245,64 @@
      "text": "Har gapingda “I think” — bas qil!",
      "color": "grey",
      "y": 500,
-     "at": 36.759
+     "at": 39.794
     }
    ]
   },
   {
-   "start": 42.97,
-   "end": 50.157,
+   "start": 45.294,
+   "end": 52.987,
    "items": [
     {
      "type": "text",
-     "text": "5. gonna / wanna",
+     "text": "Speaking’da ham shu xato!",
      "color": "red",
      "y": 220,
-     "at": 43.219591
+     "at": 45.444
+    },
+    {
+     "type": "text",
+     "text": "goprep.gg → Speaking",
+     "color": "blue",
+     "y": 372,
+     "at": 47.564,
+     "size": 76
+    },
+    {
+     "type": "doodle",
+     "kind": "screen",
+     "at": 48.964,
+     "x": 540,
+     "y": 900,
+     "text": "speaking",
+     "img": "logos/preppy_angry_clean.png",
+     "s": 1.15
+    },
+    {
+     "type": "text",
+     "text": "Xatoingni aytib beradi!",
+     "color": "green",
+     "y": 1330,
+     "at": 51.284,
+     "size": 80
+    }
+   ]
+  },
+  {
+   "start": 52.987,
+   "end": 60.131,
+   "items": [
+    {
+     "type": "text",
+     "text": "5/5 · gonna / wanna",
+     "color": "red",
+     "y": 220,
+     "at": 53.13652999999999
     },
     {
      "type": "doodle",
      "kind": "cross",
-     "at": 45.14,
+     "at": 55.137,
      "x": 540,
      "y": 820,
      "text": "gonna",
@@ -273,7 +313,7 @@
      "text": "→ going to / want to",
      "color": "green",
      "y": 1090,
-     "at": 47.339999999999996,
+     "at": 57.276999999999994,
      "size": 76
     },
     {
@@ -281,73 +321,75 @@
      "text": "Writing’da yozsang — ball yo‘q!",
      "color": "grey",
      "y": 500,
-     "at": 46.02
+     "at": 56.017
     },
     {
      "type": "text",
      "text": "Uxlab qolma!",
      "color": "red",
      "y": 1330,
-     "at": 48.9,
+     "at": 58.87,
      "size": 100
     },
     {
      "type": "doodle",
      "kind": "emoji",
-     "at": 48.9,
-     "x": 880,
-     "y": 1360,
+     "at": 58.87,
+     "x": 900,
+     "y": 1480,
      "img": "emoji/1f621.svg"
     }
    ]
   },
   {
-   "start": 50.157,
-   "end": 58.468,
+   "start": 60.131,
+   "end": 67.118,
    "items": [
     {
      "type": "text",
-     "text": "Xatoingni kim topadi?",
+     "text": "So‘z yodlash zerikarlimi?",
      "color": "red",
      "y": 220,
-     "at": 50.407
+     "at": 60.281
+    },
+    {
+     "type": "text",
+     "text": "goprep.gg → IELTS Runner",
+     "color": "blue",
+     "y": 372,
+     "at": 62.601,
+     "size": 70
     },
     {
      "type": "doodle",
-     "kind": "laptop",
-     "at": 52.487,
+     "kind": "screen",
+     "at": 62.601,
      "x": 540,
-     "y": 820,
-     "text": "GOPREP.GG"
+     "y": 900,
+     "text": "game",
+     "img": "logos/runner_tile.png",
+     "s": 1.15
     },
     {
      "type": "text",
-     "text": "AI har bir so‘zingni tekshiradi",
-     "color": "blue",
-     "y": 372,
-     "at": 54.487,
-     "size": 60
-    },
-    {
-     "type": "text",
-     "text": "+ yaxshirog‘ini aytib beradi",
+     "text": "O‘ynab yodlaysan!",
      "color": "green",
-     "y": 1220,
-     "at": 56.727,
-     "size": 70
+     "y": 1330,
+     "at": 65.601,
+     "size": 90
     }
    ]
   },
   {
-   "start": 58.468,
-   "end": 64.65,
+   "start": 67.118,
+   "end": 76.11,
    "items": [
     {
      "type": "text",
      "text": "Saqlab qo‘y!",
      "color": "red",
      "y": 220,
-     "at": 58.718,
+     "at": 67.268,
      "size": 110
     },
     {
@@ -355,22 +397,30 @@
      "text": "O‘rtog‘ingga tashla!",
      "color": "blue",
      "y": 372,
-     "at": 59.638
+     "at": 68.228
+    },
+    {
+     "type": "text",
+     "text": "Kommentda yoz: qaysi birini ishlatarding? 👇",
+     "color": "grey",
+     "y": 520,
+     "at": 69.508,
+     "size": 50
     },
     {
      "type": "doodle",
      "kind": "img",
-     "at": 61.308,
+     "at": 72.458,
      "x": 540,
-     "y": 800,
+     "y": 900,
      "img": "logos/goprep.svg"
     },
     {
      "type": "doodle",
      "kind": "big",
-     "at": 61.757999999999996,
+     "at": 72.908,
      "x": 540,
-     "y": 1100,
+     "y": 1200,
      "text": "goprep.gg",
      "s": 0.9
     }
@@ -378,16 +428,17 @@
   }
  ],
  "punches": [
-  3.52,
-  8.511,
-  15.296,
-  17.456,
-  29.73,
-  39.919,
-  47.54,
-  48.9,
-  58.718
+  0.15,
+  5.19,
+  11.363,
+  13.523,
+  22.601,
+  34.174,
+  42.314,
+  57.477,
+  58.87,
+  67.268
  ],
  "env": [],
- "end": 64.65
+ "end": 76.11
 }

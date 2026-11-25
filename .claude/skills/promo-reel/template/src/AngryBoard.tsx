@@ -139,6 +139,40 @@ const Doodle: React.FC<{d: Extract<BoardItem, {type: 'doodle'}>}> = ({d}) => {
             fontFamily: HAND, fontSize: 30, color: COL.ink, transform: `scale(${q})`, transformOrigin: '0 50%'}}>{t}</div>; })}
       </>);
     }
+    case 'screen': { // hand-drawn goprep.gg browser window: mode writing | speaking | game (d.text = mode, d.img = art)
+      const mode = d.text ?? 'writing';
+      const t = (sec: number) => f - a - sec * fps;
+      const chip = (dt: number) => spring({frame: t(dt), fps, config: {damping: 10, stiffness: 260, mass: 0.5}});
+      return box(800, 600, <>
+        <svg width="100%" height="100%" viewBox="0 0 800 600" style={{position: 'absolute', inset: 0, overflow: 'visible'}}>
+          <rect x={8} y={8} width={784} height={584} rx={22} fill="#FFFDF6" opacity={Math.min(1, p * 3)} />
+          <path d="M30 10 L770 10 Q790 10 790 30 L790 570 Q790 590 770 590 L30 590 Q10 590 10 570 L10 30 Q10 10 30 10 Z M10 82 L790 82" {...ink(COL.ink, 6)} {...draw(p * 1.3)} />
+          {[44, 80, 116].map((cx, i) => <circle key={i} cx={cx} cy={46} r={11} fill={['#E5493F', '#F3B11B', '#3FA34D'][i]} opacity={Math.min(1, p * 2)} />)}
+          <rect x={160} y={26} width={480} height={40} rx={20} fill="#F1EADA" stroke={COL.ink} strokeWidth={3} opacity={Math.min(1, p * 2)} />
+          <text x={400} y={56} textAnchor="middle" fontFamily={HAND} fontSize={30} fill={COL.ink} opacity={Math.min(1, p * 2)}>goprep.gg/{mode}</text>
+          {mode === 'writing' && <>
+            {Array.from({length: 7}).map((_, i) => (i === 1 || i === 4) ? null : <path key={i} d={`M60 ${150 + i * 60} L${i % 3 === 2 ? 470 : 600} ${150 + i * 60}`} {...ink('#A9A9A9', 7)} {...draw(p * 2 - 0.3 - i * 0.1)} />)}
+            <text x={70} y={232} fontFamily={HAND} fontSize={44} fill={COL.ink} opacity={chip(0.5)}>very good</text>
+            <path d="M66 244 C 120 238, 180 250, 240 242" {...ink(COL.red, 6)} {...draw(t(0.7) / 8)} />
+            <text x={70} y={412} fontFamily={HAND} fontSize={44} fill={COL.ink} opacity={chip(0.9)}>a lot of</text>
+            <path d="M66 424 C 110 418, 160 430, 210 422" {...ink(COL.red, 6)} {...draw(t(1.1) / 8)} />
+          </>}
+          {mode === 'speaking' && <>
+            <path d="M560 200 Q560 150 610 150 Q660 150 660 200 L660 300 Q660 350 610 350 Q560 350 560 300 Z M530 290 Q530 400 610 400 Q690 400 690 290 M610 400 L610 460 M560 470 L660 470" {...ink(COL.ink, 7)} {...draw(t(0.3) / 16)} />
+            {Array.from({length: 11}).map((_, i) => { const h = 20 + 50 * Math.abs(Math.sin(f / 3 + i * 1.3)); return <rect key={i} x={70 + i * 34} y={510 - h / 2} width={18} height={h} rx={9} fill={COL.red} opacity={chip(0.8)} />; })}
+          </>}
+        </svg>
+        {mode === 'writing' && <>
+          <div style={{position: 'absolute', left: 280 * k, top: 190 * k, padding: `${4 * k}px ${14 * k}px`, background: '#DFF3DF', border: `${3 * k}px solid ${COL.green}`, borderRadius: 10 * k, fontFamily: HAND, fontSize: 36 * k, color: COL.green, transform: `scale(${chip(1.0)})`, transformOrigin: '0 50%', whiteSpace: 'nowrap'}}>→ excellent</div>
+          <div style={{position: 'absolute', left: 250 * k, top: 370 * k, padding: `${4 * k}px ${14 * k}px`, background: '#DFF3DF', border: `${3 * k}px solid ${COL.green}`, borderRadius: 10 * k, fontFamily: HAND, fontSize: 36 * k, color: COL.green, transform: `scale(${chip(1.3)})`, transformOrigin: '0 50%', whiteSpace: 'nowrap'}}>→ a significant number of</div>
+          <div style={{position: 'absolute', left: 600 * k, top: 120 * k, padding: `${4 * k}px ${12 * k}px`, background: '#F3B11B', border: `${3 * k}px solid ${COL.ink}`, borderRadius: 8 * k, fontFamily: HAND, fontSize: 30 * k, color: COL.ink, transform: `scale(${chip(0.6)}) rotate(4deg)`}}>VOCAB</div>
+        </>}
+        {mode === 'speaking' && d.img && <Img src={staticFile(d.img)} style={{position: 'absolute', left: 70 * k, top: 130 * k, width: 400 * k, height: 300 * k, objectFit: 'contain', transform: `scale(${chip(0.2)})`}} />}
+        {mode === 'speaking' && <div style={{position: 'absolute', left: 480 * k, top: 500 * k, padding: `${4 * k}px ${14 * k}px`, background: '#F3B11B', border: `${3 * k}px solid ${COL.ink}`, borderRadius: 8 * k, fontFamily: HAND, fontSize: 34 * k, color: COL.ink, transform: `scale(${chip(1.0)}) rotate(-3deg)`}}>MOCK TEST</div>}
+        {mode === 'game' && d.img && <Img src={staticFile(d.img)} style={{position: 'absolute', left: 250 * k, top: 120 * k, width: 300 * k, height: 300 * k, borderRadius: 40 * k, objectFit: 'cover', transform: `scale(${chip(0.2)}) rotate(${(1 - Math.min(1, chip(0.2))) * -12}deg)`}} />}
+        {mode === 'game' && <div style={{position: 'absolute', left: 0, right: 0, top: 450 * k, textAlign: 'center', fontFamily: HAND, fontSize: 64 * k, color: COL.red, transform: `scale(${chip(0.6)})`}}>IELTS Runner</div>}
+      </>);
+    }
     case 'img':
       return box(300, 300, <Img src={staticFile(d.img!)} style={{width: '100%', height: '100%', objectFit: 'contain'}} />, {transform: `scale(${pop}) rotate(${(1 - Math.min(1, pop)) * -14}deg)`});
     case 'big':

@@ -790,3 +790,17 @@ Used to remake a paper-collage IELTS explainer ("3 ta sir": Reading qat'iy so'zl
   - Use "sen" forms and real street phrasing: "Haliyam … yozib yuribsanmi?!", "Kallang ishlayaptimi o'zi?!", "ballingni qirqib tashlaydi", "Qara, …", "xo'pmi?!", "Bas qil!", "Uxlab qolma!", "O'rtog'ingga ham tashlab qo'y!".
   - Avoid calques like "Bu og'zaki gap", "Kalla yo'qmi", "taklif qiladi" or "Do'stingga yubor".
   - Keep the on-screen lines in the same register.
+- **Pronunciation QA (user rule: every Uzbek and English word must be read correctly):** `tools/elevenlabs.py` has `tts()` (Adizzbek, eleven_v4, uz, with `previous_text` for continuity).
+  - ElevenLabs speech-to-text isn't permitted on this key, so check with local faster-whisper **large-v3**. Medium can't follow this voice's Uzbek.
+  - Transcribe each scene with `language='uz'`. Cut every English phrase by its alignment times, pad 0.5 s and transcribe it with `language='en'`.
+  - Findings with this voice: phrases like very good, Excellent, a significant number of, It can be argued that, children and IELTS Runner read correctly. **"IELTSdan" is garbled** ("I understand"). Write it as **"Ay-Ee-Elts'dan"** in the TTS text (verified as "IELTS-dan") but keep "IELTS" on screen.
+- **Viral + Goprep tie-in pattern (user rule: mention Goprep.gg through the video, linked to its sections):**
+  - Hook: "To'xta! … IELTS'dan yettini orzu ham qilma! Beshinchisi eng yomoni — oxirigacha ko'r!" (an open loop).
+  - "N/5" titles.
+  - Section beats between the items, using the new `screen` doodle (a hand-drawn browser window `goprep.gg/<mode>`):
+    - `writing`: flagged words with green suggestion chips and a VOCAB tag;
+    - `speaking`: Preppy, a mic, a live waveform and a MOCK TEST tag (`img`);
+    - `game`: the IELTS Runner tile (`img`).
+  - Comment-bait CTA ("Kommentda yoz — sen qaysi birini ishlatarding?").
+  - Scene gap 0.3 s. A click + sparkle lands on each screen, and a "correct" chime on each green line.
+  - Example: `examples/angry-board-writing-5-words.props.json` + `.script.txt` (76 s).
