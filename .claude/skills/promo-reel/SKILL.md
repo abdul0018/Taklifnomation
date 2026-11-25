@@ -786,3 +786,7 @@ Used to remake a paper-collage IELTS explainer ("3 ta sir": Reading qat'iy so'zl
   - Per-word scene: red title "N. word" at y 220; grey note at 500; `cross` doodle of the bad word at about 820 (`s 1.25`); a green "→ better word" line at 1090; an optional angry punch line plus 😡 at 1330.
   - Long words now auto-fit inside the cross and circle doodles (`textLength`).
   - Example: `examples/angry-board-writing-5-words.props.json` + `.script.txt` (Adizzbek voice, 57 s).
+- **Uzbek register (user rule, 2026-11-25):** write the angry-teacher scripts in natural, informal spoken Uzbek, not translated or "odd" Uzbek.
+  - Use "sen" forms and real street phrasing: "Haliyam … yozib yuribsanmi?!", "Kallang ishlayaptimi o'zi?!", "ballingni qirqib tashlaydi", "Qara, …", "xo'pmi?!", "Bas qil!", "Uxlab qolma!", "O'rtog'ingga ham tashlab qo'y!".
+  - Avoid calques like "Bu og'zaki gap", "Kalla yo'qmi", "taklif qiladi" or "Do'stingga yubor".
+  - Keep the on-screen lines in the same register.
