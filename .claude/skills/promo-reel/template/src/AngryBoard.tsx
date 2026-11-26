@@ -12,14 +12,20 @@ import {clamp} from './kit';
 
 let FAST = false;
 const HAND = "'Patrick Hand', 'Comic Sans MS', cursive";
-const COL: Record<string, string> = {red: '#C8102E', blue: '#1F4FD1', grey: '#4A4A4A', green: '#1E7B34', ink: '#222'};
+const PAPER_COL = {red: '#C8102E', blue: '#1F4FD1', grey: '#4A4A4A', green: '#1E7B34', ink: '#222'};
+const CHALK_COL = {red: '#FF8A8A', blue: '#8FD0FF', grey: '#E9E6DC', green: '#B9F07A', ink: '#F4F1E8'};
+const COL: Record<string, string> = {...PAPER_COL};
+let CHALK = false;
+/** dusty chalk texture: alpha noise mask (0.4–1) applied to everything written on the board */
+const CHALK_MASK = `url("data:image/svg+xml;utf8,${encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -1.5 0 0 0 1.45'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>")}")`;
 
 export type BoardItem =
   | {type: 'text'; text: string; color: 'red' | 'blue' | 'grey' | 'green'; y: number; size?: number; at: number; dur?: number; underline?: boolean}
   | {type: 'doodle'; kind: string; at: number; x: number; y: number; s?: number; text?: string; times?: number[]; img?: string};
 export type BoardScene = {start: number; end: number; items: BoardItem[]};
 /** fast: snappy "fast motion" mode — lines write ~2x faster, doodles draw in 10 frames, hard cuts with a punch-in zoom at every scene and a camera kick on punches. */
-export type AngryBoardProps = {fast?: boolean; voice: string; sfx?: string; scenes: BoardScene[]; punches: number[]; env: number[]; mascot: string; brand?: string; end: number};
+/** theme 'chalk': dark green chalkboard with a wooden frame, chalk colours, a chalk stick instead of the marker and a dusty chalk texture on everything written. */
+export type AngryBoardProps = {theme?: 'paper' | 'chalk'; fast?: boolean; voice: string; sfx?: string; scenes: BoardScene[]; punches: number[]; env: number[]; mascot: string; brand?: string; end: number};
 
 const useT = () => { const f = useCurrentFrame(); const {fps} = useVideoConfig(); return {f, fps, s: (x: number) => Math.round(x * fps)}; };
 const draw = (p: number) => ({pathLength: 1, strokeDasharray: 1, strokeDashoffset: 1 - Math.max(0, Math.min(1, p))});
@@ -29,9 +35,10 @@ const ink = (c = COL.ink, w = 6) => ({fill: 'none', stroke: c, strokeWidth: w, s
 const Marker: React.FC<{x: number; y: number; o: number}> = ({x, y, o}) => (
   <svg width={120} height={120} style={{position: 'absolute', left: x - 6, top: y - 112, opacity: o, overflow: 'visible'}}>
     <g transform="rotate(-38 6 112)">
+      {CHALK ? <><rect x={-1} y={40} width={15} height={74} rx={4} fill="#FBF8EE" stroke="#BDB8A8" strokeWidth={1.5} /><rect x={-1} y={100} width={15} height={14} rx={3} fill="#E8E3D2" /></> : <>
       <rect x={0} y={4} width={13} height={98} rx={4} fill="#1C1C1C" />
       <rect x={0} y={4} width={13} height={22} rx={4} fill="#3A3A3A" />
-      <path d="M1 102 L12 102 L6.5 114 Z" fill="#111" />
+      <path d="M1 102 L12 102 L6.5 114 Z" fill="#111" /></>}
     </g>
   </svg>
 );
@@ -81,7 +88,7 @@ const Doodle: React.FC<{d: Extract<BoardItem, {type: 'doodle'}>}> = ({d}) => {
         {d.text && d.text !== '?' && <g opacity={Math.min(1, pop)} transform={`translate(${150} ${-40}) scale(${pop})`}>
           <rect x={0} y={-60} width={Math.max(160, d.text.length * 22)} height={74} rx={30} fill="#FFFDF6" stroke={COL.ink} strokeWidth={4} />
           <path d="M20 14 L4 44 L44 14" fill="#FFFDF6" stroke={COL.ink} strokeWidth={4} strokeLinejoin="round" />
-          <text x={Math.max(160, d.text.length * 22) / 2} y={-12} textAnchor="middle" fontFamily={HAND} fontSize={40} fill={COL.blue}>{d.text}</text>
+          <text x={Math.max(160, d.text.length * 22) / 2} y={-12} textAnchor="middle" fontFamily={HAND} fontSize={40} fill={PAPER_COL.blue}>{d.text}</text>
         </g>}
       </svg>);
     }
@@ -96,7 +103,7 @@ const Doodle: React.FC<{d: Extract<BoardItem, {type: 'doodle'}>}> = ({d}) => {
         const q = spring({frame: f - s(t), fps, config: {damping: 9, stiffness: 240, mass: 0.5}});
         return <svg key={i} width={220} height={200} viewBox="0 0 220 200" style={{position: 'absolute', left: i * 270, top: 0, transform: `scale(${q}) rotate(${(i - 1) * 4}deg)`, overflow: 'visible'}}>
           <path d="M10 40 L80 40 L96 20 L210 20 L210 190 L10 190 Z" fill="#F3D48A" stroke={COL.ink} strokeWidth={5} strokeLinejoin="round" />
-          <text x={110} y={150} textAnchor="middle" fontFamily={HAND} fontSize={110} fill={COL.ink}>{i + 1}</text>
+          <text x={110} y={150} textAnchor="middle" fontFamily={HAND} fontSize={110} fill="#222">{i + 1}</text>
         </svg>;
       })}</>);
     }
@@ -123,7 +130,7 @@ const Doodle: React.FC<{d: Extract<BoardItem, {type: 'doodle'}>}> = ({d}) => {
         const q = spring({frame: f - s(t), fps, config: {damping: 9, stiffness: 240, mass: 0.5}});
         return <div key={i} style={{position: 'absolute', left: i * 250, top: 0, width: 210, height: 160, background: '#FFFDF6', border: `4px solid ${COL.ink}`, borderRadius: 10,
           transform: `scale(${q}) rotate(${(i - 1) * 5}deg)`, fontFamily: HAND, textAlign: 'center', paddingTop: 10, boxSizing: 'border-box'}}>
-          <div style={{fontSize: 34, color: COL.ink}}>MOCK TEST</div><div style={{fontSize: 80, lineHeight: 1, color: COL.red}}>{i + 1}</div>
+          <div style={{fontSize: 34, color: '#222'}}>MOCK TEST</div><div style={{fontSize: 80, lineHeight: 1, color: PAPER_COL.red}}>{i + 1}</div>
         </div>;
       })}</>);
     }
@@ -187,7 +194,7 @@ const Doodle: React.FC<{d: Extract<BoardItem, {type: 'doodle'}>}> = ({d}) => {
 
 export const AngryBoardReel: React.FC<AngryBoardProps> = (p) => {
   const {f, fps, s} = useT();
-  FAST = !!p.fast;
+  FAST = !!p.fast; CHALK = p.theme === 'chalk'; Object.assign(COL, CHALK ? CHALK_COL : PAPER_COL);
   const sc = p.scenes.find((x) => f >= s(x.start) && f < s(x.end)) ?? null;
   const fadeOut = sc ? (FAST ? 1 : interpolate(f, [s(sc.end) - 5, s(sc.end)], [1, 0], clamp)) : 0;
   const fadeIn = sc ? (FAST ? 1 : interpolate(f, [s(sc.start), s(sc.start) + 4], [0, 1], clamp)) : 0;
@@ -203,10 +210,24 @@ export const AngryBoardReel: React.FC<AngryBoardProps> = (p) => {
   const shake = pu != null ? Math.sin(pu * 2.4) * 16 * Math.exp(-pu / 9) : 0;
   const grow = pu != null ? 0.25 * Math.exp(-pu / 7) : 0;
   return (
-    <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, #F7EDD3 0%, #EFDFB9 55%, #E2CB98 100%)'}}>
-      {p.brand && <div style={{position: 'absolute', left: 40, top: 40, padding: '6px 16px', border: '3px solid #8E2A1C', borderRadius: 6, color: '#8E2A1C', fontFamily: HAND, fontSize: 34,
-        letterSpacing: '0.08em', transform: 'rotate(-3deg)', background: 'rgba(255,255,255,.35)'}}>{p.brand}</div>}
-      {sc && <AbsoluteFill style={{opacity: fadeOut * fadeIn, transform: `translateX(${jit}px) scale(${zoomIn * kick}) rotate(${FAST ? (1 - Math.min(1, since / 5)) * -1.5 : 0}deg)`}}>
+    <AbsoluteFill style={{background: CHALK ? '#6B4A2B' : 'radial-gradient(ellipse at 50% 45%, #F7EDD3 0%, #EFDFB9 55%, #E2CB98 100%)'}}>
+      {CHALK && <>
+        <div style={{position: 'absolute', inset: 0, background: 'repeating-linear-gradient(90deg, #7A5532 0 14px, #6B4A2B 14px 22px, #805A36 22px 40px)'}} />
+        <div style={{position: 'absolute', inset: 26, borderRadius: 8, background: 'radial-gradient(ellipse at 50% 40%, #2F4A3B 0%, #263D31 60%, #1E3127 100%)', boxShadow: 'inset 0 0 0 4px #4B331D'}}>
+          <svg width="100%" height="100%" style={{position: 'absolute', inset: 0, opacity: 0.35}}>
+            <filter id="smudge"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed={9} /><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.25 0" /></filter>
+            <rect width="100%" height="100%" filter="url(#smudge)" />
+          </svg>
+        </div>
+        <div style={{position: 'absolute', left: 26, right: 26, bottom: 26, height: 30, background: '#5A3D22', boxShadow: 'inset 0 3px 0 #7A5532'}}>
+          <div style={{position: 'absolute', left: 700, top: 8, width: 70, height: 14, borderRadius: 4, background: '#F4F1E8'}} />
+          <div style={{position: 'absolute', left: 800, top: 9, width: 50, height: 12, borderRadius: 4, background: '#FF8A8A'}} />
+          <div style={{position: 'absolute', left: 870, top: 4, width: 110, height: 22, borderRadius: 4, background: '#9C7B57', boxShadow: 'inset 0 -6px 0 #3A3A3A'}} />
+        </div>
+      </>}
+      {p.brand && <div style={{position: 'absolute', left: 52, top: 50, padding: '6px 16px', border: `3px solid ${CHALK ? '#F6D55C' : '#8E2A1C'}`, borderRadius: 6, color: CHALK ? '#F6D55C' : '#8E2A1C', fontFamily: HAND, fontSize: 34,
+        letterSpacing: '0.08em', transform: 'rotate(-3deg)', background: CHALK ? 'transparent' : 'rgba(255,255,255,.35)'}}>{p.brand}</div>}
+      {sc && <AbsoluteFill style={{...(CHALK ? {WebkitMaskImage: CHALK_MASK, maskImage: CHALK_MASK, WebkitMaskSize: '420px 420px', maskSize: '420px 420px'} : {}), opacity: fadeOut * fadeIn, transform: `translateX(${jit}px) scale(${zoomIn * kick}) rotate(${FAST ? (1 - Math.min(1, since / 5)) * -1.5 : 0}deg)`}}>
         {sc.items.map((it, i) => it.type === 'text' ? <Line key={i} it={it} /> : <Doodle key={i} d={it} />)}
       </AbsoluteFill>}
       <div style={{position: 'absolute', left: 40, top: 1520, width: 300, height: 300, transformOrigin: '50% 100%',

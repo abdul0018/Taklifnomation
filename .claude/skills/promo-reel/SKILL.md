@@ -821,3 +821,11 @@ Used to remake a paper-collage IELTS explainer ("3 ta sir": Reading qat'iy so'zl
   - Then the meaning, the street words (wimp, chicken 🐔) and "IELTS Speaking'da" with the slang crossed out (+ a wrong buzzer).
   - Then the exam words with example sentences (coward, timid), an "eslab qol" recap, the Goprep Speaking + Runner screens and a "Keyingi so'z qaysi bo'lsin?" comment CTA.
   - Fast mode, 51 s. Example: `examples/angry-board-hezalak.props.json` + `.script.txt`.
+- **Chalkboard variant (`theme: 'chalk'`)**, for "same idea, a bit different visuals":
+  - A dark green board with a striped wooden frame, a chalk ledge and a soft smudge texture. Text colours become pastel chalk (pink, blue, off-white, lime). The marker becomes a chalk stick.
+  - A dusty alpha-noise mask (`CHALK_MASK`) covers everything written. Paper doodles keep dark text so they stay readable.
+  - SFX: a gritty chalk scratch (band 2.5–9 kHz with random crackle) instead of the marker scribble, plus a wrong buzzer on crosses.
+- **"More angry" voice:** `voice_settings {speed 1.2, stability 0.3, similarity_boost 0.8, style 0.65}` on eleven_v4 (already in `tools/angry_vo.py`).
+  - The angrier read slurs the spliced "IELTS" more often: regenerate that scene until large-v3 hears IELTS in both the uz and en passes (3 of 4 tries failed here).
+  - Script register: "Ey ahmoq bola!", "Qulog'ingni och!", "Tushundingmi, ahmoq?!", "pulingni sovurma", "xatoingni yuzingga aytadi", "Kallang ishlasa — kir!".
+  - Example: `examples/angry-board-3sir-chalk.props.json` + `.script.txt` (49 s).

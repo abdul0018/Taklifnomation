@@ -11,7 +11,7 @@ SC=[
  [("uz","Yangi so'zlarni esa Goprep.gg'dagi Runner o'yinida o'ynab yodla! Kallang ishlasa — hoziroq kir!")],
  [("uz","Keyingi so'z qaysi bo'lsin? Kommentda yoz! Saqlab qo'y, o'rtog'ingga tashla! Goprep.gg!")]]
 def tts(text,lang,prev=None,nxt=None):
-    b={"text":text,"model_id":"eleven_v4","language_code":lang,"voice_settings":{"speed":1.2}}
+    b={"text":text,"model_id":"eleven_v4","language_code":lang,"voice_settings":{"speed":1.2,"stability":0.3,"similarity_boost":0.8,"style":0.65}}
     if prev: b["previous_text"]=prev
     if nxt: b["next_text"]=nxt
     req=urllib.request.Request(f'https://api.elevenlabs.io/v1/text-to-speech/{el.VOICE}/with-timestamps?output_format=mp3_44100_128',data=json.dumps(b).encode(),headers={'Content-Type':'application/json','xi-api-key':'x'})
