@@ -1,0 +1,123 @@
+{
+ "video": "video.mp4",
+ "end": 28.1,
+ "captions": [
+  {
+   "text": "Oxirida AI **jinni bo‘ldi** 😂",
+   "start": 0.25,
+   "end": 3.45,
+   "y": 1470,
+   "size": 64
+  },
+  {
+   "text": "To‘xta! **Erkak** inglizcha\nnima deyiladi?",
+   "start": 3.54,
+   "end": 6.0,
+   "y": 1470,
+   "size": 58,
+   "emoji": "emoji/1f914.svg"
+  },
+  {
+   "text": "**O‘n** raqami-chi?",
+   "start": 6.86,
+   "end": 8.1,
+   "y": 1470,
+   "emoji": "emoji/1f51f.svg"
+  },
+  {
+   "text": "**Belgi**-chi?",
+   "start": 9.34,
+   "end": 10.3,
+   "y": 1470,
+   "emoji": "emoji/1f3f7.svg"
+  },
+  {
+   "text": "Erkakni **nima deding?**",
+   "start": 11.44,
+   "end": 12.7,
+   "y": 1470
+  },
+  {
+   "text": "Endi hammasini **qo‘shib**\nayt-chi",
+   "start": 14.04,
+   "end": 16.2,
+   "y": 1470,
+   "size": 60,
+   "emoji": "emoji/1f92d.svg"
+  },
+  {
+   "text": "Men **tentakman!**",
+   "start": 16.95,
+   "end": 18.4,
+   "y": 1470,
+   "icon": "preppy.png",
+   "emoji": "emoji/1f92a.svg"
+  },
+  {
+   "text": "U o‘zini **tentak** dedi 😂",
+   "start": 18.45,
+   "end": 19.5,
+   "y": 1470,
+   "size": 58
+  },
+  {
+   "text": "O‘ZING TENTAKSAN,\n**CHURBAN!**",
+   "start": 19.55,
+   "end": 21.0,
+   "y": 1470,
+   "size": 64,
+   "icon": "preppy.png",
+   "emoji": "emoji/1f624.svg"
+  },
+  {
+   "text": "**300**’ni o‘zbekcha\nayt-chi?",
+   "start": 21.1,
+   "end": 24.0,
+   "y": 1470,
+   "size": 60,
+   "emoji": "emoji/1f60f.svg"
+  },
+  {
+   "text": "Uch yuz... uch yuz...",
+   "start": 24.8,
+   "end": 26.3,
+   "y": 1470,
+   "size": 60,
+   "icon": "preppy.png",
+   "emoji": "emoji/1f92f.svg"
+  }
+ ],
+ "chips": {
+  "y": 1745,
+  "outAt": 17.75,
+  "items": [
+   {
+    "text": "MAN",
+    "at": 6.08,
+    "lit": 16.95
+   },
+   {
+    "text": "TEN",
+    "at": 8.12,
+    "lit": 17.15
+   },
+   {
+    "text": "TAG",
+    "at": 10.34,
+    "lit": 17.35
+   },
+   {
+    "text": "MAN",
+    "at": 12.76,
+    "lit": 17.55
+   }
+  ]
+ },
+ "title": {
+  "text": "MEN TENTAKMAN?!",
+  "at": 17.8,
+  "y": 1745,
+  "size": 84,
+  "emoji": "emoji/1f602.svg"
+ }
+}

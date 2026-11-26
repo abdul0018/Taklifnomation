@@ -558,6 +558,13 @@ Use it when the user sends a finished-looking clip (own cuts, inserts and music 
   - Set the caption `y` just above the laptop's top edge in that take (960 there, 885 in the hoodie take).
   - In the user's script, a mid-sentence "To'xta" can belong to the next line. Check the RMS gaps.
 - Examples: `examples/preppy-tovuq-captions.props.json` and `examples/preppy-qorqoq-captions.props.json`.
+- **"Men tentakman" episode** (Man + Ten + Tag + Man; "Belgi-chi?" → Tag). Preppy then rages "O'zing tentaksan, churban!", followed by "300'ni o'zbekcha ayt-chi?" → "Uch yuz…".
+  - The user's clip already had a burned-in hook box at y 140–320 and an end caption at about y 1450 (26–28 s). Keep clear of both.
+  - Placement: captions over the blank lower laptop screen (y 1470, white text with a black stroke reads fine on the white screen). Chips and the title over the keyboard (y 1745).
+  - Add a viral open-loop line on Preppy's opening ("Oxirida AI jinni bo'ldi 😂") instead of leaving it bare.
+  - Light SFX only: a pop per chip and a boom + sparkle on the title, on the effects bus. The voice stays at full level.
+  - Large-v3 with an `initial_prompt` of the expected script fixes the one-word replies (Belgi-chi? Tag!).
+  - Example: `examples/preppy-tentak-captions.props.json`.
 - **One-word fast captions (`fast: true`):** use these when the user asks for "one word caption style":
   - One caption per word, each ending exactly when the next word starts, with a hard cut (no fade).
   - A snappy pop (spring 420/9) from 0.55 with a −6° tilt, uppercase, nowrap, 104 px. Words longer than 11 letters drop to 80 px.
