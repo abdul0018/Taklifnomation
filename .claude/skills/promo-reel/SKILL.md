@@ -490,6 +490,7 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
 - **Section changes get a click** (`ui_sfx.py` click.wav at −9 dB, at each topic start). Keep the viral pop/buzzer, pop/chime and boom/sparkle on the reveals.
 - **Default gesture read for this user:** an index finger pointing to screen-right, then a finger up, then a thumb toward screen-left means `mirror: true`.
 - Add the viral SFX by default after the user asked for them once. Also offer a clean, voice-only copy, which costs only another mux.
+- **Reveal after the point, never before (user rule, 2026-11-28):** the user found reveals at the first frame of the gesture "very fast". Reveal about 0.2–0.3 s **after** the pen or finger has settled on its spot *and* after the tier word has started. Use the later of the two, then add the delay. In the pen take: right-low (YOMON) → at the chin (YAXSHI) → raised high on the left (AJOYIB). Example: `examples/ielts-tiers-pen-4topics.props.json`.
 - **Pen-in-hand takes (Writing version):** the speaker may not point left, centre and right at all. Here a pen sat at chest height (YOMON), was raised beside the head (YAXSHI), then raised high (AJOYIB). Read the rising pose from a full-frame 10 fps strip; a chest crop misses it. Use the later of the pose and the tier word.
 - For this user's topics, "IELTS Writing ✍️" uses ChatGPT, then Engnovate (the 512 px rebuild of its official favicon), then Goprep.gg.
 - When measuring PSNR, crop a region with no graphics. The topic pill covers y≈1270–1400, so use y≥1500.
