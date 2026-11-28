@@ -1,0 +1,133 @@
+{
+ "video": "video.mp4",
+ "clean": true,
+ "mirror": true,
+ "row": {
+  "y": 58,
+  "raise": 38,
+  "scale": 0.64
+ },
+ "pillY": 1300,
+ "end": 17.53,
+ "topics": [
+  {
+   "title": "So‘z yodlash",
+   "emoji": "emoji/1f4da.svg",
+   "start": 1.0,
+   "reveal": [
+    3.2,
+    3.85,
+    4.4
+   ],
+   "logos": [
+    {
+     "name": "Duolingo",
+     "kind": "img",
+     "file": "logos/duolingo.png"
+    },
+    {
+     "name": "Anki",
+     "kind": "img",
+     "file": "logos/anki.png",
+     "radius": 0
+    },
+    {
+     "name": "IELTS Runner",
+     "kind": "img",
+     "file": "logos/runner_tile.png",
+     "radius": 28
+    }
+   ]
+  },
+  {
+   "title": "IELTS Listening",
+   "emoji": "emoji/1f3a7.svg",
+   "start": 5.1,
+   "reveal": [
+    6.65,
+    7.45,
+    8.15
+   ],
+   "logos": [
+    {
+     "name": "Instagram",
+     "kind": "mask",
+     "file": "logos/instagram.svg",
+     "gradient": "linear-gradient(45deg,#FEDA75,#FA7E1E 30%,#D62976 60%,#962FBF 80%,#4F5BD5)"
+    },
+    {
+     "name": "YouTube",
+     "kind": "img",
+     "file": "logos/youtube.svg",
+     "radius": 0
+    },
+    {
+     "name": "Goprep.gg",
+     "kind": "img",
+     "file": "logos/goprep.svg"
+    }
+   ]
+  },
+  {
+   "title": "IELTS Writing",
+   "emoji": "emoji/270d.svg",
+   "start": 8.95,
+   "reveal": [
+    10.45,
+    11.15,
+    11.95
+   ],
+   "logos": [
+    {
+     "name": "ChatGPT",
+     "kind": "mask",
+     "file": "logos/openai.svg",
+     "color": "#000000",
+     "scale": 0.9
+    },
+    {
+     "name": "Engnovate",
+     "kind": "img",
+     "file": "logos/engnovate.png",
+     "radius": 0
+    },
+    {
+     "name": "Goprep.gg",
+     "kind": "img",
+     "file": "logos/goprep.svg"
+    }
+   ]
+  },
+  {
+   "title": "IELTS Speaking",
+   "emoji": "emoji/1f5e3.svg",
+   "start": 12.95,
+   "reveal": [
+    14.65,
+    15.25,
+    16.25
+   ],
+   "logos": [
+    {
+     "name": "ChatGPT",
+     "kind": "mask",
+     "file": "logos/openai.svg",
+     "color": "#000000",
+     "scale": 0.9
+    },
+    {
+     "name": "HelloTalk",
+     "kind": "img",
+     "file": "logos/hellotalk.png"
+    },
+    {
+     "name": "Preppy AI",
+     "kind": "img",
+     "file": "logos/preppy_angry.png",
+     "radius": 0,
+     "scale": 1.12
+    }
+   ]
+  }
+ ]
+}
