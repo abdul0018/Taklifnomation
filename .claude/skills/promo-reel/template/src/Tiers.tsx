@@ -29,9 +29,10 @@ export type Topic = {title: string; emoji?: string; start: number; logos: [Logo,
 /** mirror: YOMON on the right, AJOYIB on the left (for takes where the speaker's gestures run right→left on screen). */
 /** row: card row placement — y of the side cards' label top, how much the centre card is raised, and card scale (default 330 / 125 / 1). */
 /** pillY: top of the topic pill (default 1270, chest height); move it lower when close-ups or hand gestures sit there. */
-export type TiersProps = {pillY?: number; row?: {y: number; raise: number; scale: number}; mirror?: boolean; clean?: boolean; overlayOnly?: boolean; video: string; voice?: string; voiceVolume?: number; topics: Topic[]; cues?: {file: string; at: number; vol?: number}[]; end: number};
+/** logoSize: logo px inside the 236 px card (default 124; 150 fills the card for small above-head rows). */
+export type TiersProps = {logoSize?: number; pillY?: number; row?: {y: number; raise: number; scale: number}; mirror?: boolean; clean?: boolean; overlayOnly?: boolean; video: string; voice?: string; voiceVolume?: number; topics: Topic[]; cues?: {file: string; at: number; vol?: number}[]; end: number};
 
-let CLEAN = false; let MIRROR = false; let ROW: {y: number; raise: number; scale: number} | null = null; let PILLY = 1270;
+let CLEAN = false; let MIRROR = false; let ROW: {y: number; raise: number; scale: number} | null = null; let PILLY = 1270; let LOGO = 124;
 
 const useT = () => { const f = useCurrentFrame(); const {fps} = useVideoConfig(); return {f, fps, s: (x: number) => Math.round(x * fps)}; };
 const ease = Easing.bezier(0.16, 1, 0.3, 1);
@@ -77,7 +78,7 @@ const TierCard: React.FC<{i: number; logo: Logo; topicAt: number; revealAt: numb
           boxShadow: CLEAN ? `inset 0 0 0 2px rgba(0,0,0,.12)${lit > 0.5 ? `, 0 0 0 5px ${T.color}` : ''}` : `0 16px 34px rgba(0,0,0,.35), 0 3px 8px rgba(0,0,0,.2)${lit > 0.5 ? `, 0 0 0 4px ${T.color}` : ''}`,
           filter: blur > 0.3 ? `blur(${blur}px)` : undefined}}>
           <div style={{fontFamily: FONT, fontWeight: 900, fontSize: logo.name.length > 12 ? 19 : 24, color: '#111', letterSpacing: '0.04em', textAlign: 'center', lineHeight: 1.05, padding: '0 10px'}}>{logo.name.toUpperCase()}</div>
-          <LogoArt logo={logo} size={124} />
+          <LogoArt logo={logo} size={LOGO} />
         </div>
       </div>
     </div>
@@ -104,7 +105,7 @@ const TopicPill: React.FC<{t: Topic; out: number}> = ({t, out}) => {
 
 export const TiersReel: React.FC<TiersProps> = (p) => {
   const {s} = useT();
-  CLEAN = !!p.clean; MIRROR = !!p.mirror; ROW = p.row ?? null; PILLY = p.pillY ?? 1270;
+  CLEAN = !!p.clean; MIRROR = !!p.mirror; ROW = p.row ?? null; PILLY = p.pillY ?? 1270; LOGO = p.logoSize ?? 124;
   return (
     <AbsoluteFill style={{background: p.overlayOnly ? 'transparent' : '#000'}}>
       {!p.overlayOnly && <OffthreadVideo src={src(p.video)} muted style={{width: '100%', height: '100%', objectFit: 'cover'}} toneMapped={false} />}

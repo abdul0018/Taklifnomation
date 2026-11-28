@@ -491,6 +491,11 @@ Reference: the "Fikrlash / Qidirish / Kod yozish…" app-tier reel.
 - **Default gesture read for this user:** an index finger pointing to screen-right, then a finger up, then a thumb toward screen-left means `mirror: true`.
 - Add the viral SFX by default after the user asked for them once. Also offer a clean, voice-only copy, which costs only another mux.
 - **Reveal after the point, never before (user rule, 2026-11-28):** the user found reveals at the first frame of the gesture "very fast". Reveal about 0.2–0.3 s **after** the pen or finger has settled on its spot *and* after the tier word has started. Use the later of the two, then add the delay. In the pen take: right-low (YOMON) → at the chin (YAXSHI) → raised high on the left (AJOYIB). Example: `examples/ielts-tiers-pen-4topics.props.json`.
+- **Verify reveals with a motion trace (do this every time):** compute the per-frame mean abs difference over the upper-body crop (`crop=900:900:90:250`, downscaled to grey). Gestures show as bursts and held poses as lulls. Set each reveal about 0.15–0.2 s into the lull where the pose is held, and after the tier word.
+  - Then render stills just before and just after each reveal and check the pen is already in place.
+  - In this user's pen takes the three poses are: pen at the right side or chin (YOMON) → raised beside the left ear (YAXSHI) → raised higher on the left (AJOYIB).
+  - Set topic `start` from the spoken topic word, not the cut, so a late AJOYIB isn't cut off by the next topic.
+- **Bigger logos (user: "very small"):** use `row {y: 30, raise: 24, scale: 0.88}` + `logoSize: 150` (logo ≈ 132 px on screen, against 79 px with scale 0.64 / 124). The side cards end at y≈290, above the hair at y≈365 in the wide shots.
 - **Pen-in-hand takes (Writing version):** the speaker may not point left, centre and right at all. Here a pen sat at chest height (YOMON), was raised beside the head (YAXSHI), then raised high (AJOYIB). Read the rising pose from a full-frame 10 fps strip; a chest crop misses it. Use the later of the pose and the tier word.
 - For this user's topics, "IELTS Writing ✍️" uses ChatGPT, then Engnovate (the 512 px rebuild of its official favicon), then Goprep.gg.
 - When measuring PSNR, crop a region with no graphics. The topic pill covers y≈1270–1400, so use y≥1500.
